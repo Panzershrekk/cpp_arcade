@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Thu Mar 09 17:13:26 2017 Thomas Fossaert
+** Last update Thu Mar 09 17:35:40 2017 Thomas Fossaert
 */
 
 #ifndef __IGHOST_HPP__
@@ -24,13 +24,13 @@ namespace pac
   class IGhost
   {
     public:
-      virtual void move();
+      virtual void move() = 0;
       virtual void setX(int pos) = 0;
       virtual void setY(int pos) = 0;
       virtual int getX() const = 0;
       virtual int getY() const = 0;
       virtual void Dump(void) const = 0;
-      virtual ~IGhost(void) { }
+      virtual ~IGhost(void) { };
     };
 }
 

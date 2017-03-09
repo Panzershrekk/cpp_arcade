@@ -5,10 +5,11 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Mar 09 17:29:23 2017 Thomas Fossaert
+** Last update Thu Mar 09 17:43:48 2017 Thomas Fossaert
 */
 
 #include "IGhost.hpp"
+#include "Blinky.hpp"
 
 Blinky::Blinky()
 {
@@ -16,6 +17,7 @@ Blinky::Blinky()
   _posY = 0;
   _state = pac::INVUNERABLE;
   _speed = 10;
+  _isAlive = true;
 }
 
 Blinky::~Blinky()
@@ -41,7 +43,7 @@ Blinky& Blinky::operator=(Blinky const & other)
 
 void Blinky::move()
 {
-  
+
 }
 
 void Blinky::setX(int pos)
@@ -54,12 +56,12 @@ void Blinky::setY(int pos)
   _posY = pos;
 }
 
-void Blinky::getX(int pos) const
+int Blinky::getX() const
 {
-  return (_posX)
+  return (_posX);
 }
 
-void Blinky::getY(int pos) const
+int Blinky::getY() const
 {
   return (_posY);
 }

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Thu Mar 09 17:14:39 2017 Thomas Fossaert
+** Last update Thu Mar 09 17:44:22 2017 Thomas Fossaert
 */
 
 #include "IGhost.hpp"
@@ -17,6 +17,7 @@ class Blinky : public pac::IGhost
     int         _posY;
     pac::State  _state;
     size_t      _speed;
+    bool        _isAlive;
   public:
     Blinky();
     ~Blinky();
