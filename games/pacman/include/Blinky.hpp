@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Thu Mar 09 17:44:22 2017 Thomas Fossaert
+** Last update Thu Mar 09 17:45:48 2017 Thomas Fossaert
 */
 
 #include "IGhost.hpp"
