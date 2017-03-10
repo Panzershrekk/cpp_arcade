@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Mar 09 17:43:48 2017 Thomas Fossaert
+** Last update Fri Mar 10 08:57:28 2017 Thomas Fossaert
 */
 
 #include "IGhost.hpp"
@@ -56,6 +56,16 @@ void Blinky::setY(int pos)
   _posY = pos;
 }
 
+void Blinky::setState(pac::State pos)
+{
+  _state = pos;
+}
+
+void Blinky::setSpeed(size_t pos)
+{
+  _speed = pos;
+}
+
 int Blinky::getX() const
 {
   return (_posX);
@@ -64,6 +74,21 @@ int Blinky::getX() const
 int Blinky::getY() const
 {
   return (_posY);
+}
+
+pac::State Blinky::getState() const
+{
+  return (_state);
+}
+
+size_t Blinky::getSpeed() const
+{
+  return (_speed);
+}
+
+bool  Blinky::isAlive() const
+{
+  return (false);
 }
 
 void Blinky::Dump(void) const

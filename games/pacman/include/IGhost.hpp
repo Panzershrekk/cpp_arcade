@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Thu Mar 09 17:35:40 2017 Thomas Fossaert
+** Last update Fri Mar 10 08:56:47 2017 Thomas Fossaert
 */
 
 #ifndef __IGHOST_HPP__
@@ -27,8 +27,13 @@ namespace pac
       virtual void move() = 0;
       virtual void setX(int pos) = 0;
       virtual void setY(int pos) = 0;
+      virtual void setState(pac::State pos) = 0;
+      virtual void setSpeed(size_t pos) = 0;
       virtual int getX() const = 0;
       virtual int getY() const = 0;
+      virtual pac::State getState() const = 0;
+      virtual size_t getSpeed() const = 0;
+      virtual bool isAlive() const = 0;
       virtual void Dump(void) const = 0;
       virtual ~IGhost(void) { };
     };
