@@ -7,6 +7,8 @@ RM		=	rm -f
 CXXFLAGS	+=	-std=c++11
 CXXFLAGS	+=	-Werror -Wall -Wextra
 CXXFLAGS	+=	-Igames/pacman/include
+CXXFLAGS	+=	-Ilib
+
 
 SRCS		=	main.cpp \
 					games/pacman/Blinky.cpp

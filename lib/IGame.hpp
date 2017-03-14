@@ -5,15 +5,15 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Fri Mar 10 08:56:47 2017 Thomas Fossaert
+** Last update Tue Mar 14 09:09:30 2017 Thomas Fossaert
 */
 
-#ifndef __IGHOST_HPP__
-# define __IGHOST_HPP__
+#ifndef __IGAME_HPP__
+# define __IGAME_HPP__
 
 #include <iostream>
 
-namespace pac
+namespace game
 {
   enum State
  {
@@ -21,22 +21,24 @@ namespace pac
    VULNERABLE = 1
  };
 
-  class IGhost
+  class IGame
   {
     public:
       virtual void move() = 0;
       virtual void setX(int pos) = 0;
       virtual void setY(int pos) = 0;
-      virtual void setState(pac::State pos) = 0;
-      virtual void setSpeed(size_t pos) = 0;
+      virtual void setState(game::State state) = 0;
+      virtual void setSpeed(size_t speed) = 0;
+      //virtual void setPoint(size_t point) = 0;
       virtual int getX() const = 0;
       virtual int getY() const = 0;
-      virtual pac::State getState() const = 0;
+      virtual game::State getState() const = 0;
       virtual size_t getSpeed() const = 0;
+      //virtual size_t getPoint() const = 0;
       virtual bool isAlive() const = 0;
       virtual void Dump(void) const = 0;
-      virtual ~IGhost(void) { };
+      virtual ~IGame(void) { };
     };
 }
 
-#endif // __IGHOST_HPP__
+#endif // __IGAME_HPP__

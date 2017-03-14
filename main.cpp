@@ -5,11 +5,11 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 16:40:59 2017 Thomas Fossaert
-** Last update Thu Mar 09 17:45:51 2017 Thomas Fossaert
+** Last update Tue Mar 14 09:09:07 2017 Thomas Fossaert
 */
 
 #include <iostream>
-#include "IGhost.hpp"
+#include "IGame.hpp"
 #include "Blinky.hpp"
 
 int   main(int ac, char **av)

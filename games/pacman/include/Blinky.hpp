@@ -5,19 +5,20 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Fri Mar 10 08:53:19 2017 Thomas Fossaert
+** Last update Tue Mar 14 09:09:52 2017 Thomas Fossaert
 */
 
-#include "IGhost.hpp"
+#include "IGame.hpp"
 
-class Blinky : public pac::IGhost
+class Blinky : public game::IGame
 {
   private:
     int         _posX;
     int         _posY;
-    pac::State  _state;
+    game::State  _state;
     size_t      _speed;
     bool        _isAlive;
+
   public:
     Blinky();
     ~Blinky();
@@ -27,11 +28,11 @@ class Blinky : public pac::IGhost
     void move();
     void setX(int pos);
     void setY(int pos);
-    void setState(pac::State pos);
+    void setState(game::State pos);
     void setSpeed(size_t pos);
     int getX() const;
     int getY() const;
-    pac::State getState() const;
+    game::State getState() const;
     size_t getSpeed() const;
     bool isAlive() const;
     void Dump(void) const;

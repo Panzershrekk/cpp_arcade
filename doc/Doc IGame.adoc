@@ -1,0 +1,76 @@
+= Documentation IGame
+
+WARNING: Cette documentation ainsi que l'interface et suscptible de changer
+
+NOTE: Cette interface à été conçu sur base Ncurses
+
+== Introduction
+
+=== L'interface IGame
+
+L'interface IGame permet de mettre en place différente méthodes qui seront communes
+aux autres jeux à développer.
+Par exemple, la méthode SetX() permettra de définir un point en abscisse sur la map
+pour un objet: +
+
+* Le jeu Pacman positionnera les Fantômes et Pacman
+* Le jeu Snake positionnera le snake et les bonus à ramasser
+
+== L'enum State {}
+
+L'enum de l'interface contient deux attributs:
+
+* INVUNERABLE, état où l'objet ne peut être touché.
+* VULNERABLE, état où l'objet peut être touché/tué.
+
+== Les méthodes
+
+=== move()
+
+Cette méthode déplacera les éventuelles objets de X case(s) et Y case(s) (Exemple :
+les fantômes dans Pacman)
+
+NOTE: Cette méthode peut contenir des patterns pour l'IA
+
+=== void setX()
+
+Définit la position X d'un objet
+
+=== void setY()
+
+Définit la position Y d'un objet
+
+=== void setState()
+
+Défini l'état d'un objet (Vulnérable ou invulnérable)
+
+=== void setSpeed()
+
+Définit la vitesse de l'objet (Par exemple: la vitesse à laquelle le snake se déplace)
+
+=== int getX()
+
+Récupère la position X d'un objet
+
+=== int getY()
+
+Récupère la position Y d'un objet
+
+=== game::State getState()
+
+Récupère l'état d'un objet
+
+=== size_t getSpeed()
+
+Récupère la vitesse actuelle de l'objet
+
+=== bool isAlive()
+
+Définit si l'objet actuelle est vivante ou non
+
+=== void Dump()
+
+Affiche les informations relatives à l'objet (x, y, speed, etc...)
+
+TIP: Référence pour la rédaction de la doc : +
+http://asciidoctor.org/docs/asciidoc-syntax-quick-reference/

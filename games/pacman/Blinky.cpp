@@ -1,21 +1,21 @@
 /*
-** Blinky.cpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade/games/pacman
+** Blinky.cpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade/games/gameman
 **
 ** Made by Thomas Fossaert
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 10 08:57:28 2017 Thomas Fossaert
+** Last update Tue Mar 14 09:07:14 2017 Thomas Fossaert
 */
 
-#include "IGhost.hpp"
+#include "IGame.hpp"
 #include "Blinky.hpp"
 
 Blinky::Blinky()
 {
   _posX = 0;
   _posY = 0;
-  _state = pac::INVUNERABLE;
+  _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
 }
@@ -30,6 +30,7 @@ Blinky::Blinky(Blinky const & other)
   _posY = other._posY;
   _state = other._state;
   _speed = other._speed;
+  _isAlive = other._isAlive;
 }
 
 Blinky& Blinky::operator=(Blinky const & other)
@@ -38,6 +39,7 @@ Blinky& Blinky::operator=(Blinky const & other)
   _posY = other._posY;
   _state = other._state;
   _speed = other._speed;
+  _isAlive = other._isAlive;
   return *this;
 }
 
@@ -56,7 +58,7 @@ void Blinky::setY(int pos)
   _posY = pos;
 }
 
-void Blinky::setState(pac::State pos)
+void Blinky::setState(game::State pos)
 {
   _state = pos;
 }
@@ -76,7 +78,7 @@ int Blinky::getY() const
   return (_posY);
 }
 
-pac::State Blinky::getState() const
+game::State Blinky::getState() const
 {
   return (_state);
 }
@@ -102,4 +104,5 @@ void Blinky::Dump(void) const
   else
     std::cout << "VULNERABLE" << '\n';
   std::cout << "Speed: " << _speed << '\n';
+  std::cout << "ALive: " << _isAlive << '\n';
 }
