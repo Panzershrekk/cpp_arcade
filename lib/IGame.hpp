@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Tue Mar 14 09:09:30 2017 Thomas Fossaert
+** Last update Tue Mar 14 16:27:41 2017 Thomas Fossaert
 */
 
 #ifndef __IGAME_HPP__
@@ -23,6 +23,13 @@ namespace game
 
   class IGame
   {
+    protected:
+      int         _posX;
+      int         _posY;
+      game::State _state;
+      size_t      _speed;
+      bool        _isAlive;
+
     public:
       virtual void move() = 0;
       virtual void setX(int pos) = 0;

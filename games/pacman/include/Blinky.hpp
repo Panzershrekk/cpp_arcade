@@ -5,20 +5,13 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Mar 14 09:09:52 2017 Thomas Fossaert
+** Last update Tue Mar 14 16:30:21 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
 
 class Blinky : public game::IGame
 {
-  private:
-    int         _posX;
-    int         _posY;
-    game::State  _state;
-    size_t      _speed;
-    bool        _isAlive;
-
   public:
     Blinky();
     ~Blinky();
