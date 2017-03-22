@@ -6,12 +6,14 @@ RM		=	rm -f
 
 CXXFLAGS	+=	-std=c++11
 CXXFLAGS	+=	-Werror -Wall -Wextra
+CXXFLAGS 	+=	-lncurses
 CXXFLAGS	+=	-Igames/pacman/include
 CXXFLAGS	+=	-Ilib
 CXXFLAGS	+=	-Iexception/include
 
 SRCS		=	main.cpp \
-					games/pacman/Blinky.cpp \
+					games/pacman/entity/Blinky.cpp \
+					games/pacman/game/gameMapNcurses.cpp \
 					exception/ArcadeException.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)
