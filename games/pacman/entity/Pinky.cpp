@@ -1,17 +1,17 @@
 /*
-** Blinky.cpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade/games/gameman
+** Pinky.cpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade/games/gameman
 **
 ** Made by Thomas Fossaert
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Mar 14 17:42:14 2017 Thomas Fossaert
+** Last update Wed Mar 22 18:12:27 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
-#include "Blinky.hpp"
+#include "Pinky.hpp"
 
-Blinky::Blinky()
+Pinky::Pinky()
 {
   _posX = 0;
   _posY = 0;
@@ -20,11 +20,11 @@ Blinky::Blinky()
   _isAlive = true;
 }
 
-Blinky::~Blinky()
+Pinky::~Pinky()
 {
 }
 
-Blinky::Blinky(Blinky const & other)
+Pinky::Pinky(Pinky const & other)
 {
   _posX = other._posX;
   _posY = other._posY;
@@ -33,7 +33,7 @@ Blinky::Blinky(Blinky const & other)
   _isAlive = other._isAlive;
 }
 
-Blinky& Blinky::operator=(Blinky const & other)
+Pinky& Pinky::operator=(Pinky const & other)
 {
   _posX = other._posX;
   _posY = other._posY;
@@ -43,59 +43,59 @@ Blinky& Blinky::operator=(Blinky const & other)
   return *this;
 }
 
-void Blinky::move()
+void Pinky::move()
 {
 
 }
 
-void Blinky::setX(int pos)
+void Pinky::setX(int pos)
 {
   _posX = pos;
 }
 
-void Blinky::setY(int pos)
+void Pinky::setY(int pos)
 {
   _posY = pos;
 }
 
-void Blinky::setState(game::State pos)
+void Pinky::setState(game::State pos)
 {
   _state = pos;
 }
 
-void Blinky::setSpeed(size_t pos)
+void Pinky::setSpeed(size_t pos)
 {
   _speed = pos;
 }
 
-int Blinky::getX() const
+int Pinky::getX() const
 {
   return (_posX);
 }
 
-int Blinky::getY() const
+int Pinky::getY() const
 {
   return (_posY);
 }
 
-game::State Blinky::getState() const
+game::State Pinky::getState() const
 {
   return (_state);
 }
 
-size_t Blinky::getSpeed() const
+size_t Pinky::getSpeed() const
 {
   return (_speed);
 }
 
-bool  Blinky::isAlive() const
+bool  Pinky::isAlive() const
 {
   return (false);
 }
 
-void Blinky::Dump(void) const
+void Pinky::Dump(void) const
 {
-  std::cout << "Ghost: Blinky" << '\n';
+  std::cout << "Ghost: Pinky" << '\n';
   std::cout << "Pos X: " << getX() << '\n';
   std::cout << "Pos Y: " << getY() << '\n';
   std::cout << "State: ";

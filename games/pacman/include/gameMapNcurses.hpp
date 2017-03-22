@@ -1,7 +1,22 @@
 #include  "IGraph.hpp"
 
+enum TabType
+{
+ VOID = 0,
+ WALKABLE = 1,
+ WALL = 2,
+ GATE = 3,
+ PACGUM = 4,
+ SPACGUM = 5,
+ GHOST = 6,
+ PACMAN = 7
+};
+
 class gameMapNcurses : public graph::IGraph
 {
+  private:
+    int _height;
+    int _witdh;
   public:
     gameMapNcurses();
     ~gameMapNcurses();
@@ -9,8 +24,10 @@ class gameMapNcurses : public graph::IGraph
     gameMapNcurses& operator=(gameMapNcurses const & other);
 
     void createMap();
-    void Game() = 0;
+    void Game();
     void SetSprite();
     void UnsetSprite();
     void Animation();
+
+    void DumpMap();
 };

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Mon Mar 13 16:42:14 2017 Thomas Fossaert
-** Last update Wed Mar 22 15:19:39 2017 Thomas Fossaert
+** Last update Wed Mar 22 15:51:26 2017 Thomas Fossaert
 */
 
 #ifndef __IGRAPH_HPP__
@@ -20,7 +20,7 @@ namespace graph
   class IGraph
   {
     protected:
-      std::map<int, /*std::map(int, int)*/int> _gamemap;
+      std::map<int, std::map<int, int>> _gamemap;
     public:
       virtual void createMap() = 0;
       virtual void Game() = 0;

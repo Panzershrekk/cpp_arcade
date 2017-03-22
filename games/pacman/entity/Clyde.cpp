@@ -1,17 +1,17 @@
 /*
-** Inky.cpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade/games/gameman
+** Clyde.cpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade/games/gameman
 **
 ** Made by Thomas Fossaert
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Mar 22 18:12:24 2017 Thomas Fossaert
+** Last update Wed Mar 22 18:12:47 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
-#include "Inky.hpp"
+#include "Clyde.hpp"
 
-Inky::Inky()
+Clyde::Clyde()
 {
   _posX = 0;
   _posY = 0;
@@ -20,11 +20,11 @@ Inky::Inky()
   _isAlive = true;
 }
 
-Inky::~Inky()
+Clyde::~Clyde()
 {
 }
 
-Inky::Inky(Inky const & other)
+Clyde::Clyde(Clyde const & other)
 {
   _posX = other._posX;
   _posY = other._posY;
@@ -33,7 +33,7 @@ Inky::Inky(Inky const & other)
   _isAlive = other._isAlive;
 }
 
-Inky& Inky::operator=(Inky const & other)
+Clyde& Clyde::operator=(Clyde const & other)
 {
   _posX = other._posX;
   _posY = other._posY;
@@ -43,59 +43,59 @@ Inky& Inky::operator=(Inky const & other)
   return *this;
 }
 
-void Inky::move()
+void Clyde::move()
 {
 
 }
 
-void Inky::setX(int pos)
+void Clyde::setX(int pos)
 {
   _posX = pos;
 }
 
-void Inky::setY(int pos)
+void Clyde::setY(int pos)
 {
   _posY = pos;
 }
 
-void Inky::setState(game::State pos)
+void Clyde::setState(game::State pos)
 {
   _state = pos;
 }
 
-void Inky::setSpeed(size_t pos)
+void Clyde::setSpeed(size_t pos)
 {
   _speed = pos;
 }
 
-int Inky::getX() const
+int Clyde::getX() const
 {
   return (_posX);
 }
 
-int Inky::getY() const
+int Clyde::getY() const
 {
   return (_posY);
 }
 
-game::State Inky::getState() const
+game::State Clyde::getState() const
 {
   return (_state);
 }
 
-size_t Inky::getSpeed() const
+size_t Clyde::getSpeed() const
 {
   return (_speed);
 }
 
-bool  Inky::isAlive() const
+bool  Clyde::isAlive() const
 {
   return (false);
 }
 
-void Inky::Dump(void) const
+void Clyde::Dump(void) const
 {
-  std::cout << "Ghost: Inky" << '\n';
+  std::cout << "Ghost: Clyde" << '\n';
   std::cout << "Pos X: " << getX() << '\n';
   std::cout << "Pos Y: " << getY() << '\n';
   std::cout << "State: ";
