@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Mar 14 17:42:14 2017 Thomas Fossaert
+** Last update Thu Mar 23 17:42:18 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -13,8 +13,8 @@
 
 Blinky::Blinky()
 {
-  _posX = 0;
-  _posY = 0;
+  _posX = 13;
+  _posY = 14;
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
@@ -43,9 +43,10 @@ Blinky& Blinky::operator=(Blinky const & other)
   return *this;
 }
 
-void Blinky::move()
+void Blinky::move(std::map<int, std::map<int, int>>_gamemap)
 {
-
+  if (_gamemap[_posY - 1][_posX] == 1)
+    setY(getY() - 1);
 }
 
 void Blinky::setX(int pos)

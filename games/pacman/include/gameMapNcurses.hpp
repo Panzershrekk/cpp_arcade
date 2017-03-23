@@ -1,3 +1,9 @@
+#include  <ncurses.h>
+#include  "IGame.hpp"
+#include  "Blinky.hpp"
+#include  "Pinky.hpp"
+#include  "Inky.hpp"
+#include  "Clyde.hpp"
 #include  "IGraph.hpp"
 
 enum TabType
@@ -25,8 +31,8 @@ class gameMapNcurses : public graph::IGraph
 
     void createMap();
     void Game();
-    void SetSprite();
-    void UnsetSprite();
+    void SetSprite(int x, int y);
+    void UnsetSprite(int x, int y);
     void Animation();
 
     void DumpMap();

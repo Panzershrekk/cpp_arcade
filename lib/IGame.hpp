@@ -5,13 +5,14 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Tue Mar 14 16:27:41 2017 Thomas Fossaert
+** Last update Thu Mar 23 17:35:27 2017 Thomas Fossaert
 */
 
 #ifndef __IGAME_HPP__
 # define __IGAME_HPP__
 
 #include <iostream>
+#include <map>
 
 namespace game
 {
@@ -31,7 +32,7 @@ namespace game
       bool        _isAlive;
 
     public:
-      virtual void move() = 0;
+      virtual void move(std::map<int, std::map<int, int>>) = 0;
       virtual void setX(int pos) = 0;
       virtual void setY(int pos) = 0;
       virtual void setState(game::State state) = 0;

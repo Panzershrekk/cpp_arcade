@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Mar 22 18:12:47 2017 Thomas Fossaert
+** Last update Thu Mar 23 16:50:15 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -13,8 +13,8 @@
 
 Clyde::Clyde()
 {
-  _posX = 0;
-  _posY = 0;
+  _posX = 14;
+  _posY = 15;
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
