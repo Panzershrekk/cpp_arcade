@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 24 09:42:29 2017 Thomas Fossaert
+** Last update Fri Mar 24 17:10:20 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -19,6 +19,7 @@ Blinky::Blinky()
   _speed = 10;
   _isAlive = true;
   _direction = game::Direction::UP;
+  _type = 1;
 }
 
 Blinky::~Blinky()
@@ -54,6 +55,7 @@ void Blinky::move(std::map<int, std::map<int, int>>_gamemap)
     setDirection(game::Direction::LEFT);
   if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
     setDirection(game::Direction::UP);
+
   if (_direction == game::Direction::UP)
       setY(getY() - 1);
   if (_direction == game::Direction::RIGHT)
@@ -117,6 +119,11 @@ bool  Blinky::isAlive() const
 game::Direction Blinky::getDirection() const
 {
   return (_direction);
+}
+
+int Blinky::getType() const
+{
+  return (_type);
 }
 
 void Blinky::Dump(void) const

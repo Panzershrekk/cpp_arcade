@@ -1,4 +1,5 @@
 #include  <ncurses.h>
+#include  "Pacman.hpp"
 #include  "IGame.hpp"
 #include  "Blinky.hpp"
 #include  "Pinky.hpp"
@@ -24,6 +25,7 @@ class gameMapNcurses : public graph::IGraph
     int _height;
     int _witdh;
     int _oldSPrite;
+    std::map<int, std::map<int, int>> _gamemap;
   public:
     gameMapNcurses();
     ~gameMapNcurses();
@@ -32,8 +34,8 @@ class gameMapNcurses : public graph::IGraph
 
     void createMap();
     void Game();
-    void SetSprite(int x, int y);
-    void UnsetSprite(int x, int y);
+    void SetSprite(int x, int y, game::IGame *entity);
+    void UnsetSprite(int x, int y, game::IGame *entity);
     void Animation();
 
     void DumpMap();

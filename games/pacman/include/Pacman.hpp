@@ -1,24 +1,24 @@
 /*
-** Blinky.hpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade/games/pacman/include
+** Pacman.hpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade/games/pacman/include
 **
 ** Made by Thomas Fossaert
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Fri Mar 24 17:09:11 2017 Thomas Fossaert
+** Last update Fri Mar 24 17:11:58 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
 
-class Blinky : public game::IGame
+class Pacman : public game::IGame
 {
   private:
     int _type;
   public:
-    Blinky();
-    ~Blinky();
-    Blinky(Blinky const & other);
-    Blinky& operator=(Blinky const & other);
+    Pacman();
+    ~Pacman();
+    Pacman(Pacman const & other);
+    Pacman& operator=(Pacman const & other);
 
     void move(std::map<int, std::map<int, int>> _gamemap);
     void setX(int pos);
@@ -30,8 +30,8 @@ class Blinky : public game::IGame
     int getY() const;
     game::State getState() const;
     size_t getSpeed() const;
-    int getType() const;
     bool isAlive() const;
     game::Direction getDirection() const;
+    int getType() const;
     void Dump(void) const;
 };

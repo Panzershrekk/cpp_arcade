@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 24 10:02:13 2017 Thomas Fossaert
+** Last update Fri Mar 24 17:21:10 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -49,6 +49,7 @@ gameMapNcurses::gameMapNcurses()
   }
   fin.close();
   _witdh = 28;
+  _oldSPrite = 1;
 }
 
 gameMapNcurses::~gameMapNcurses()
@@ -70,7 +71,6 @@ void gameMapNcurses::createMap()
 {
   int i = 0;
   int j = 0;
-
   while (i != _height)
   {
     while (j != _witdh)
@@ -104,6 +104,7 @@ void gameMapNcurses::Game()
   int   row;
   int   col;
 
+  game::IGame *pacman = new Pacman();
   game::IGame *blinky = new Blinky();
   /*game::IGame *pinky = new Pinky();
   game::IGame *inky = new Inky();
@@ -124,36 +125,53 @@ void gameMapNcurses::Game()
     createMap();
     getmaxyx(stdscr,row,col);
     ch = getch();
+    if (ch == KEY_UP)
+      pacman->setDirection(game::Direction::UP);
+    if (ch == KEY_DOWN)
+      pacman->setDirection(game::Direction::DOWN);
+    if (ch == KEY_LEFT)
+      pacman->setDirection(game::Direction::LEFT);
+    if (ch == KEY_RIGHT)
+      pacman->setDirection(game::Direction::RIGHT);
+
+    pacman->move(_gamemap);
+    SetSprite(pacman->getX(), pacman->getY(), pacman);
+    UnsetSprite(pacman->getX(), pacman->getY(), pacman);
+
     blinky->move(_gamemap);
-    //blinky->setY(blinky->getY() - 1);
-    SetSprite(blinky->getX(), blinky->getY());
+    SetSprite(blinky->getX(), blinky->getY(), blinky);
+    UnsetSprite(blinky->getX(), blinky->getY(), blinky);
 
-
-    if (blinky->getDirection() == 0)
-      UnsetSprite(blinky->getX(), blinky->getY() + 1);
-    if (blinky->getDirection() == 1)
-      UnsetSprite(blinky->getX() - 1, blinky->getY());
-    if (blinky->getDirection() == 2)
-      UnsetSprite(blinky->getX(), blinky->getY() - 1);
-    if (blinky->getDirection() == 3)
-      UnsetSprite(blinky->getX() + 1, blinky->getY());
-
-
-    sleep(1);
+    usleep(130000);
   }
   getch();
   endwin();
 }
 
-void gameMapNcurses::SetSprite(int x, int y)
+void gameMapNcurses::SetSprite(int x, int y, game::IGame *entity)
 {
-  _oldSPrite = _gamemap[y][x];
-  _gamemap[y][x] = TabType::GHOST;
+  if (entity->getType() == 0)
+  {
+    _oldSPrite = 1;
+    _gamemap[y][x] = TabType::PACMAN;
+  }
+  else
+  {
+    _oldSPrite = _gamemap[y][x];
+    _gamemap[y][x] = TabType::GHOST;
+  }
 }
 
-void gameMapNcurses::UnsetSprite(int x, int y)
+void gameMapNcurses::UnsetSprite(int x, int y, game::IGame *entity)
 {
-  _gamemap[y][x] = _oldSPrite;
+    if (entity->getDirection() == 0 && _gamemap[y + 1][x] != TabType::WALL)
+      _gamemap[y + 1][x] = _oldSPrite;
+    if (entity->getDirection() == 1 && _gamemap[y][x - 1] != TabType::WALL)
+      _gamemap[y][x - 1] = _oldSPrite;
+    if (entity->getDirection() == 2 && _gamemap[y - 1][x] != TabType::WALL)
+      _gamemap[y - 1][x] = _oldSPrite;
+    if (entity->getDirection() == 3 && _gamemap[y][x + 1] != TabType::WALL)
+      _gamemap[y][x + 1] = _oldSPrite;
 }
 
 void gameMapNcurses::Animation()
