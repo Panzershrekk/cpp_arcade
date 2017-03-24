@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Mar 23 16:49:52 2017 Thomas Fossaert
+** Last update Fri Mar 24 08:50:31 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -18,6 +18,7 @@ Pinky::Pinky()
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
+  _direction = gme::Direction::UP;
 }
 
 Pinky::~Pinky()

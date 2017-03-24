@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Mar 23 16:50:15 2017 Thomas Fossaert
+** Last update Fri Mar 24 08:50:18 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -18,6 +18,7 @@ Clyde::Clyde()
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
+  _direction = gme::Direction::UP;
 }
 
 Clyde::~Clyde()

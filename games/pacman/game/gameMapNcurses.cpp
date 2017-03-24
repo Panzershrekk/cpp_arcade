@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Mar 23 17:31:17 2017 Thomas Fossaert
+** Last update Fri Mar 24 10:02:13 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -127,8 +127,19 @@ void gameMapNcurses::Game()
     blinky->move(_gamemap);
     //blinky->setY(blinky->getY() - 1);
     SetSprite(blinky->getX(), blinky->getY());
-    UnsetSprite(blinky->getX(), blinky->getY() + 1);
-    sleep(2);
+
+
+    if (blinky->getDirection() == 0)
+      UnsetSprite(blinky->getX(), blinky->getY() + 1);
+    if (blinky->getDirection() == 1)
+      UnsetSprite(blinky->getX() - 1, blinky->getY());
+    if (blinky->getDirection() == 2)
+      UnsetSprite(blinky->getX(), blinky->getY() - 1);
+    if (blinky->getDirection() == 3)
+      UnsetSprite(blinky->getX() + 1, blinky->getY());
+
+
+    sleep(1);
   }
   getch();
   endwin();
@@ -136,12 +147,13 @@ void gameMapNcurses::Game()
 
 void gameMapNcurses::SetSprite(int x, int y)
 {
+  _oldSPrite = _gamemap[y][x];
   _gamemap[y][x] = TabType::GHOST;
 }
 
 void gameMapNcurses::UnsetSprite(int x, int y)
 {
-  _gamemap[y][x] = TabType::WALKABLE;
+  _gamemap[y][x] = _oldSPrite;
 }
 
 void gameMapNcurses::Animation()

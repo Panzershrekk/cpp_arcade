@@ -23,6 +23,7 @@ class gameMapNcurses : public graph::IGraph
   private:
     int _height;
     int _witdh;
+    int _oldSPrite;
   public:
     gameMapNcurses();
     ~gameMapNcurses();

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Mar 23 17:42:18 2017 Thomas Fossaert
+** Last update Fri Mar 24 09:42:29 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -18,6 +18,7 @@ Blinky::Blinky()
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
+  _direction = game::Direction::UP;
 }
 
 Blinky::~Blinky()
@@ -45,8 +46,22 @@ Blinky& Blinky::operator=(Blinky const & other)
 
 void Blinky::move(std::map<int, std::map<int, int>>_gamemap)
 {
-  if (_gamemap[_posY - 1][_posX] == 1)
-    setY(getY() - 1);
+  if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
+    setDirection(game::Direction::RIGHT);
+  if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
+    setDirection(game::Direction::DOWN);
+  if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
+    setDirection(game::Direction::LEFT);
+  if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
+    setDirection(game::Direction::UP);
+  if (_direction == game::Direction::UP)
+      setY(getY() - 1);
+  if (_direction == game::Direction::RIGHT)
+      setX(getX() + 1);
+  if (_direction == game::Direction::DOWN)
+      setY(getY() + 1);
+  if (_direction == game::Direction::LEFT)
+      setX(getX() - 1);
 }
 
 void Blinky::setX(int pos)
@@ -67,6 +82,11 @@ void Blinky::setState(game::State pos)
 void Blinky::setSpeed(size_t pos)
 {
   _speed = pos;
+}
+
+void Blinky::setDirection(game::Direction direction)
+{
+  _direction = direction;
 }
 
 int Blinky::getX() const
@@ -92,6 +112,11 @@ size_t Blinky::getSpeed() const
 bool  Blinky::isAlive() const
 {
   return (false);
+}
+
+game::Direction Blinky::getDirection() const
+{
+  return (_direction);
 }
 
 void Blinky::Dump(void) const
