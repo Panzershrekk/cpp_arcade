@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Thu Mar 23 17:35:27 2017 Thomas Fossaert
+** Last update Fri Mar 24 09:03:50 2017 Thomas Fossaert
 */
 
 #ifndef __IGAME_HPP__
@@ -22,12 +22,21 @@ namespace game
    VULNERABLE = 1
  };
 
+  enum Direction  // Direction de l'entité
+  {
+    UP = 0,
+    RIGHT = 1,
+    DOWN = 2,
+    LEFT = 3
+  };
+
   class IGame
   {
     protected:
       int         _posX;
       int         _posY;
       game::State _state;
+      game::Direction _direction;
       size_t      _speed;
       bool        _isAlive;
 
@@ -37,6 +46,7 @@ namespace game
       virtual void setY(int pos) = 0;
       virtual void setState(game::State state) = 0;
       virtual void setSpeed(size_t speed) = 0;
+      virtual void setDirection(int); //Seteur de Direction
       //virtual void setPoint(size_t point) = 0;
       virtual int getX() const = 0;
       virtual int getY() const = 0;
