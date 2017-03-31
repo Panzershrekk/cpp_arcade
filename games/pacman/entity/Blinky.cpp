@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 08:54:12 2017 Thomas Fossaert
+** Last update Fri Mar 31 10:52:22 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
