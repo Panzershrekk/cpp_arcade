@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 24 08:50:31 2017 Thomas Fossaert
+** Last update Fri Mar 31 09:33:56 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -14,11 +14,12 @@
 Pinky::Pinky()
 {
   _posX = 13;
-  _posY = 15;
+  _posY = 14;
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
-  _direction = gme::Direction::UP;
+  _direction = game::Direction::UP;
+  _type = 1;
 }
 
 Pinky::~Pinky()
@@ -44,9 +45,25 @@ Pinky& Pinky::operator=(Pinky const & other)
   return *this;
 }
 
-void Pinky::move()
+void Pinky::move(std::map<int, std::map<int, int>>_gamemap)
 {
+  if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
+    setDirection(game::Direction::RIGHT);
+  if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
+    setDirection(game::Direction::DOWN);
+  if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
+    setDirection(game::Direction::LEFT);
+  if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
+    setDirection(game::Direction::UP);
 
+  if (_direction == game::Direction::UP)
+      setY(getY() - 1);
+  if (_direction == game::Direction::RIGHT)
+      setX(getX() + 1);
+  if (_direction == game::Direction::DOWN)
+      setY(getY() + 1);
+  if (_direction == game::Direction::LEFT)
+      setX(getX() - 1);
 }
 
 void Pinky::setX(int pos)
@@ -67,6 +84,11 @@ void Pinky::setState(game::State pos)
 void Pinky::setSpeed(size_t pos)
 {
   _speed = pos;
+}
+
+void Pinky::setDirection(game::Direction direction)
+{
+  _direction = direction;
 }
 
 int Pinky::getX() const
@@ -92,6 +114,16 @@ size_t Pinky::getSpeed() const
 bool  Pinky::isAlive() const
 {
   return (false);
+}
+
+game::Direction Pinky::getDirection() const
+{
+  return (_direction);
+}
+
+int Pinky::getType() const
+{
+  return (_type);
 }
 
 void Pinky::Dump(void) const

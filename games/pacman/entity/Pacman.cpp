@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 24 17:11:07 2017 Thomas Fossaert
+** Last update Fri Mar 31 08:42:23 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -13,7 +13,7 @@
 
 Pacman::Pacman()
 {
-  _posX = 14;
+  _posX = 13;
   _posY = 17;
   _state = game::VULNERABLE;
   _speed = 10;
