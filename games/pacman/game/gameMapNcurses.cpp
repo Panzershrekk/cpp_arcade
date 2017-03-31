@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 10:52:40 2017 Thomas Fossaert
+** Last update Fri Mar 31 12:59:36 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -50,6 +50,7 @@ gameMapNcurses::gameMapNcurses()
   fin.close();
   _witdh = 28;
   _oldSPrite = 1;
+  _blinkyCurr = 1;
 }
 
 gameMapNcurses::~gameMapNcurses()
@@ -104,12 +105,14 @@ void gameMapNcurses::Game()
   int   row;
   int   col;
   int   t = 0;
+  int   prevX = 0;
+  int   prevY = 0;
 
   game::IGame *pacman = new Pacman();
   game::IGame *blinky = new Blinky();
-  //game::IGame *pinky = new Pinky();
-  /*game::IGame *inky = new Inky();
-  game::IGame *clyde = new Clyde();*/
+  game::IGame *pinky = new Pinky();
+  game::IGame *inky = new Inky();
+  game::IGame *clyde = new Clyde();
 
 
   (void)row;
@@ -124,6 +127,9 @@ void gameMapNcurses::Game()
   {
     noecho();
     getmaxyx(stdscr,row,col);
+
+    createMap();
+
     ch = getch();
     if (ch == KEY_UP)
       pacman->setDirection(game::Direction::UP);
@@ -134,33 +140,50 @@ void gameMapNcurses::Game()
     if (ch == KEY_RIGHT)
       pacman->setDirection(game::Direction::RIGHT);
 
+    _oldSPrite = 1;
+    prevX = pacman->getX();
+    prevY = pacman->getY();
     pacman->move(_gamemap);
     SetSprite(pacman->getX(), pacman->getY(), pacman);
-    createMap();
-    if (pacman->getDirection() == 0)
-      UnsetSprite(pacman->getX(), pacman->getY() + 1, pacman);
-    else if (pacman->getDirection() == 1)
-      UnsetSprite(pacman->getX() - 1, pacman->getY(), pacman);
-    else if (pacman->getDirection() == 2)
-      UnsetSprite(pacman->getX(), pacman->getY() - 1, pacman);
-    else if (pacman->getDirection() == 3)
-      UnsetSprite(pacman->getX() + 1, pacman->getY(), pacman);
+    UnsetSprite(prevX, prevY, pacman);
 
-    /*if (_gamemap[pacman->getY()][pacman->getX()] == _gamemap[blinky->getY()][blinky->getX()])
-      exit(0);*/
-
+    prevX = blinky->getX();
+    prevY = blinky->getY();
+    UnsetSprite(prevX, prevY, blinky);
     blinky->move(_gamemap);
+    _blinkyCurr = _gamemap[blinky->getY()][blinky->getX()];
     SetSprite(blinky->getX(), blinky->getY(), blinky);
-    createMap();
-    UnsetSprite(blinky->getX(), blinky->getY(), blinky);
 
-    /*if (t > 10)
+    if (t > 10)
     {
+      prevX = pinky->getX();
+      prevY = pinky->getY();
+      UnsetSprite(prevX, prevY, pinky);
       pinky->move(_gamemap);
+      _pinkyCurr = _gamemap[pinky->getY()][pinky->getX()];
       SetSprite(pinky->getX(), pinky->getY(), pinky);
-      createMap();
-      UnsetSprite(pinky->getX(), pinky->getY(), pinky);
-    }*/
+    }
+
+    if (t > 20)
+    {
+      prevX = inky->getX();
+      prevY = inky->getY();
+      UnsetSprite(prevX, prevY, inky);
+      inky->move(_gamemap);
+      _inkyCurr = _gamemap[inky->getY()][inky->getX()];
+      SetSprite(inky->getX(), inky->getY(), inky);
+    }
+
+    if (t > 30)
+    {
+      prevX = clyde->getX();
+      prevY = clyde->getY();
+      UnsetSprite(prevX, prevY, clyde);
+      clyde->move(_gamemap);
+      _clydeCurr = _gamemap[clyde->getY()][clyde->getX()];
+      SetSprite(clyde->getX(), clyde->getY(), clyde);
+    }
+
     t++;
   }
   getch();
@@ -169,28 +192,26 @@ void gameMapNcurses::Game()
 
 void gameMapNcurses::SetSprite(int x, int y, game::IGame *entity)
 {
-  if (entity->getType() == 0)
-  {
-    _oldSPrite = 1;
+  if (entity->getType() == 0 )
     _gamemap[y][x] = TabType::PACMAN;
-  }
   else
   {
-    _oldSPrite = _gamemap[y][x];
     _gamemap[y][x] = TabType::GHOST;
   }
 }
 
 void gameMapNcurses::UnsetSprite(int x, int y, game::IGame *entity)
 {
-  if (entity->getDirection() == 0 && _gamemap[y/* + 1*/][x] != TabType::WALL)
+  if (entity->getType() == 0 && (x != entity->getX() || y != entity->getY()))
     _gamemap[y][x] = _oldSPrite;
-  if (entity->getDirection() == 1 && _gamemap[y][x/* - 1*/] != TabType::WALL)
-    _gamemap[y][x] = _oldSPrite;
-  if (entity->getDirection() == 2 && _gamemap[y/* - 1*/][x] != TabType::WALL)
-    _gamemap[y][x] = _oldSPrite;
-  if (entity->getDirection() == 3 && _gamemap[y][x/* + 1*/] != TabType::WALL)
-    _gamemap[y][x] = _oldSPrite;
+  else if (entity->getType() == 1)
+    _gamemap[y][x] = _blinkyCurr;
+  else if (entity->getType() == 2)
+    _gamemap[y][x] = _pinkyCurr;
+  else if (entity->getType() == 3)
+    _gamemap[y][x] = _inkyCurr;
+  else if (entity->getType() == 4)
+    _gamemap[y][x] = _clydeCurr;
 }
 
 void gameMapNcurses::Animation()

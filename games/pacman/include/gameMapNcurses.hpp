@@ -25,6 +25,10 @@ class gameMapNcurses : public graph::IGraph
     int _height;
     int _witdh;
     int _oldSPrite;
+    int _blinkyCurr;
+    int _pinkyCurr;
+    int _inkyCurr;
+    int _clydeCurr;
     std::map<int, std::map<int, int>> _gamemap;
   public:
     gameMapNcurses();

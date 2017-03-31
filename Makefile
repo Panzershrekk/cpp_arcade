@@ -14,6 +14,8 @@ CXXFLAGS	+=	-Iexception/include
 SRCS		=	main.cpp \
 					games/pacman/entity/Blinky.cpp \
 					games/pacman/entity/Pinky.cpp \
+					games/pacman/entity/Inky.cpp \
+					games/pacman/entity/Clyde.cpp \
 					games/pacman/entity/Pacman.cpp \
 					games/pacman/game/gameMapNcurses.cpp \
 					exception/ArcadeException.cpp

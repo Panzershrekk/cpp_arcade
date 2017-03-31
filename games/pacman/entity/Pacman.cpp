@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 10:40:52 2017 Thomas Fossaert
+** Last update Fri Mar 31 12:48:55 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -47,13 +47,17 @@ Pacman& Pacman::operator=(Pacman const & other)
 
 void Pacman::move(std::map<int, std::map<int, int>>_gamemap)
 {
-  if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] != 2)
+  if (_direction == game::Direction::UP && (_gamemap[_posY - 1][_posX] != 2
+    && _gamemap[_posY - 1][_posX] != 3))
       setY(getY() - 1);
-  if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] != 2)
+  if (_direction == game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] != 2
+    && _gamemap[_posY][_posX + 1] != 3))
       setX(getX() + 1);
-  if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] != 2)
+  if (_direction == game::Direction::DOWN && (_gamemap[_posY + 1][_posX] != 2
+    && _gamemap[_posY + 1][_posX] != 3))
       setY(getY() + 1);
-  if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] != 2)
+  if (_direction == game::Direction::LEFT && (_gamemap[_posY][_posX - 1] != 2
+    && _gamemap[_posY][_posX - 1] != 3))
       setX(getX() - 1);
 }
 
