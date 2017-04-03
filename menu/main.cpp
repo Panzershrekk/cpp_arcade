@@ -6,24 +6,37 @@
 #include <dlfcn.h>
 #include <string>
 #include <iostream>
+#include "include/IGraph.hpp"
+#include "include/mainMenu.hpp"
 
 int		main(int ac, char **av)
 {
-  int		pos;
   void		*lib;
 
-  std::cout << ac << std::endl;
   if (ac > 2)
     exit(EXIT_FAILURE);
+  /*
   else if (ac == 1)
-    std::cout << "SFML" << std::endl;
+  {
+    menu test;
+
+    test.Game();
+  }
   else
+  */
   {
     if ((lib = dlopen(av[1], RTLD_LAZY)) == NULL)
+      exit(EXIT_FAILURE);
+
+    typedef void	(*func_ptr)();
+    func_ptr func = (func_ptr)dlsym(lib,"do_menu");
+
+    if (!func)
     {
-      std::cout << "fail lib charge" << std::endl;
+      std::cout << "The error is    " << dlerror() << std::endl;
       exit(EXIT_FAILURE);
     }
+    func();
   }
   exit(EXIT_SUCCESS);
 }
