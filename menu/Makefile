@@ -4,14 +4,14 @@ RM	=	rm -f
 
 NAME	=	test
 
-SRC	=	./main.cpp		\
-		./mainMenu.cpp
+SRC	=	./main.cpp
 
 CFLAGS	=	-Wall			\
 		-Werror			\
 		-Wextra			\
 		-std=c++11		\
 		-I./include		\
+		-I ../include		\
 		-lncurses		\
 		-ldl
 

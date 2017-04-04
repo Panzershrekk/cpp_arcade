@@ -7,7 +7,6 @@
 #include <string>
 #include <iostream>
 #include "include/IGraph.hpp"
-#include "include/mainMenu.hpp"
 
 int		main(int ac, char **av)
 {

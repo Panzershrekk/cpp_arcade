@@ -6,7 +6,7 @@ NAME	=	./lib_menu_ncurses.so
 
 OBJ	=	$(SRC:.cpp=.o)
 
-SRC	=	../mainMenu.cpp
+SRC	=	./mainMenu.cpp
 
 CXXFLAGS	=	-fPIC			\
 		-shared			\
@@ -14,7 +14,8 @@ CXXFLAGS	=	-fPIC			\
 		-Werror			\
 		-Wextra			\
 		-std=c++11		\
-		-I ./			\
+		-I ./include		\
+		-I ../include		\
 		-lncurses
 
 all:		$(NAME)
