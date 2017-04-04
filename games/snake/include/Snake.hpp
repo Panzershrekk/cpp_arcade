@@ -5,7 +5,7 @@
 // Login   <antoine@epitech.net>
 //
 // Started on  Mon Apr  3 11:43:45 2017 antoine
-// Last update Mon Apr  3 16:05:56 2017 antoine
+// Last update Tue Apr  4 19:52:34 2017 antoine
 //
 
 #include "IGame.hpp"
@@ -60,6 +60,7 @@ public:
   void setPosSnake(std::vector<Position>);
   int getNeedGrowth() const;
   void setNeedGrowth(int);
+  void setLive(bool);
 };
 
 #endif

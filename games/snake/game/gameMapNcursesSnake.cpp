@@ -5,7 +5,7 @@
 // Login   <antoine@epitech.net>
 // 
 // Started on  Mon Apr  3 11:33:02 2017 antoine
-// Last update Mon Apr  3 23:24:20 2017 antoine
+// Last update Tue Apr  4 20:20:52 2017 antoine
 //
 
 #include <fstream>
@@ -64,18 +64,37 @@ void gameMapNcursesSnake::createMap()
 {
   int i = 0;
   int j = 0;
+  start_color();
   while (i != _height)
   {
     while (j != _witdh)
       {
         if (_gamemap[i][j] == TabTypeSnake::WALLE)
-          mvprintw(i, j, "|");
+	  {
+	    init_pair(1, COLOR_RED, COLOR_WHITE);
+ 	    attron(COLOR_PAIR(1));
+	    mvprintw(i, j, " ");
+	    attroff(COLOR_PAIR(1));
+	  }
         else if (_gamemap[i][j] == TabTypeSnake::CANWALK)
-          mvprintw(i, j, " ");
+	  {
+	    
+	    mvprintw(i, j, " ");
+	  }
         else if (_gamemap[i][j] == TabTypeSnake::APPLE)
-          mvprintw(i, j, "A");
+	  {
+	    init_pair(3, COLOR_RED, COLOR_RED);
+	     attron(COLOR_PAIR(3));
+	    mvprintw(i, j, " ");
+	    attroff(COLOR_PAIR(3));
+	  }
 	else if (_gamemap[i][j] == TabTypeSnake::SNAK)
-	  mvprintw(i, j, "0");
+	  {
+	    init_pair(2, COLOR_RED, COLOR_YELLOW);
+	     attron(COLOR_PAIR(2));
+	    mvprintw(i, j, " ");
+	    attroff(COLOR_PAIR(2));
+	  }
         else
           mvprintw(i, j, " ");
         j++;
@@ -171,9 +190,19 @@ std::vector<Position> gameMapNcursesSnake::movePosSnake(int x, int y, std::vecto
 void gameMapNcursesSnake::genApple()
 {
   static int i = 0;
+  int	tmpy, tmpx;
 
   if ((i % 10) == 0)
-    _gamemap[rand() % _height][rand() % _witdh] = 2;
+    {
+      tmpy = rand() % _height;
+      tmpx = rand() % _witdh;
+      while ((_gamemap[tmpy][tmpx] == TabTypeSnake::WALLE))
+	{
+	  tmpy = rand() % _height;
+	  tmpx = rand() % _witdh;	 
+	}
+      _gamemap[tmpy][tmpx] = 2;
+    }
   i++;
 }
 

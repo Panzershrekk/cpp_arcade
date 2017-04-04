@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-// Last update Mon Apr  3 16:05:30 2017 antoine
+// Last update Tue Apr  4 20:28:33 2017 antoine
 */
 
 #include "IGame.hpp"
@@ -56,6 +56,11 @@ Snake& Snake::operator=(Snake const & other)
   return *this;
 }
 
+void Snake::setLive(bool s)
+{
+  s++;
+}
+
 void Snake::setScore(int s)
 {
   _score = s;
@@ -78,18 +83,22 @@ void	Snake::setPosSnake(std::vector<Position> posSnake)
 
 void Snake::move(std::map<int, std::map<int, int>>_gamemap)
 {
-  if (_direction == game::Direction::UP && (_gamemap[_posY - 1][_posX] != 1))
+  if (_direction == game::Direction::UP)
     setY(getY() - 1);
-  if (_direction == game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] != 1))
+  if (_direction == game::Direction::RIGHT)
     setX(getX() + 1);
-  if (_direction == game::Direction::DOWN && (_gamemap[_posY + 1][_posX] != 1))
+  if (_direction == game::Direction::DOWN)
     setY(getY() + 1);
-  if (_direction == game::Direction::LEFT && (_gamemap[_posY][_posX - 1] != 1))
+  if (_direction == game::Direction::LEFT)
     setX(getX() - 1);
   if (_gamemap[_posY][_posX] == 2)
     {
       _score += 10;
       _needGrowth = 1;
+    }
+  if (_gamemap[_posY][_posX] == 3 || _gamemap[_posY][_posX] == 1)
+    {
+      //DIE PAR RENTRAGE DANS LE MUR OUI CE MOT EXISTE PAS
     }
 }
 
