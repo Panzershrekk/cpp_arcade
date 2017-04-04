@@ -22,8 +22,20 @@ enum TabType
 class gameMapSfml : public graph::IGraph
 {
   private:
+    game::IGame *_pacman;
+    game::IGame *_blinky;
+    game::IGame *_pinky;
+    game::IGame *_inky;
+    game::IGame *_clyde;
+
     int _height;
     int _witdh;
+    int _oldSPrite;
+    int _blinkyCurr;
+    int _pinkyCurr;
+    int _inkyCurr;
+    int _clydeCurr;
+    
     sf::Sprite _pacSprite;
     sf::RenderWindow _window;
     /*int _blinkyCurr;

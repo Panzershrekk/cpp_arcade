@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:02:33 2017 Thomas Fossaert
+** Last update Tue Apr 04 16:04:14 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -22,6 +22,7 @@ class Inky : public game::IGame
     int		      _score;
 
     int _type;
+    bool _inCase;
   public:
     Inky();
     Inky(int x, int y);

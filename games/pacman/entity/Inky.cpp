@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:04:10 2017 Thomas Fossaert
+** Last update Tue Apr 04 17:16:59 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -21,6 +21,7 @@ Inky::Inky()
   _direction = game::Direction::UP;
   _type = 3;
   _score = 0;
+  _inCase = true;
 }
 
 Inky::Inky(int x, int y)
@@ -33,6 +34,7 @@ Inky::Inky(int x, int y)
   _direction = game::Direction::UP;
   _type = 3;
   _score = 0;
+  _inCase = true;
 }
 
 Inky::~Inky()
@@ -60,23 +62,83 @@ Inky& Inky::operator=(Inky const & other)
 
 void Inky::move(std::map<int, std::map<int, int>>_gamemap)
 {
-  if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
-    setDirection(game::Direction::RIGHT);
-  if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
-    setDirection(game::Direction::DOWN);
-  if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
-    setDirection(game::Direction::LEFT);
-  if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
-    setDirection(game::Direction::UP);
+  int nb = -1;
+  int randcond = 0;
 
-  if (_direction == game::Direction::UP)
+  if (_inCase == true)
+  {
+    if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
+      setDirection(game::Direction::RIGHT);
+    if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
+      setDirection(game::Direction::DOWN);
+    if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
+      setDirection(game::Direction::LEFT);
+    if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
+      setDirection(game::Direction::UP);
+
+    if (_gamemap[_posY - 1][_posX] == 3)
+      setDirection(game::Direction::UP);
+
+    if (_direction == game::Direction::UP)
       setY(getY() - 1);
-  if (_direction == game::Direction::RIGHT)
+    if (_direction == game::Direction::RIGHT)
       setX(getX() + 1);
-  if (_direction == game::Direction::DOWN)
+    if (_direction == game::Direction::DOWN)
       setY(getY() + 1);
-  if (_direction == game::Direction::LEFT)
+    if (_direction == game::Direction::LEFT)
       setX(getX() - 1);
+    }
+  else
+    {
+      if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
+        nb = rand() % 4 + 1;
+      else if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
+        nb = rand() % 4 + 1;
+      else if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
+        nb = rand() % 4 + 1;
+      else if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
+        nb = rand() % 4 + 1;
+
+      if (nb != -1)
+      {
+        while (randcond != 1)
+          {
+            if (nb == 1 && _gamemap[_posY - 1][_posX] != 2)
+              {
+                setDirection(game::Direction::UP);
+                randcond = 1;
+              }
+              else if (nb == 2 && _gamemap[_posY][_posX + 1] != 2)
+              {
+                setDirection(game::Direction::RIGHT);
+                randcond = 1;
+              }
+              else if (nb == 3 && _gamemap[_posY + 1][_posX] != 2)
+              {
+                setDirection(game::Direction::DOWN);
+                randcond = 1;
+              }
+              else if (nb == 4 && _gamemap[_posY][_posX - 1] != 2)
+              {
+                setDirection(game::Direction::LEFT);
+                randcond = 1;
+              }
+              else
+              nb = rand() % 4 + 1;
+            }
+        }
+      if (_direction == game::Direction::UP)
+        setY(getY() - 1);
+      if (_direction == game::Direction::RIGHT)
+        setX(getX() + 1);
+      if (_direction == game::Direction::DOWN)
+        setY(getY() + 1);
+      if (_direction == game::Direction::LEFT)
+        setX(getX() - 1);
+
+    }
+    if (_gamemap[_posY][_posX] == 4)
+      _inCase = false;
 }
 
 void Inky::setX(int pos)

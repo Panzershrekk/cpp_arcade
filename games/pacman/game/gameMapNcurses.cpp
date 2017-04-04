@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:50:06 2017 Thomas Fossaert
+** Last update Tue Apr 04 17:32:33 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -18,7 +18,7 @@ gameMapNcurses::gameMapNcurses()
   unsigned int i = 0;
   unsigned int j = 0;
 
-  std::ifstream fin("./games/pacman/sprite/OtherMap");
+  std::ifstream fin("./games/pacman/sprite/NcurseMap.txt");
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
   }
@@ -70,7 +70,6 @@ gameMapNcurses::gameMapNcurses()
     }
   }
   fin.close();
-  //_witdh = 28;
   _oldSPrite = 1;
   _blinkyCurr = 1;
   _pinkyCurr = 1;
@@ -182,7 +181,7 @@ void gameMapNcurses::Game()
   timeout(500);
   createMap();
   start_color();
-  init_color(COLOR_GREEN, 700, 0, 0);
+  init_color(COLOR_GREEN, 1000, 500, 0);
   init_pair(1, COLOR_BLUE, COLOR_BLUE);
   init_pair(2, COLOR_YELLOW, COLOR_BLACK);
   init_pair(3, COLOR_RED, COLOR_BLACK);

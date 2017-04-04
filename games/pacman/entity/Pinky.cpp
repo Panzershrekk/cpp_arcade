@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:05:19 2017 Thomas Fossaert
+** Last update Tue Apr 04 16:57:43 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -69,7 +69,7 @@ void Pinky::move(std::map<int, std::map<int, int>>_gamemap)
   if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
     setDirection(game::Direction::UP);
 
-  if (_direction == game::Direction::UP)
+  if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] != 2)
       setY(getY() - 1);
   if (_direction == game::Direction::RIGHT)
       setX(getX() + 1);

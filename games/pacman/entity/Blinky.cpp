@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:03:23 2017 Thomas Fossaert
+** Last update Tue Apr 04 15:59:49 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -21,6 +21,7 @@ Blinky::Blinky()
   _direction = game::Direction::UP;
   _type = 1;
   _score = 0;
+  _inCase = true;
 }
 
 Blinky::Blinky(int x, int y)
@@ -33,6 +34,7 @@ Blinky::Blinky(int x, int y)
   _direction = game::Direction::UP;
   _type = 1;
   _score = 0;
+  _inCase = true;
 }
 
 Blinky::~Blinky()
@@ -60,23 +62,61 @@ Blinky& Blinky::operator=(Blinky const & other)
 
 void Blinky::move(std::map<int, std::map<int, int>>_gamemap)
 {
-  if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
-    setDirection(game::Direction::RIGHT);
-  if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
-    setDirection(game::Direction::DOWN);
-  if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
-    setDirection(game::Direction::LEFT);
-  if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
-    setDirection(game::Direction::UP);
+  //int i = 0;
+  //int j = 0;
+  //int x = 0;
+  //int y = 0;
 
-  if (_direction == game::Direction::UP)
+  if (_inCase == true)
+  {
+    if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
+      setDirection(game::Direction::RIGHT);
+    if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
+      setDirection(game::Direction::DOWN);
+    if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
+      setDirection(game::Direction::LEFT);
+    if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
+      setDirection(game::Direction::UP);
+
+    if (_direction == game::Direction::UP)
       setY(getY() - 1);
-  if (_direction == game::Direction::RIGHT)
+    if (_direction == game::Direction::RIGHT)
       setX(getX() + 1);
-  if (_direction == game::Direction::DOWN)
+    if (_direction == game::Direction::DOWN)
       setY(getY() + 1);
-  if (_direction == game::Direction::LEFT)
+    if (_direction == game::Direction::LEFT)
       setX(getX() - 1);
+    }
+  /*else
+  {
+    while (_gamemap[i][j] != 7)
+      {
+          while (j != 27)
+          {
+            if (_gamemap[i][j] == 7)
+              {
+                y = i;
+                x = j;
+              }
+            j++;
+          }
+          j = 0;
+          i++;
+      }
+    y = getY() - y;
+    x = getX() - x;
+
+    if (y <= 0)
+      setY(getY() + 1);
+    else
+      setY(getY() - 1);
+    if (x <= 0)
+      setX(getX() + 1);
+    else
+      setX(getX() - 1);
+  }
+if (_gamemap[_posY][_posX] == 4)
+  _inCase = false;*/
 }
 
 void Blinky::setX(int pos)

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:02:21 2017 Thomas Fossaert
+** Last update Tue Apr 04 17:20:03 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -22,6 +22,7 @@ class Clyde : public game::IGame
     int		      _score;
 
     int _type;
+    bool        _inCase;
   public:
     Clyde();
     Clyde(int x, int y);

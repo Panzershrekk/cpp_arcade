@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Mon Apr 03 17:23:37 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:56:47 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -14,12 +14,11 @@
 
 gameMapSfml::gameMapSfml()
 {
-
   char c;
   unsigned int i = 0;
   unsigned int j = 0;
 
-  std::ifstream fin("./games/pacman/sprite/NcurseMap.txt");
+  std::ifstream fin("./games/pacman/sprite/OtherMap");
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
   }
@@ -36,12 +35,34 @@ gameMapSfml::gameMapSfml()
         _gamemap[i][j] = TabType::WALKABLE;
       if (c == '_')
         _gamemap[i][j] = TabType::GATE;
-      if (c == 'M')
-        _gamemap[i][j] = TabType::GHOST;
+      if (c == 'B')
+      {
+        _gamemap[i][j] = TabType::BLINKY;
+        _blinky = new Blinky(j, i);
+      }
+      if (c == 'P')
+      {
+        _gamemap[i][j] = TabType::PINKY;
+        _pinky = new Pinky(j, i);
+      }
+      if (c == 'I')
+      {
+        _gamemap[i][j] = TabType::INKY;
+        _inky = new Inky(j ,i);
+      }
+      if (c == 'Y')
+      {
+        _gamemap[i][j] = TabType::CLYDE;
+        _clyde = new Clyde(j, i);
+      }
       if (c == 'C')
-      _gamemap[i][j] = TabType::PACMAN;
+      {
+        _gamemap[i][j] = TabType::PACMAN;
+        _pacman = new Pacman(j, i);
+      }
     }
     j++;
+    _witdh = j;
     if (c == '\n')  {
       _height++;
       i++;
@@ -49,7 +70,11 @@ gameMapSfml::gameMapSfml()
     }
   }
   fin.close();
-  _witdh = 28;
+  _oldSPrite = 1;
+  _blinkyCurr = 1;
+  _pinkyCurr = 1;
+  _inkyCurr = 1;
+  _clydeCurr = 1;
 }
 
 gameMapSfml::~gameMapSfml()
