@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:36:10 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:02:21 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -24,6 +24,7 @@ class Clyde : public game::IGame
     int _type;
   public:
     Clyde();
+    Clyde(int x, int y);
     ~Clyde();
     Clyde(Clyde const & other);
     Clyde& operator=(Clyde const & other);
@@ -45,6 +46,6 @@ class Clyde : public game::IGame
 
     int getScore() const;
     void setScore(int s);
-    
+
     void Dump(void) const;
 };

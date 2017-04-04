@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:36:54 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:02:33 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -24,6 +24,7 @@ class Inky : public game::IGame
     int _type;
   public:
     Inky();
+    Inky(int x, int y);
     ~Inky();
     Inky(Inky const & other);
     Inky& operator=(Inky const & other);

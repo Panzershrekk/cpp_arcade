@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:41:59 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:04:45 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -15,6 +15,18 @@ Pacman::Pacman()
 {
   _posX = 13;
   _posY = 17;
+  _state = game::VULNERABLE;
+  _speed = 10;
+  _isAlive = true;
+  _direction = game::Direction::LEFT;
+  _type = 0;
+  _score = 0;
+}
+
+Pacman::Pacman(int x, int y)
+{
+  _posX = x;
+  _posY = y;
   _state = game::VULNERABLE;
   _speed = 10;
   _isAlive = true;

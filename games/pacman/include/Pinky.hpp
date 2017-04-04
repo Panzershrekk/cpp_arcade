@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:37:08 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:02:59 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -24,6 +24,7 @@ class Pinky : public game::IGame
     int _type;
   public:
     Pinky();
+    Pinky(int x, int y);
     ~Pinky();
     Pinky(Pinky const & other);
     Pinky& operator=(Pinky const & other);

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:37:02 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:02:45 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -24,6 +24,8 @@ class Pacman : public game::IGame
     int _type;
   public:
     Pacman();
+    Pacman(int x, int y);
+
     ~Pacman();
     Pacman(Pacman const & other);
     Pacman& operator=(Pacman const & other);

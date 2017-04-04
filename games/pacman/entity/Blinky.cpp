@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:41:33 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:03:23 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -15,6 +15,18 @@ Blinky::Blinky()
 {
   _posX = 13;
   _posY = 13;
+  _state = game::INVUNERABLE;
+  _speed = 10;
+  _isAlive = true;
+  _direction = game::Direction::UP;
+  _type = 1;
+  _score = 0;
+}
+
+Blinky::Blinky(int x, int y)
+{
+  _posX = x;
+  _posY = y;
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;

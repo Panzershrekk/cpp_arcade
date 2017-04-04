@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:35:59 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:02:07 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -24,6 +24,7 @@ class Blinky : public game::IGame
     int         _type;
   public:
     Blinky();
+    Blinky(int x, int y);
     ~Blinky();
     Blinky(Blinky const & other);
     Blinky& operator=(Blinky const & other);

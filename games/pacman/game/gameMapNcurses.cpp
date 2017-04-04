@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:07:28 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:50:06 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -18,7 +18,7 @@ gameMapNcurses::gameMapNcurses()
   unsigned int i = 0;
   unsigned int j = 0;
 
-  std::ifstream fin("./games/pacman/sprite/NcurseMap.txt");
+  std::ifstream fin("./games/pacman/sprite/OtherMap");
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
   }
@@ -35,12 +35,34 @@ gameMapNcurses::gameMapNcurses()
         _gamemap[i][j] = TabType::WALKABLE;
       if (c == '_')
         _gamemap[i][j] = TabType::GATE;
-      if (c == 'M')
-        _gamemap[i][j] = TabType::GHOST;
+      if (c == 'B')
+      {
+        _gamemap[i][j] = TabType::BLINKY;
+        _blinky = new Blinky(j, i);
+      }
+      if (c == 'P')
+      {
+        _gamemap[i][j] = TabType::PINKY;
+        _pinky = new Pinky(j, i);
+      }
+      if (c == 'I')
+      {
+        _gamemap[i][j] = TabType::INKY;
+        _inky = new Inky(j ,i);
+      }
+      if (c == 'Y')
+      {
+        _gamemap[i][j] = TabType::CLYDE;
+        _clyde = new Clyde(j, i);
+      }
       if (c == 'C')
-      _gamemap[i][j] = TabType::PACMAN;
+      {
+        _gamemap[i][j] = TabType::PACMAN;
+        _pacman = new Pacman(j, i);
+      }
     }
     j++;
+    _witdh = j;
     if (c == '\n')  {
       _height++;
       i++;
@@ -48,9 +70,13 @@ gameMapNcurses::gameMapNcurses()
     }
   }
   fin.close();
-  _witdh = 28;
+  //_witdh = 28;
   _oldSPrite = 1;
   _blinkyCurr = 1;
+  _pinkyCurr = 1;
+  _inkyCurr = 1;
+  _clydeCurr = 1;
+
 }
 
 gameMapNcurses::~gameMapNcurses()
@@ -98,22 +124,40 @@ void gameMapNcurses::createMap()
             attron(COLOR_PAIR(2));
             mvprintw(i, j, "*");
           }
-        else if (_gamemap[i][j] == TabType::GHOST)
+        else if (_gamemap[i][j] == TabType::BLINKY)
           {
             attron(COLOR_PAIR(3));
-            mvprintw(i, j, "M");
+            mvprintw(i, j, "B");
           }
         else if (_gamemap[i][j] == TabType::PACMAN)
           {
             attron(COLOR_PAIR(2));
             mvprintw(i, j, "C");
           }
+          else if (_gamemap[i][j] == TabType::PINKY)
+            {
+              attron(COLOR_PAIR(4));
+              mvprintw(i, j, "P");
+            }
+          else if (_gamemap[i][j] == TabType::INKY)
+            {
+              attron(COLOR_PAIR(5));
+              mvprintw(i, j, "I");
+            }
+          else if (_gamemap[i][j] == TabType::CLYDE)
+            {
+              attron(COLOR_PAIR(6));
+              mvprintw(i, j, "Y");
+            }
         else
           mvprintw(i, j, " ");
         j++;
         attroff(COLOR_PAIR(1));
         attroff(COLOR_PAIR(2));
         attroff(COLOR_PAIR(3));
+        attroff(COLOR_PAIR(4));
+        attroff(COLOR_PAIR(5));
+        attroff(COLOR_PAIR(6));
       }
     j = 0;
     i++;
@@ -129,13 +173,6 @@ void gameMapNcurses::Game()
   int   prevX = 0;
   int   prevY = 0;
 
-  game::IGame *pacman = new Pacman();
-  game::IGame *blinky = new Blinky();
-  game::IGame *pinky = new Pinky();
-  game::IGame *inky = new Inky();
-  game::IGame *clyde = new Clyde();
-
-
   (void)row;
   initscr();
   nodelay(stdscr, TRUE);
@@ -145,71 +182,76 @@ void gameMapNcurses::Game()
   timeout(500);
   createMap();
   start_color();
+  init_color(COLOR_GREEN, 700, 0, 0);
   init_pair(1, COLOR_BLUE, COLOR_BLUE);
   init_pair(2, COLOR_YELLOW, COLOR_BLACK);
   init_pair(3, COLOR_RED, COLOR_BLACK);
-  while ((ch != 'q' && ch != 'Q') && pacman->isAlive() == true)
+  init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
+  init_pair(5, COLOR_CYAN, COLOR_BLACK);
+  init_pair(6, COLOR_GREEN, COLOR_BLACK);
+
+  while ((ch != 'q' && ch != 'Q') && _pacman->isAlive() == true)
   {
     noecho();
     getmaxyx(stdscr,row,col);
 
     createMap();
 
-    if (_gamemap[pacman->getY()][pacman->getX()] == TabType::GHOST)
-      pacman->setLive(false);
-      
+    if (_gamemap[_pacman->getY()][_pacman->getX()] == TabType::BLINKY)
+      _pacman->setLive(false);
+
     ch = getch();
     if (ch == KEY_UP)
-      pacman->setDirection(game::Direction::UP);
+      _pacman->setDirection(game::Direction::UP);
     if (ch == KEY_DOWN)
-      pacman->setDirection(game::Direction::DOWN);
+      _pacman->setDirection(game::Direction::DOWN);
     if (ch == KEY_LEFT)
-      pacman->setDirection(game::Direction::LEFT);
+      _pacman->setDirection(game::Direction::LEFT);
     if (ch == KEY_RIGHT)
-      pacman->setDirection(game::Direction::RIGHT);
+      _pacman->setDirection(game::Direction::RIGHT);
 
     _oldSPrite = 1;
-    prevX = pacman->getX();
-    prevY = pacman->getY();
-    pacman->move(_gamemap);
-    SetSprite(pacman->getX(), pacman->getY(), pacman);
-    UnsetSprite(prevX, prevY, pacman);
+    prevX = _pacman->getX();
+    prevY = _pacman->getY();
+    _pacman->move(_gamemap);
+    SetSprite(_pacman->getX(), _pacman->getY(), _pacman);
+    UnsetSprite(prevX, prevY, _pacman);
 
-    prevX = blinky->getX();
-    prevY = blinky->getY();
-    UnsetSprite(prevX, prevY, blinky);
-    blinky->move(_gamemap);
-    _blinkyCurr = _gamemap[blinky->getY()][blinky->getX()];
-    SetSprite(blinky->getX(), blinky->getY(), blinky);
+    prevX = _blinky->getX();
+    prevY = _blinky->getY();
+    UnsetSprite(prevX, prevY, _blinky);
+    _blinky->move(_gamemap);
+    _blinkyCurr = _gamemap[_blinky->getY()][_blinky->getX()];
+    SetSprite(_blinky->getX(), _blinky->getY(), _blinky);
 
     if (t > 10)
     {
-      prevX = pinky->getX();
-      prevY = pinky->getY();
-      UnsetSprite(prevX, prevY, pinky);
-      pinky->move(_gamemap);
-      _pinkyCurr = _gamemap[pinky->getY()][pinky->getX()];
-      SetSprite(pinky->getX(), pinky->getY(), pinky);
+      prevX = _pinky->getX();
+      prevY = _pinky->getY();
+      UnsetSprite(prevX, prevY, _pinky);
+      _pinky->move(_gamemap);
+      _pinkyCurr = _gamemap[_pinky->getY()][_pinky->getX()];
+      SetSprite(_pinky->getX(), _pinky->getY(), _pinky);
     }
 
     if (t > 20)
     {
-      prevX = inky->getX();
-      prevY = inky->getY();
-      UnsetSprite(prevX, prevY, inky);
-      inky->move(_gamemap);
-      _inkyCurr = _gamemap[inky->getY()][inky->getX()];
-      SetSprite(inky->getX(), inky->getY(), inky);
+      prevX = _inky->getX();
+      prevY = _inky->getY();
+      UnsetSprite(prevX, prevY, _inky);
+      _inky->move(_gamemap);
+      _inkyCurr = _gamemap[_inky->getY()][_inky->getX()];
+      SetSprite(_inky->getX(), _inky->getY(), _inky);
     }
 
     if (t > 30)
     {
-      prevX = clyde->getX();
-      prevY = clyde->getY();
-      UnsetSprite(prevX, prevY, clyde);
-      clyde->move(_gamemap);
-      _clydeCurr = _gamemap[clyde->getY()][clyde->getX()];
-      SetSprite(clyde->getX(), clyde->getY(), clyde);
+      prevX = _clyde->getX();
+      prevY = _clyde->getY();
+      UnsetSprite(prevX, prevY, _clyde);
+      _clyde->move(_gamemap);
+      _clydeCurr = _gamemap[_clyde->getY()][_clyde->getX()];
+      SetSprite(_clyde->getX(), _clyde->getY(), _clyde);
     }
 
     t++;
@@ -220,11 +262,18 @@ void gameMapNcurses::Game()
 
 void gameMapNcurses::SetSprite(int x, int y, game::IGame *entity)
 {
-  if (entity->getType() == 0 )
+  if (entity->getType() == 0)
     _gamemap[y][x] = TabType::PACMAN;
   else
   {
-    _gamemap[y][x] = TabType::GHOST;
+    if (entity->getType() == 1)
+      _gamemap[y][x] = TabType::BLINKY;
+    if (entity->getType() == 2)
+      _gamemap[y][x] = TabType::PINKY;
+    if (entity->getType() == 3)
+      _gamemap[y][x] = TabType::INKY;
+    if (entity->getType() == 4)
+      _gamemap[y][x] = TabType::CLYDE;
   }
 }
 

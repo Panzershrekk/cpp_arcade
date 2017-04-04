@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:41:50 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:04:10 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -15,6 +15,18 @@ Inky::Inky()
 {
   _posX = 12;
   _posY = 14;
+  _state = game::INVUNERABLE;
+  _speed = 10;
+  _isAlive = true;
+  _direction = game::Direction::UP;
+  _type = 3;
+  _score = 0;
+}
+
+Inky::Inky(int x, int y)
+{
+  _posX = x;
+  _posY = y;
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:42:22 2017 Thomas Fossaert
+** Last update Tue Apr 04 14:05:19 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -15,6 +15,18 @@ Pinky::Pinky()
 {
   _posX = 13;
   _posY = 14;
+  _state = game::INVUNERABLE;
+  _speed = 10;
+  _isAlive = true;
+  _direction = game::Direction::UP;
+  _type = 2;
+  _score = 0;
+}
+
+Pinky::Pinky(int x, int y)
+{
+  _posX = x;
+  _posY = y;
   _state = game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;

@@ -15,13 +15,23 @@ enum TabType
  GATE = 3,
  PACGUM = 4,
  SPACGUM = 5,
- GHOST = 6,
- PACMAN = 7
+ BLINKY = 6,
+ PACMAN = 7,
+ PINKY = 8,
+ INKY = 9,
+ CLYDE = 10
 };
 
 class gameMapNcurses : public graph::IGraph
 {
   private:
+
+    game::IGame *_pacman;
+    game::IGame *_blinky;
+    game::IGame *_pinky;
+    game::IGame *_inky;
+    game::IGame *_clyde;
+
     int _height;
     int _witdh;
     int _oldSPrite;
