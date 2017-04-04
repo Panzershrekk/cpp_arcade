@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 12:04:54 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:35:59 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -13,7 +13,15 @@
 class Blinky : public game::IGame
 {
   private:
-    int _type;
+    int         _posX;
+    int         _posY;
+    game::State _state;
+    game::Direction _direction;
+    size_t      _speed;
+    bool        _isAlive;
+    int		      _score;
+
+    int         _type;
   public:
     Blinky();
     ~Blinky();
@@ -34,5 +42,9 @@ class Blinky : public game::IGame
     int getType() const;
     bool isAlive() const;
     game::Direction getDirection() const;
+
+    int getScore() const;
+    void setScore(int s);
+
     void Dump(void) const;
 };

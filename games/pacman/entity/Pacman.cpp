@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 12:34:22 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:41:59 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -20,6 +20,7 @@ Pacman::Pacman()
   _isAlive = true;
   _direction = game::Direction::LEFT;
   _type = 0;
+  _score = 0;
 }
 
 Pacman::~Pacman()
@@ -138,4 +139,14 @@ void Pacman::Dump(void) const
     std::cout << "VULNERABLE" << '\n';
   std::cout << "Speed: " << _speed << '\n';
   std::cout << "ALive: " << _isAlive << '\n';
+}
+
+int Pacman::getScore() const
+{
+  return _score;
+}
+
+void Pacman::setScore(int s)
+{
+  _score = s;
 }

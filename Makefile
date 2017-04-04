@@ -18,7 +18,7 @@ SRCS		=	main.cpp \
 					games/pacman/entity/Inky.cpp \
 					games/pacman/entity/Clyde.cpp \
 					games/pacman/entity/Pacman.cpp \
-					games/pacman/game/gameMapSfml.cpp \
+					games/pacman/game/gameMapNcurses.cpp \
 					exception/ArcadeException.cpp
 
 OBJS		=	$(SRCS:.cpp=.o)

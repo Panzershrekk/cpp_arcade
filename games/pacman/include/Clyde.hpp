@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 12:05:39 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:36:10 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -13,6 +13,14 @@
 class Clyde : public game::IGame
 {
   private:
+    int         _posX;
+    int         _posY;
+    game::State _state;
+    game::Direction _direction;
+    size_t      _speed;
+    bool        _isAlive;
+    int		      _score;
+
     int _type;
   public:
     Clyde();
@@ -34,5 +42,9 @@ class Clyde : public game::IGame
     size_t getSpeed() const;
     bool isAlive() const;
     game::Direction getDirection() const;
+
+    int getScore() const;
+    void setScore(int s);
+    
     void Dump(void) const;
 };

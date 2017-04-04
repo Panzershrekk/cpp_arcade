@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 12:09:45 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:42:22 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -20,6 +20,7 @@ Pinky::Pinky()
   _isAlive = true;
   _direction = game::Direction::UP;
   _type = 2;
+  _score = 0;
 }
 
 Pinky::~Pinky()
@@ -143,4 +144,14 @@ void Pinky::Dump(void) const
     std::cout << "VULNERABLE" << '\n';
   std::cout << "Speed: " << _speed << '\n';
   std::cout << "ALive: " << _isAlive << '\n';
+}
+
+int Pinky::getScore() const
+{
+  return _score;
+}
+
+void Pinky::setScore(int s)
+{
+  _score = s;
 }

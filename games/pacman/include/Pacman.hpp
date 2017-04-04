@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 12:04:17 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:37:02 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -13,6 +13,14 @@
 class Pacman : public game::IGame
 {
   private:
+    int         _posX;
+    int         _posY;
+    game::State _state;
+    game::Direction _direction;
+    size_t      _speed;
+    bool        _isAlive;
+    int		      _score;
+
     int _type;
   public:
     Pacman();
@@ -35,4 +43,7 @@ class Pacman : public game::IGame
     game::Direction getDirection() const;
     int getType() const;
     void Dump(void) const;
+
+    int getScore() const;
+    void setScore(int s);
 };

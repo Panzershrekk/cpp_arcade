@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 12:04:30 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:36:54 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -13,6 +13,14 @@
 class Inky : public game::IGame
 {
   private:
+    int         _posX;
+    int         _posY;
+    game::State _state;
+    game::Direction _direction;
+    size_t      _speed;
+    bool        _isAlive;
+    int		      _score;
+
     int _type;
   public:
     Inky();
@@ -35,4 +43,7 @@ class Inky : public game::IGame
     bool isAlive() const;
     game::Direction getDirection() const;
     void Dump(void) const;
+
+    int getScore() const;
+    void setScore(int s);
 };

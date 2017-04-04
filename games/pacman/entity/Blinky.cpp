@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 12:06:53 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:41:33 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -20,6 +20,7 @@ Blinky::Blinky()
   _isAlive = true;
   _direction = game::Direction::UP;
   _type = 1;
+  _score = 0;
 }
 
 Blinky::~Blinky()
@@ -143,4 +144,14 @@ void Blinky::Dump(void) const
     std::cout << "VULNERABLE" << '\n';
   std::cout << "Speed: " << _speed << '\n';
   std::cout << "ALive: " << _isAlive << '\n';
+}
+
+int Blinky::getScore() const
+{
+  return _score;
+}
+
+void Blinky::setScore(int s)
+{
+  _score = s;
 }

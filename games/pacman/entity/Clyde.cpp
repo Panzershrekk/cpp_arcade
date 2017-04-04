@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 12:07:45 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:41:42 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -20,6 +20,7 @@ Clyde::Clyde()
   _isAlive = true;
   _direction = game::Direction::UP;
   _type = 4;
+  _score = 0;
 }
 
 Clyde::~Clyde()
@@ -143,4 +144,14 @@ void Clyde::Dump(void) const
     std::cout << "VULNERABLE" << '\n';
   std::cout << "Speed: " << _speed << '\n';
   std::cout << "ALive: " << _isAlive << '\n';
+}
+
+int Clyde::getScore() const
+{
+  return _score;
+}
+
+void Clyde::setScore(int s)
+{
+  _score = s;
 }

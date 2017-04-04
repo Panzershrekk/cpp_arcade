@@ -1,9 +1,9 @@
 //
 // Snake.hpp for snake in /home/antoine/Bureau/Epi/Arcade/cpp_arcade/games/snake/include
-// 
+//
 // Made by antoine
 // Login   <antoine@epitech.net>
-// 
+//
 // Started on  Mon Apr  3 11:43:45 2017 antoine
 // Last update Mon Apr  3 16:05:56 2017 antoine
 //
@@ -23,6 +23,14 @@ public:
 class Snake : public game::IGame
 {
   private:
+    int         _posX;
+    int         _posY;
+    game::State _state;
+    game::Direction _direction;
+    size_t      _speed;
+    bool        _isAlive;
+    int		      _score;
+    
     int _type;
   std::vector<Position> _posSnake;
   int _needGrowth;

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Fri Mar 24 17:15:15 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:44:37 2017 Thomas Fossaert
 */
 
 #ifndef __IGAME_HPP__
@@ -32,31 +32,26 @@ namespace game
 
   class IGame
   {
-    protected:
-      int         _posX;
-      int         _posY;
-      game::State _state;
-      game::Direction _direction;
-      size_t      _speed;
-      bool        _isAlive;
-
     public:
       virtual void move(std::map<int, std::map<int, int>>) = 0;
       virtual void setX(int pos) = 0;
       virtual void setY(int pos) = 0;
       virtual void setState(game::State state) = 0;
       virtual void setSpeed(size_t speed) = 0;
-      virtual void setDirection(game::Direction) = 0; //Seteur de Direction
-      //virtual void setPoint(size_t point) = 0;
+      virtual void setDirection(game::Direction) = 0;
+      virtual void setLive(bool) = 0;
       virtual int getX() const = 0;
       virtual int getY() const = 0;
       virtual game::State getState() const = 0;
       virtual size_t getSpeed() const = 0;
-      virtual game::Direction getDirection() const = 0; //Getteu direcion
+      virtual game::Direction getDirection() const = 0;
       virtual int getType() const = 0;
-      //virtual size_t getPoint() const = 0;
       virtual bool isAlive() const = 0;
       virtual void Dump(void) const = 0;
+
+      virtual int getScore() const = 0;
+      virtual void setScore(int) = 0;
+
       virtual ~IGame(void) { };
     };
 }
