@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 12:53:10 2017 Thomas Fossaert
+** Last update Tue Apr 04 12:07:45 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -89,6 +89,11 @@ void Clyde::setSpeed(size_t pos)
 void Clyde::setDirection(game::Direction direction)
 {
   _direction = direction;
+}
+
+void Clyde::setLive(bool live)
+{
+  _isAlive = live;
 }
 
 int Clyde::getX() const

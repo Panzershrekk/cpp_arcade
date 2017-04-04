@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Fri Mar 24 17:11:58 2017 Thomas Fossaert
+** Last update Tue Apr 04 12:04:17 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -26,6 +26,7 @@ class Pacman : public game::IGame
     void setState(game::State pos);
     void setSpeed(size_t pos);
     void setDirection(game::Direction);
+    void setLive(bool);
     int getX() const;
     int getY() const;
     game::State getState() const;

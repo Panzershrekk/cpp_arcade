@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 12:48:55 2017 Thomas Fossaert
+** Last update Tue Apr 04 12:34:22 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -86,6 +86,11 @@ void Pacman::setDirection(game::Direction direction)
   _direction = direction;
 }
 
+void Pacman::setLive(bool live)
+{
+  _isAlive = live;
+}
+
 int Pacman::getX() const
 {
   return (_posX);
@@ -108,7 +113,7 @@ size_t Pacman::getSpeed() const
 
 bool  Pacman::isAlive() const
 {
-  return (false);
+  return (_isAlive);
 }
 
 game::Direction Pacman::getDirection() const

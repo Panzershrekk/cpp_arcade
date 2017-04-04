@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 12:49:31 2017 Thomas Fossaert
+** Last update Tue Apr 04 12:09:45 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -89,6 +89,11 @@ void Pinky::setSpeed(size_t pos)
 void Pinky::setDirection(game::Direction direction)
 {
   _direction = direction;
+}
+
+void Pinky::setLive(bool live)
+{
+  _isAlive = live;
 }
 
 int Pinky::getX() const

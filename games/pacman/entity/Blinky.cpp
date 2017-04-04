@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 13:16:48 2017 Thomas Fossaert
+** Last update Tue Apr 04 12:06:53 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -91,6 +91,11 @@ void Blinky::setDirection(game::Direction direction)
   _direction = direction;
 }
 
+void Blinky::setLive(bool live)
+{
+  _isAlive = live;
+}
+
 int Blinky::getX() const
 {
   return (_posX);
@@ -113,7 +118,7 @@ size_t Blinky::getSpeed() const
 
 bool  Blinky::isAlive() const
 {
-  return (false);
+  return (_isAlive);
 }
 
 game::Direction Blinky::getDirection() const

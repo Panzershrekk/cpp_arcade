@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 12:53:20 2017 Thomas Fossaert
+** Last update Tue Apr 04 12:08:01 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -89,6 +89,11 @@ void Inky::setSpeed(size_t pos)
 void Inky::setDirection(game::Direction direction)
 {
   _direction = direction;
+}
+
+void Inky::setLive(bool live)
+{
+  _isAlive = live;
 }
 
 int Inky::getX() const

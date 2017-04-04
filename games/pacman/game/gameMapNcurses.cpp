@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Mar 31 12:59:36 2017 Thomas Fossaert
+** Last update Tue Apr 04 13:07:28 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -77,22 +77,43 @@ void gameMapNcurses::createMap()
     while (j != _witdh)
       {
         if (_gamemap[i][j] == TabType::WALL)
-          mvprintw(i, j, "|");
+          {
+            attron(COLOR_PAIR(1));
+            mvprintw(i, j, "|");
+          }
         else if (_gamemap[i][j] == TabType::WALKABLE)
           mvprintw(i, j, " ");
         else if (_gamemap[i][j] == TabType::GATE)
-          mvprintw(i, j, "_");
+          {
+            attron(COLOR_PAIR(3));
+            mvprintw(i, j, "_");
+          }
         else if (_gamemap[i][j] == TabType::PACGUM)
-          mvprintw(i, j, ".");
+          {
+            attron(COLOR_PAIR(2));
+            mvprintw(i, j, ".");
+          }
         else if (_gamemap[i][j] == TabType::SPACGUM)
-          mvprintw(i, j, "*");
+          {
+            attron(COLOR_PAIR(2));
+            mvprintw(i, j, "*");
+          }
         else if (_gamemap[i][j] == TabType::GHOST)
-          mvprintw(i, j, "M");
+          {
+            attron(COLOR_PAIR(3));
+            mvprintw(i, j, "M");
+          }
         else if (_gamemap[i][j] == TabType::PACMAN)
-          mvprintw(i, j, "C");
+          {
+            attron(COLOR_PAIR(2));
+            mvprintw(i, j, "C");
+          }
         else
           mvprintw(i, j, " ");
         j++;
+        attroff(COLOR_PAIR(1));
+        attroff(COLOR_PAIR(2));
+        attroff(COLOR_PAIR(3));
       }
     j = 0;
     i++;
@@ -123,13 +144,20 @@ void gameMapNcurses::Game()
   curs_set(0);
   timeout(500);
   createMap();
-  while (ch != 'q' && ch != 'Q')
+  start_color();
+  init_pair(1, COLOR_BLUE, COLOR_BLUE);
+  init_pair(2, COLOR_YELLOW, COLOR_BLACK);
+  init_pair(3, COLOR_RED, COLOR_BLACK);
+  while ((ch != 'q' && ch != 'Q') && pacman->isAlive() == true)
   {
     noecho();
     getmaxyx(stdscr,row,col);
 
     createMap();
 
+    if (_gamemap[pacman->getY()][pacman->getX()] == TabType::GHOST)
+      pacman->setLive(false);
+      
     ch = getch();
     if (ch == KEY_UP)
       pacman->setDirection(game::Direction::UP);
