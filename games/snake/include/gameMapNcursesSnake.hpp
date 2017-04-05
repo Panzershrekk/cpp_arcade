@@ -13,7 +13,7 @@ enum TabTypeSnake
   SNAK = 3
 };
 
-class gameMapNcursesSnake : public graph::IGraph
+class gameMapNcursesSnake : public Graph::IGraph
 {
   private:
     int _height;

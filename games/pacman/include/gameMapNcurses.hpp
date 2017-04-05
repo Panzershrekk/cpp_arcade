@@ -22,7 +22,7 @@ enum TabType
  CLYDE = 10
 };
 
-class gameMapNcurses : public graph::IGraph
+class gameMapNcurses : public Graph::IGraph
 {
   private:
 

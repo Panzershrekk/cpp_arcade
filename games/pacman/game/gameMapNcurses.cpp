@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 10:46:19 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:09:42 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -274,7 +274,6 @@ void gameMapNcurses::Game()
       _clydeCurr = _gamemap[_clyde->getY()][_clyde->getX()];
       SetSprite(_clyde->getX(), _clyde->getY(), _clyde);
     }
-
     t++;
   }
   getch();

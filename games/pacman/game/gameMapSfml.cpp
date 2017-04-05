@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 13:00:33 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:37:39 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -94,7 +94,7 @@ gameMapSfml& gameMapSfml::operator=(gameMapSfml const & other)
 
 void gameMapSfml::createMap()
 {
-  int i = 0;
+  /*int i = 0;
   int j = 0;
   while (i != _height)
   {
@@ -121,7 +121,8 @@ void gameMapSfml::createMap()
       }
     j = 0;
     i++;
-  }
+  }*/
+  _window.draw(_pacSprite);
 }
 
 void gameMapSfml::Game()
@@ -144,6 +145,7 @@ void gameMapSfml::Game()
   sf::Sprite _pacSprite;
   _pacSprite.setTexture(logo_pacman);
   _pacSprite.setPosition(15, 270);
+  _spriteMap[0][0] = _pacSprite;
 
   logo_snake.loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(0, 0, 32, 32));
 
@@ -190,8 +192,10 @@ void gameMapSfml::Game()
      if (pacman->getDirection() == 3)
        _pacSprite.move(-1, 0);
     _window.clear();
-    _window.draw(_pacSprite);
+    //createMap();
+    //_window.draw(_pacSprite);
     _window.draw(_snakeSprite);
+    //_window.draw(_textureMap[0][0]);
     _window.display();
     usleep(3000);
  }

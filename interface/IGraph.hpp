@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Mon Mar 13 16:42:14 2017 Thomas Fossaert
-// Last update Wed Apr  5 13:37:01 2017 
+// Last update Wed Apr  5 13:37:01 2017
 */
 
 #ifndef __IGRAPH_HPP__
@@ -16,7 +16,7 @@
 #include <ncurses.h>
 #include "IGame.hpp"
 
-namespace graph
+namespace Graph
 {
   class IGraph
   {

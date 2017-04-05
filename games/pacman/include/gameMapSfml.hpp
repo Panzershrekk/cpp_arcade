@@ -22,7 +22,7 @@ enum TabType
  CLYDE = 10
 };
 
-class gameMapSfml : public graph::IGraph
+class gameMapSfml : public Graph::IGraph
 {
   private:
     game::IGame *_pacman;
@@ -39,7 +39,7 @@ class gameMapSfml : public graph::IGraph
     int _inkyCurr;
     int _clydeCurr;
 
-    //sf::Sprite _pacSprite;
+    sf::Sprite _pacSprite;
     sf::RenderWindow _window;
     /*int _blinkyCurr;
     int _pinkyCurr;

@@ -8,7 +8,7 @@
 #include "IGraph.hpp"
 #include "IGame.hpp"
 
-class menu : public graph::IGraph
+class menu : public Graph::IGraph
 {
     std::map<int, std::string>	_games;
     std::map<int, std::string>	_libs;

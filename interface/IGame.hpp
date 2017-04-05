@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Tue Apr 04 13:44:37 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:35:40 2017 Thomas Fossaert
 */
 
 #ifndef __IGAME_HPP__
