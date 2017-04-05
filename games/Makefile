@@ -2,24 +2,24 @@ CC	=	gcc
 
 RM	=	rm -f
 
-NAME	=	../lib_pacman_ncurses.so
+NAME	=	../lib/lib_pacman.so
 
-NAME2	=	../lib_pacman_sfml.so
-
-NAME4	=	../lib_snake_ncurses.so
+NAME4	=	../lib/lib_snake_ncurses.so
 
 SRC	=	./pacman/entity/Blinky.cpp		\
-			./pacman/entity/Pinky.cpp		\
-			./pacman/entity/Pacman.cpp		\
-			./pacman/game/gameMapNcurses.cpp
+		./pacman/entity/Pinky.cpp		\
+		./pacman/entity/Clyde.cpp		\
+		./pacman/entity/Inky.cpp		\
+		./pacman/entity/Pacman.cpp		\
+		./pacman/game/gameMapNcurses.cpp	\
+		./pacman/pacman_ncurses.cpp		\
+		./pacman/pacman_sfml.cpp		\
+		./pacman/game/gameMapSfml.cpp
 
-SRC2	=	./pacman/entity/Blinky.cpp		\
-				./pacman/entity/Pinky.cpp		\
-				./pacman/entity/Pacman.cpp		\
-				./pacman/game/gameMapSfml.cpp
 
-
-SRC4	=	./snake/game/Snake.cpp
+SRC4	=	./snake/game/Snake.cpp			\
+		./snake/game/gameMapNcursesSnake.cpp	\
+		./snake/snake_ncurses.cpp
 
 CFLAGS	=	-fPIC			\
 		-shared			\
@@ -27,35 +27,25 @@ CFLAGS	=	-fPIC			\
 		-Werror			\
 		-Wextra			\
 		-std=c++11		\
-		-I./pacman/include \
-		-I../lib
-
-CFLAGS2	=	-fPIC			\
-				-shared			\
-				-Wall			\
-				-Werror			\
-				-Wextra			\
-				-std=c++11		\
-				-I./pacman/include \
-				-I../lib \
-				-lsfml-graphics -lsfml-window -lsfml-system
+		-I ./pacman/include	\
+		-I ../interface		\
+		-lncurses		\
+		-lsfml-graphics -lsfml-window -lsfml-system
 
 CFLAGS4	=	-fPIC			\
-						-shared			\
-						-Wall			\
-						-Werror			\
-						-Wextra			\
-						-std=c++11		\
-						-I./snake/include \
-						-I../lib
+		-shared			\
+		-Wall			\
+		-Werror			\
+		-Wextra			\
+		-std=c++11		\
+		-I./snake/include	\
+		-I../interface		\
+		-lncurses
 
 all:		$(NAME) $(NAME2) $(NAME4)
 
 $(NAME):
 		$(CC) $(CFLAGS) $(SRC) -o $(NAME)
-
-$(NAME2):
-				$(CC) $(CFLAGS2) $(SRC2) -o $(NAME2)
 
 $(NAME4):
 				$(CC) $(CFLAGS4) $(SRC4) -o $(NAME4)
@@ -64,6 +54,6 @@ clean:
 		$(RM) $(OBJ)
 
 fclean:		clean
-		$(RM) $(NAME) $(NAME2) $(NAME4)
+		$(RM) $(NAME) $(NAME4)
 
 re:		fclean all

@@ -6,32 +6,30 @@ RM		=	rm -f
 
 CXXFLAGS	+=	-std=c++11 -g
 CXXFLAGS	+=	-Werror -Wall -Wextra
-CXXFLAGS 	+=	-lncurses
-CXXFLAGS	+=	-Igames/pacman/include
-CXXFLAGS	+=	-Ilib
-CXXFLAGS	+=	-Iexception/include
-CXXFLAGS	+=	-lsfml-graphics -lsfml-window -lsfml-system
+CXXFLAGS	+=	-I games/pacman/include
+CXXFLAGS	+=	-I interface
+CXXFLAGS	+=	-I exception/include
+CXXFLAGS	+=	-ldl
 
-SRCS		=	main.cpp \
-					games/pacman/entity/Blinky.cpp \
-					games/pacman/entity/Pinky.cpp \
-					games/pacman/entity/Inky.cpp \
-					games/pacman/entity/Clyde.cpp \
-					games/pacman/entity/Pacman.cpp \
-					games/pacman/game/gameMapNcurses.cpp \
-					exception/ArcadeException.cpp
+SRCS		=	main.cpp 
 
 OBJS		=	$(SRCS:.cpp=.o)
 
 all:		$(NAME)
 
 $(NAME):	$(OBJS)
-					$(CXX) $(OBJS) $(CXXFLAGS) -o $(NAME)
+		make -C games/
+		make -C menu/
+		$(CXX) $(OBJS) $(CXXFLAGS) -o $(NAME)
 
 clean:
-					$(RM) $(OBJS)
+		$(RM) $(OBJS)
+		make clean -C games/
+		make clean -C menu/
 
 fclean:		clean
-					$(RM) $(NAME)
+		$(RM) $(NAME)
+		make fclean -C games/
+		make fclean -C menu/
 
 re:		fclean all

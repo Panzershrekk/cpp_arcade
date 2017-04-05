@@ -1,30 +1,42 @@
-/*
-** main.cpp for cpp_arcade in /home/fossae_t/rendu2/cpp_arcade
-**
-** Made by Thomas Fossaert
-** Login   <fossae_t@epitech.net>
-**
-** Started on  Thu Mar 09 16:40:59 2017 Thomas Fossaert
-** Last update Thu Mar 23 13:23:08 2017 Thomas Fossaert
-*/
+//
+// Created by huguet_t on 31/03/17.
+//
 
+
+#include <dlfcn.h>
+#include <string>
 #include <iostream>
-#include <fstream>
-#include "IGame.hpp"
 #include "IGraph.hpp"
-#include "gameMapNcurses.hpp"
-#include "ArcadeException.hpp"
 
-int   main(int ac, char **av)
+int		main(int ac, char **av)
 {
-  gameMapNcurses *map = new gameMapNcurses();
-  map->DumpMap();
-  map->Game();
-  (void)av;
-  if (ac != 2)
+  void		*lib;
+
+  if (ac > 2)
+    exit(EXIT_FAILURE);
+  /*
+  else if (ac == 1)
   {
-    std::cout << "Bad argument" << '\n';
-    return (42);
+    menu test;
+
+    test.Game();
   }
-  return (0);
+  else
+  */
+  {
+    if ((lib = dlopen(av[1], RTLD_LAZY)) == NULL)
+      exit(EXIT_FAILURE);
+
+    typedef void	(*func_ptr)();
+    func_ptr func = (func_ptr)dlsym(lib,"do_menu");
+
+    if (!func)
+    {
+      std::cout << "The error is    " << dlerror() << std::endl;
+      exit(EXIT_FAILURE);
+    }
+    func();
+    dlclose(lib);
+  }
+  exit(EXIT_SUCCESS);
 }

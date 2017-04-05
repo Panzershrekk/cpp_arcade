@@ -2,7 +2,7 @@ CXX	=	g++
 
 RM	=	rm -f
 
-NAME	=	./lib_menu_SFML.so
+NAME	=	../../lib/lib_menu_SFML.so
 
 OBJ	=	$(SRC:.cpp=.o)
 
@@ -15,7 +15,7 @@ CXXFLAGS	=	-fPIC			\
 		-Wextra			\
 		-std=c++11		\
 		-I ./include		\
-		-I ../include		\
+		-I ../../interface	\
 		-lsfml-graphics -lsfml-window -lsfml-system
 
 

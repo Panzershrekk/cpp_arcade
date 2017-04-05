@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Mon Mar 13 16:42:14 2017 Thomas Fossaert
-// Last update Mon Apr  3 09:52:20 2017 
+// Last update Wed Apr  5 13:37:01 2017 
 */
 
 #ifndef __IGRAPH_HPP__

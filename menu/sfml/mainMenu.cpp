@@ -24,22 +24,26 @@ menu::~menu()
 
 void		menu::Game()
 {
-  sf::RenderWindow _window(sf::VideoMode(1080, 720), "Arcade Menu");
-  sf::CircleShape shape(50);
-  sf::Texture logo_pacman;
-  sf::Texture logo_snake;
-  sf::Vector2<int> pos;
+  sf::RenderWindow	_window(sf::VideoMode(1080, 720), "Arcade Menu");
+  sf::Texture		logo_pacman;
+  sf::Texture		logo_snake;
+  sf::Vector2<int>	pos;
+  std::string		games;
+  std::string		libs;
+  sf::Vector2u		window_size;
 
+  games = "";
+  libs = "";
   logo_pacman.loadFromFile("./sfml/logo.png", sf::IntRect(0, 0, 483, 149));
   logo_snake.loadFromFile("./sfml/snake_logo.png", sf::IntRect(0, 0, 400, 400));
 
-  sf::Sprite _pacSprite;
   _pacSprite.setTexture(logo_pacman);
-  _pacSprite.setPosition(15, 270);
+  _pacSprite.setPosition(40, 170);
+  _pacSprite.setScale(0.75, 0.75);
 
-  sf::Sprite _snakeSprite;
   _snakeSprite.setTexture(logo_snake);
-  _snakeSprite.setPosition(540, 160);
+  _snakeSprite.setPosition(540, 70);
+  _snakeSprite.setScale(0.75, 0.75);
 
   while (_window.isOpen())
   {
@@ -54,14 +58,20 @@ void		menu::Game()
 	{
 	  pos = sf::Mouse::getPosition(_window);
 
-	  std::cout << pos.y << std::endl;
-	  std::cout << pos.x << std::endl;
-	  if ((pos.x >= 15 && pos.x <= 498) && (pos.y <= 419 && pos.y >= 270))
-	    std::cout << "clique pacman" << std::endl;
+	  window_size = _window.getSize();
+	  std::cout << "x = " << window_size.x << std::endl;
+	  std::cout << "y = " << window_size.y << std::endl;
+	  if ((pos.x >= ((15.0 / 1080.0) * static_cast<double>(window_size.x))
+	       && pos.x <= ((498.0 / 1080.0) * static_cast<double>(window_size.x)))
+	      && (pos.y <= ((319.0 / 720.0) * static_cast<double>(window_size.y))
+		  && pos.y >= ((170.0 / 720.0) * static_cast<double>(window_size.y))))
+	    games = "Pacman";
 
-	  else if (pos.x >= 540 && pos.x <= (540 + 400) &&
-		   pos.y <= (160 + 400) && pos.y >= 160)
-	    std::cout << "clique snake" << std::endl;
+	  else if (pos.x >= ((540.0 / 1080.0) * static_cast<double>(window_size.x))
+		   && pos.x <= (((540.0 + 400.0) / 1080.0) * static_cast<double>(window_size.x))
+		   && pos.y <= (((70.0 + 400.0) / 1080.0) * static_cast<double>(window_size.y))
+				&& pos.y >= ((70.0 / 1080.0) * static_cast<double>(window_size.x)))
+	    games = "Snake";
 	}
       }
     }

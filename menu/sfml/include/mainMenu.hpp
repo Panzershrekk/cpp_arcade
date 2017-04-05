@@ -15,6 +15,8 @@ class menu : public graph::IGraph
     int				ch;
     int				pos;
     int				boolean;
+    sf::Sprite			_pacSprite;
+    sf::Sprite			_snakeSprite;
 
   public:
     menu();

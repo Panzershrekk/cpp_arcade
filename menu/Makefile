@@ -1,29 +1,23 @@
-CC	=	g++
+##
+## Makefile for arcade in /home/huguet_t/Documents/Rendu/cpp_arcade/menu
+## 
+## Made by 
+## Login   <thomas.huguet@epitech.eu>
+## 
+## Started on  Wed Apr  5 13:21:07 2017 
+## Last update Wed Apr  5 13:22:28 2017 
+##
 
-RM	=	rm -f
-
-NAME	=	test
-
-SRC	=	./main.cpp
-
-CFLAGS	=	-Wall			\
-		-Werror			\
-		-Wextra			\
-		-std=c++11		\
-		-I./include		\
-		-I ../include		\
-		-lncurses		\
-		-ldl
-
-all:		$(NAME)
-
-$(NAME):
-		$(CC) $(CFLAGS) $(SRC) -o $(NAME)
+all:
+		make -C ncurses/
+		make -C sfml/
 
 clean:
-		$(RM) $(OBJ)
+		make clean -C ncurses/
+		make clean -C sfml/
 
-fclean:		clean
-		$(RM) $(NAME)
+fclean:	
+		make fclean -C ncurses/
+		make fclean -C sfml/
 
 re:		fclean all
