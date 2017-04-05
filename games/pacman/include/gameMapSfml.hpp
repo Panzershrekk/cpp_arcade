@@ -15,8 +15,11 @@ enum TabType
  GATE = 3,
  PACGUM = 4,
  SPACGUM = 5,
- GHOST = 6,
- PACMAN = 7
+ BLINKY = 6,
+ PACMAN = 7,
+ PINKY = 8,
+ INKY = 9,
+ CLYDE = 10
 };
 
 class gameMapSfml : public graph::IGraph
@@ -35,8 +38,8 @@ class gameMapSfml : public graph::IGraph
     int _pinkyCurr;
     int _inkyCurr;
     int _clydeCurr;
-    
-    sf::Sprite _pacSprite;
+
+    //sf::Sprite _pacSprite;
     sf::RenderWindow _window;
     /*int _blinkyCurr;
     int _pinkyCurr;
@@ -44,6 +47,7 @@ class gameMapSfml : public graph::IGraph
     int _clydeCurr;*/
     std::map<int, std::map<int, int>> _gamemap;
     std::map<int, std::map<int, sf::Sprite>> _spriteMap;
+    std::map<int, std::map<int, sf::Texture>> _textureMap;
   public:
     gameMapSfml();
     ~gameMapSfml();

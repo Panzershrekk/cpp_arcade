@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:56:47 2017 Thomas Fossaert
+** Last update Wed Apr 05 13:00:33 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -18,7 +18,7 @@ gameMapSfml::gameMapSfml()
   unsigned int i = 0;
   unsigned int j = 0;
 
-  std::ifstream fin("./games/pacman/sprite/OtherMap");
+  std::ifstream fin("./games/pacman/sprite/NcurseMap.txt");
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
   }
@@ -101,8 +101,8 @@ void gameMapSfml::createMap()
     while (j != _witdh)
       {
         if (_gamemap[i][j] == TabType::WALL)
-          //mvprintw(i, j, "|");
-          _window.draw(_spriteMap[0][0]);
+          mvprintw(i, j, "|");
+          //_window.draw(_spriteMap[0][0]);
         else if (_gamemap[i][j] == TabType::WALKABLE)
           mvprintw(i, j, " ");
         else if (_gamemap[i][j] == TabType::GATE)
@@ -111,7 +111,7 @@ void gameMapSfml::createMap()
           mvprintw(i, j, ".");
         else if (_gamemap[i][j] == TabType::SPACGUM)
           mvprintw(i, j, "*");
-        else if (_gamemap[i][j] == TabType::GHOST)
+        else if (_gamemap[i][j] == TabType::BLINKY)
           mvprintw(i, j, "M");
         else if (_gamemap[i][j] == TabType::PACMAN)
           mvprintw(i, j, "C");
@@ -126,56 +126,60 @@ void gameMapSfml::createMap()
 
 void gameMapSfml::Game()
 {
-  //game::IGame *pacman = new Pacman();
+  game::IGame *pacman = new Pacman();
   /*game::IGame *blinky = new Blinky();
   game::IGame *pinky = new Pinky();
   game::IGame *inky = new Inky();
   game::IGame *clyde = new Clyde();*/
 
-  sf::RenderWindow _window(sf::VideoMode(1080, 720), "PACMAN THE GAAAAAAME !!!!");
+  sf::RenderWindow _window(sf::VideoMode(1080, 720), "Pacman");
   sf::CircleShape shape(50);
 
-  sf::Texture texture;
-  texture.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
+  sf::Texture logo_pacman;
+  sf::Texture logo_snake;
+  sf::Vector2<int> pos;
+
+  logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
+
   sf::Sprite _pacSprite;
-  _pacSprite.setTexture(texture);
-  _pacSprite.setPosition(50, 50);
+  _pacSprite.setTexture(logo_pacman);
+  _pacSprite.setPosition(15, 270);
 
-  // sf::Texture texture2;
-  // texture2.loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(2, 0, 32, 32));
-  // sf::Sprite sprite2;
-  // sprite2.setTexture(texture2);
-  // sprite2.setScale(0.75, 0.75);
-  // sprite2.setPosition(120, 10);
+  logo_snake.loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(0, 0, 32, 32));
+
+  sf::Sprite _snakeSprite;
+  _snakeSprite.setTexture(logo_snake);
+  _snakeSprite.setPosition(540, 160);
+
   while (_window.isOpen())
-   {
-       sf::Event event;
-       while (_window.pollEvent(event))
-       {
-           if (event.type == sf::Event::Closed)
-               _window.close();
-       }
-
-     /*if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+  {
+    sf::Event event;
+    while (_window.pollEvent(event))
+    {
+      if (event.type == sf::Event::Closed)
+  _window.close();
+    }
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
      {
        pacman->setDirection(game::Direction::UP);
-       texture.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(96, 0, 32, 32));
+       logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(96, 0, 32, 32));
       }
      else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
           pacman->setDirection(game::Direction::RIGHT);
-          texture.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(32, 0, 32, 32));
+          logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(32, 0, 32, 32));
         }
      else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
           pacman->setDirection(game::Direction::LEFT);
-          texture.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
+          logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
         }
      else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
           pacman->setDirection(game::Direction::DOWN);
-          texture.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(64, 0, 32, 32));
+          logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(64, 0, 32, 32));
         }
+    _pacSprite.setTexture(logo_pacman);
      pacman->move(_gamemap);
      if (pacman->getDirection() == 0)
       _pacSprite.move(0, -1);
@@ -184,18 +188,12 @@ void gameMapSfml::Game()
      if (pacman->getDirection() == 2)
        _pacSprite.move(0, 1);
      if (pacman->getDirection() == 3)
-       _pacSprite.move(-1, 0);*/
-     //_pacSprite.setPosition(pacman->getX() * 28, pacman->getY() * 28);
-     _window.clear();
-     _window.draw(_pacSprite);
-     //_window.draw(shape2);
-    //  _window.draw(sprite2);
-     //createMap();
-     /*_pacSprite.setPosition(500, 500);
-     _window.draw(_pacSprite);*/
-
-     _window.display();
-     usleep(3000);
+       _pacSprite.move(-1, 0);
+    _window.clear();
+    _window.draw(_pacSprite);
+    _window.draw(_snakeSprite);
+    _window.display();
+    usleep(3000);
  }
 }
 
