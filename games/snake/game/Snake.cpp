@@ -81,7 +81,7 @@ void	Snake::setPosSnake(std::vector<Position> posSnake)
   _posSnake = posSnake;
 }
 
-void Snake::move(std::map<int, std::map<int, int>>_gamemap)
+void Snake::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
   if (_direction == game::Direction::UP)
     setY(getY() - 1);
@@ -181,4 +181,3 @@ int Snake::getType() const
 {
   return (1);
 }
-

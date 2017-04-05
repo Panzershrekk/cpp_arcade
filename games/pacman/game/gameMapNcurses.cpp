@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:09:42 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:45:33 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -234,14 +234,14 @@ void gameMapNcurses::Game()
     _oldSPrite = 1;
     prevX = _pacman->getX();
     prevY = _pacman->getY();
-    _pacman->move(_gamemap);
+    _pacman->movePlayer(_gamemap);
     SetSprite(_pacman->getX(), _pacman->getY(), _pacman);
     UnsetSprite(prevX, prevY, _pacman);
 
     prevX = _blinky->getX();
     prevY = _blinky->getY();
     UnsetSprite(prevX, prevY, _blinky);
-    _blinky->move(_gamemap);
+    _blinky->movePlayer(_gamemap);
     _blinkyCurr = _gamemap[_blinky->getY()][_blinky->getX()];
     SetSprite(_blinky->getX(), _blinky->getY(), _blinky);
 
@@ -250,7 +250,7 @@ void gameMapNcurses::Game()
       prevX = _pinky->getX();
       prevY = _pinky->getY();
       UnsetSprite(prevX, prevY, _pinky);
-      _pinky->move(_gamemap);
+      _pinky->movePlayer(_gamemap);
       _pinkyCurr = _gamemap[_pinky->getY()][_pinky->getX()];
       SetSprite(_pinky->getX(), _pinky->getY(), _pinky);
     }
@@ -260,7 +260,7 @@ void gameMapNcurses::Game()
       prevX = _inky->getX();
       prevY = _inky->getY();
       UnsetSprite(prevX, prevY, _inky);
-      _inky->move(_gamemap);
+      _inky->movePlayer(_gamemap);
       _inkyCurr = _gamemap[_inky->getY()][_inky->getX()];
       SetSprite(_inky->getX(), _inky->getY(), _inky);
     }
@@ -270,7 +270,7 @@ void gameMapNcurses::Game()
       prevX = _clyde->getX();
       prevY = _clyde->getY();
       UnsetSprite(prevX, prevY, _clyde);
-      _clyde->move(_gamemap);
+      _clyde->movePlayer(_gamemap);
       _clydeCurr = _gamemap[_clyde->getY()][_clyde->getX()];
       SetSprite(_clyde->getX(), _clyde->getY(), _clyde);
     }

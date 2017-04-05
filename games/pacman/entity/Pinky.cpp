@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 10:04:57 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:45:26 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -60,7 +60,7 @@ Pinky& Pinky::operator=(Pinky const & other)
   return *this;
 }
 
-void Pinky::move(std::map<int, std::map<int, int>>_gamemap)
+void Pinky::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
   int nb = -1;
   int randcond = 0;

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:35:40 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:47:23 2017 Thomas Fossaert
 */
 
 #ifndef __IGAME_HPP__
@@ -33,7 +33,7 @@ namespace game
   class IGame
   {
     public:
-      virtual void move(std::map<int, std::map<int, int>>) = 0;
+      virtual void movePlayer(std::map<int, std::map<int, int>>) = 0;
       virtual void setX(int pos) = 0;
       virtual void setY(int pos) = 0;
       virtual void setState(game::State state) = 0;

@@ -30,7 +30,7 @@ class Snake : public game::IGame
     size_t      _speed;
     bool        _isAlive;
     int		      _score;
-    
+
     int _type;
   std::vector<Position> _posSnake;
   int _needGrowth;
@@ -40,7 +40,7 @@ public:
     Snake(Snake const & other);
     Snake& operator=(Snake const & other);
 
-    void move(std::map<int, std::map<int, int>> _gamemap);
+    void movePlayer(std::map<int, std::map<int, int>> _gamemap);
     void setX(int pos);
     void setY(int pos);
     void setDirection(game::Direction);

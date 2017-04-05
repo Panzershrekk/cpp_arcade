@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 10:15:27 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:45:10 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -60,7 +60,7 @@ Clyde& Clyde::operator=(Clyde const & other)
   return *this;
 }
 
-void Clyde::move(std::map<int, std::map<int, int>>_gamemap)
+void Clyde::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
   int nb = -1;
   int randcond = 0;

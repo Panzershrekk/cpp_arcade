@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:04:45 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:45:18 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -58,7 +58,7 @@ Pacman& Pacman::operator=(Pacman const & other)
   return *this;
 }
 
-void Pacman::move(std::map<int, std::map<int, int>>_gamemap)
+void Pacman::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
   if (_direction == game::Direction::UP && (_gamemap[_posY - 1][_posX] != 2
     && _gamemap[_posY - 1][_posX] != 3))

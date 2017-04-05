@@ -1,9 +1,9 @@
 //
 // gameMapNcurses.cpp for game in /home/antoine/Bureau/Epi/Arcade/cpp_arcade/games/snake/game
-// 
+//
 // Made by antoine
 // Login   <antoine@epitech.net>
-// 
+//
 // Started on  Mon Apr  3 11:33:02 2017 antoine
 // Last update Tue Apr  4 20:20:52 2017 antoine
 //
@@ -78,7 +78,7 @@ void gameMapNcursesSnake::createMap()
 	  }
         else if (_gamemap[i][j] == TabTypeSnake::CANWALK)
 	  {
-	    
+
 	    mvprintw(i, j, " ");
 	  }
         else if (_gamemap[i][j] == TabTypeSnake::APPLE)
@@ -140,7 +140,7 @@ void gameMapNcursesSnake::Game()
       snake->setDirection(game::Direction::RIGHT);
     prevX = snake->getX();
     prevY = snake->getY();
-    snake->move(_gamemap);
+    snake->movePlayer(_gamemap);
     // _gamemap[prevY][prevX] = 0;
     snake->setPosSnake(movePosSnake(prevX, prevY, snake->getPosSnake(), snake));
     genApple();
@@ -156,7 +156,7 @@ std::vector<Position> gameMapNcursesSnake::movePosSnake(int x, int y, std::vecto
   Position first;
   unsigned int	i = tmp.size() - 1;
   int j = tmp.size() - 1;
-  
+
   first.x = x;
   first.y = y;
   _gamemap[snake->getY()][snake->getX()] = 3;
@@ -199,7 +199,7 @@ void gameMapNcursesSnake::genApple()
       while ((_gamemap[tmpy][tmpx] == TabTypeSnake::WALLE))
 	{
 	  tmpy = rand() % _height;
-	  tmpx = rand() % _witdh;	 
+	  tmpx = rand() % _witdh;
 	}
       _gamemap[tmpy][tmpx] = 2;
     }

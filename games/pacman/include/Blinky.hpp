@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 15:08:45 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:45:43 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -30,7 +30,7 @@ class Blinky : public game::IGame
     Blinky(Blinky const & other);
     Blinky& operator=(Blinky const & other);
 
-    void move(std::map<int, std::map<int, int>> _gamemap);
+    void movePlayer(std::map<int, std::map<int, int>> _gamemap);
     void setX(int pos);
     void setY(int pos);
     void setState(game::State pos);

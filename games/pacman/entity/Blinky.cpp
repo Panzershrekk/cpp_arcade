@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 09:56:36 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:45:07 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -60,7 +60,7 @@ Blinky& Blinky::operator=(Blinky const & other)
   return *this;
 }
 
-void Blinky::move(std::map<int, std::map<int, int>>_gamemap)
+void Blinky::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
   int nb = -1;
   int randcond = 0;

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Wed Apr 05 10:01:20 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:46:11 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -30,7 +30,7 @@ class Pinky : public game::IGame
     Pinky(Pinky const & other);
     Pinky& operator=(Pinky const & other);
 
-    void move(std::map<int, std::map<int, int>>);
+    void movePlayer(std::map<int, std::map<int, int>>);
     void setX(int pos);
     void setY(int pos);
     void setState(game::State pos);

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:02:45 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:45:58 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -30,7 +30,7 @@ class Pacman : public game::IGame
     Pacman(Pacman const & other);
     Pacman& operator=(Pacman const & other);
 
-    void move(std::map<int, std::map<int, int>> _gamemap);
+    void movePlayer(std::map<int, std::map<int, int>> _gamemap);
     void setX(int pos);
     void setY(int pos);
     void setState(game::State pos);

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:37:39 2017 Thomas Fossaert
+** Last update Wed Apr 05 15:49:30 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -182,15 +182,15 @@ void gameMapSfml::Game()
           logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(64, 0, 32, 32));
         }
     _pacSprite.setTexture(logo_pacman);
-     pacman->move(_gamemap);
-     if (pacman->getDirection() == 0)
-      _pacSprite.move(0, -1);
+     pacman->movePlayer(_gamemap);
+     /*if (pacman->getDirection() == 0)
+      _pacSprite.movePlayer(0, -1);
      if (pacman->getDirection() == 1)
-      _pacSprite.move(1, 0);
+      _pacSprite.movePlayer(1, 0);
      if (pacman->getDirection() == 2)
-       _pacSprite.move(0, 1);
+       _pacSprite.movePlayer(0, 1);
      if (pacman->getDirection() == 3)
-       _pacSprite.move(-1, 0);
+       _pacSprite.movePlayer(-1, 0);*/
     _window.clear();
     //createMap();
     //_window.draw(_pacSprite);
