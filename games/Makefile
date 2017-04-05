@@ -4,7 +4,7 @@ RM	=	rm -f
 
 NAME	=	../lib/lib_pacman.so
 
-NAME4	=	../lib/lib_snake_ncurses.so
+NAME4	=	../lib/lib_snake.so
 
 SRC	=	./pacman/entity/Blinky.cpp		\
 		./pacman/entity/Pinky.cpp		\

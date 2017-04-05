@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 16:40:59 2017 Thomas Fossaert
-// Last update Wed Apr  5 14:21:40 2017 
+// Last update Wed Apr  5 14:33:32 2017 
 */
 
 #include <iostream>
@@ -16,8 +16,8 @@
 
 extern "C" void   pacman_ncurses()
 {
-  gameMapNcurses map;
+  gameMapNcurses *map = new gameMapNcurses();
 
-  map.DumpMap();
-  map.Game();
+  map->DumpMap();
+  map->Game();
 }

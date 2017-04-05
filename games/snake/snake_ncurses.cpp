@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 16:40:59 2017 Thomas Fossaert
-// Last update Wed Apr  5 14:13:13 2017 
+// Last update Wed Apr  5 14:35:23 2017 
 */
 
 #include <iostream>
@@ -16,7 +16,6 @@
 
 extern "C" void   snake_ncurses()
 {
-  std::cout << "ça passe creme" << std::endl;
   gameMapNcursesSnake *map = new gameMapNcursesSnake();
 
   map->DumpMap();
