@@ -5,7 +5,7 @@
 // Login   <antoine@epitech.net>
 //
 // Started on  Mon Apr  3 11:33:02 2017 antoine
-// Last update Tue Apr  4 20:20:52 2017 antoine
+// Last update Wed Apr  5 20:32:30 2017 antoine
 //
 
 #include <fstream>
@@ -25,6 +25,7 @@ gameMapNcursesSnake::gameMapNcursesSnake()
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
   }
+  tmpJ = 0;
   while (fin.get(c))
   {
     if (c != '\n')  {
@@ -37,7 +38,8 @@ gameMapNcursesSnake::gameMapNcursesSnake()
     if (c == '\n')  {
       _height++;
       i++;
-      tmpJ = j;
+      if ((j - 1) > tmpJ)
+	tmpJ = j - 1;
       j = 0;
     }
   }
@@ -58,6 +60,25 @@ gameMapNcursesSnake& gameMapNcursesSnake::operator=(gameMapNcursesSnake const & 
 {
   (void) other;
   return *this;
+}
+
+void gameMapNcursesSnake::resetMap()
+{
+  int i = 0;
+  int j = 0;
+  while (i != _height)
+  {
+    while (j != _witdh)
+      {
+	if (_gamemap[i][j] == 3)
+	  _gamemap[i][j] = 0;
+	if (_gamemap[i][j] == 2)
+	  _gamemap[i][j] = 0;
+	j++;
+      }
+    j = 0;
+    i++;
+  }
 }
 
 void gameMapNcursesSnake::createMap()
@@ -130,22 +151,28 @@ void gameMapNcursesSnake::Game()
     createMap();
     mvprintw(_height + 1, 0, std::to_string(snake->getScore()).c_str());
     ch = getch();
-    if (ch == KEY_UP)
+    if (ch == KEY_UP && snake->getDirection() != Game::Direction::DOWN)
       snake->setDirection(Game::Direction::UP);
-    if (ch == KEY_DOWN)
+    if (ch == KEY_DOWN  && snake->getDirection() != Game::Direction::UP)
       snake->setDirection(Game::Direction::DOWN);
-    if (ch == KEY_LEFT)
+    if (ch == KEY_LEFT && snake->getDirection() != Game::Direction::RIGHT)
       snake->setDirection(Game::Direction::LEFT);
-    if (ch == KEY_RIGHT)
+    if (ch == KEY_RIGHT && snake->getDirection() != Game::Direction::LEFT)
       snake->setDirection(Game::Direction::RIGHT);
     prevX = snake->getX();
     prevY = snake->getY();
     snake->movePlayer(_gamemap);
+    if (snake->isAlive() == false)
+      {
+	resetMap();
+	snake->setLive(true);
+      }
     // _gamemap[prevY][prevX] = 0;
     snake->setPosSnake(movePosSnake(prevX, prevY, snake->getPosSnake(), snake));
     genApple();
     t++;
   }
+  delete snake;
   getch();
   endwin();
 }
@@ -196,7 +223,7 @@ void gameMapNcursesSnake::genApple()
     {
       tmpy = rand() % _height;
       tmpx = rand() % _witdh;
-      while ((_gamemap[tmpy][tmpx] == TabTypeSnake::WALLE))
+      while ((_gamemap[tmpy][tmpx] == TabTypeSnake::WALLE) || (_gamemap[tmpy][tmpx] == 3))
 	{
 	  tmpy = rand() % _height;
 	  tmpx = rand() % _witdh;

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-// Last update Tue Apr  4 20:28:33 2017 antoine
+// Last update Wed Apr  5 20:25:43 2017 antoine
 */
 
 #include "IGame.hpp"
@@ -63,7 +63,7 @@ void Snake::startCore(Arcade::DLLoader<Graph::IGraph> & core)
 
 void Snake::setLive(bool s)
 {
-  s++;
+  _isAlive = s;
 }
 
 void Snake::setScore(int s)
@@ -103,7 +103,21 @@ void Snake::movePlayer(std::map<int, std::map<int, int>>_gamemap)
     }
   if (_gamemap[_posY][_posX] == 3 || _gamemap[_posY][_posX] == 1)
     {
-      //DIE PAR RENTRAGE DANS LE MUR OUI CE MOT EXISTE PAS
+      Position tmp;
+
+      _isAlive = false;
+      _posSnake.clear();
+      _needGrowth = 0;
+      tmp.x = 5;
+      tmp.y = 4;
+      _posSnake.push_back(tmp);
+      tmp.x = 5;
+      tmp.y = 3;
+      _posSnake.push_back(tmp);
+      _posX = 5;
+      _posY = 5;
+      _score = 0;
+      _direction = Game::Direction::DOWN;
     }
 }
 
@@ -144,7 +158,7 @@ int Snake::getY() const
 
 bool  Snake::isAlive() const
 {
-  return (false);
+  return (_isAlive);
 }
 
 Game::Direction Snake::getDirection() const
