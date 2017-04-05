@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Tue Apr 04 14:02:59 2017 Thomas Fossaert
+** Last update Wed Apr 05 10:01:20 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -22,6 +22,7 @@ class Pinky : public game::IGame
     int		      _score;
 
     int _type;
+    bool _inCase;
   public:
     Pinky();
     Pinky(int x, int y);

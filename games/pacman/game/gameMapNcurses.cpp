@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 17:32:33 2017 Thomas Fossaert
+** Last update Wed Apr 05 10:46:19 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -171,6 +171,7 @@ void gameMapNcurses::Game()
   int   t = 0;
   int   prevX = 0;
   int   prevY = 0;
+  int   win = 1;
 
   (void)row;
   initscr();
@@ -189,14 +190,35 @@ void gameMapNcurses::Game()
   init_pair(5, COLOR_CYAN, COLOR_BLACK);
   init_pair(6, COLOR_GREEN, COLOR_BLACK);
 
-  while ((ch != 'q' && ch != 'Q') && _pacman->isAlive() == true)
+  while ((ch != 'q' && ch != 'Q') && (_pacman->isAlive() == true && win != 0))
   {
     noecho();
     getmaxyx(stdscr,row,col);
 
+    int i = 0;
+    int j = 0;
+    while (i != _height)
+    {
+      while (j != _witdh)
+      {
+        if (_gamemap[i][j] == 4)
+          win++;
+        j++;
+      }
+      j = 0;
+      i++;
+    }
+    if (win > 1)
+      win = 1;
+    else
+      win = 0;
+
     createMap();
 
-    if (_gamemap[_pacman->getY()][_pacman->getX()] == TabType::BLINKY)
+    if (_gamemap[_pacman->getY()][_pacman->getX()] == TabType::BLINKY
+        || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::PINKY
+        || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::INKY
+        || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::CLYDE)
       _pacman->setLive(false);
 
     ch = getch();
@@ -280,13 +302,13 @@ void gameMapNcurses::UnsetSprite(int x, int y, game::IGame *entity)
 {
   if (entity->getType() == 0 && (x != entity->getX() || y != entity->getY()))
     _gamemap[y][x] = _oldSPrite;
-  else if (entity->getType() == 1)
+  else if (entity->getType() == 1 && (_blinkyCurr != 8 && _blinkyCurr != 9 && _blinkyCurr != 10))
     _gamemap[y][x] = _blinkyCurr;
-  else if (entity->getType() == 2)
+  else if (entity->getType() == 2 && (_pinkyCurr != 6 && _pinkyCurr != 9 && _pinkyCurr != 10))
     _gamemap[y][x] = _pinkyCurr;
-  else if (entity->getType() == 3)
+  else if (entity->getType() == 3 && (_inkyCurr != 6 && _inkyCurr != 8 && _inkyCurr != 10))
     _gamemap[y][x] = _inkyCurr;
-  else if (entity->getType() == 4)
+  else if (entity->getType() == 4 && (_clydeCurr != 6 && _clydeCurr != 8 && _clydeCurr != 9))
     _gamemap[y][x] = _clydeCurr;
 }
 

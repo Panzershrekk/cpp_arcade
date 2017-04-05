@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Tue Apr 04 17:27:39 2017 Thomas Fossaert
+** Last update Wed Apr 05 10:15:27 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -21,7 +21,7 @@ Clyde::Clyde()
   _direction = game::Direction::UP;
   _type = 4;
   _score = 0;
-  _inCase = false;
+  _inCase = true;
 }
 
 Clyde::Clyde(int x, int y)
@@ -34,7 +34,7 @@ Clyde::Clyde(int x, int y)
   _direction = game::Direction::UP;
   _type = 4;
   _score = 0;
-  _inCase = false;
+  _inCase = true;
 }
 
 Clyde::~Clyde()
@@ -90,35 +90,43 @@ void Clyde::move(std::map<int, std::map<int, int>>_gamemap)
     }
   else
     {
-      if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
+      if (_direction == game::Direction::UP && (_gamemap[_posY - 1][_posX] == 2
+      || _gamemap[_posY][_posX + 1] != 2
+      || _gamemap[_posY][_posX - 1] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
+      else if (_direction == game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] == 2
+        || _gamemap[_posY + 1][_posX] != 2
+        || _gamemap[_posY - 1][_posX] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
+      else if (_direction == game::Direction::DOWN && (_gamemap[_posY + 1][_posX] == 2
+        || _gamemap[_posY][_posX + 1] != 2
+        || _gamemap[_posY][_posX - 1] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
+      else if (_direction == game::Direction::LEFT && (_gamemap[_posY][_posX - 1] == 2
+        || _gamemap[_posY + 1][_posX] != 2
+        || _gamemap[_posY - 1][_posX] != 2))
         nb = rand() % 4 + 1;
 
       if (nb != -1)
       {
         while (randcond != 1)
           {
-            if (nb == 1 && _gamemap[_posY - 1][_posX] != 2)
+            if (nb == 1 && (_gamemap[_posY - 1][_posX] != 2 && _gamemap[_posY - 1][_posX] != 3))
               {
                 setDirection(game::Direction::UP);
                 randcond = 1;
               }
-              else if (nb == 2 && _gamemap[_posY][_posX + 1] != 2)
+              else if (nb == 2 && (_gamemap[_posY][_posX + 1] != 2 && _gamemap[_posY][_posX + 1] != 3))
               {
                 setDirection(game::Direction::RIGHT);
                 randcond = 1;
               }
-              else if (nb == 3 && _gamemap[_posY + 1][_posX] != 2)
+              else if (nb == 3 && (_gamemap[_posY + 1][_posX] != 2 && _gamemap[_posY + 1][_posX] != 3))
               {
                 setDirection(game::Direction::DOWN);
                 randcond = 1;
               }
-              else if (nb == 4 && _gamemap[_posY][_posX - 1] != 2)
+              else if (nb == 4 && (_gamemap[_posY][_posX -1] != 2 && _gamemap[_posY][_posX - 1] != 3))
               {
                 setDirection(game::Direction::LEFT);
                 randcond = 1;
