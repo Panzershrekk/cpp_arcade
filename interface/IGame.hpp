@@ -5,24 +5,26 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:36 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:47:23 2017 Thomas Fossaert
+** Last update Wed Apr 05 17:58:34 2017 Thomas Fossaert
 */
 
-#ifndef __IGAME_HPP__
-# define __IGAME_HPP__
+#ifndef		__IGAME_HPP__
+# define	__IGAME_HPP__
 
-#include <iostream>
-#include <map>
+# include <iostream>
+# include <map>
+# include "IGraph.hpp"
+# include "DLLoader.hpp"
 
-namespace game
+namespace Game
 {
   enum State
- {
-   INVUNERABLE = 0,
-   VULNERABLE = 1
- };
+  {
+    INVUNERABLE = 0,
+    VULNERABLE = 1
+  };
 
-  enum Direction  // Direction de l'entité
+  enum Direction
   {
     UP = 0,
     RIGHT = 1,
@@ -33,27 +35,28 @@ namespace game
   class IGame
   {
     public:
-      virtual void movePlayer(std::map<int, std::map<int, int>>) = 0;
-      virtual void setX(int pos) = 0;
-      virtual void setY(int pos) = 0;
-      virtual void setState(game::State state) = 0;
-      virtual void setSpeed(size_t speed) = 0;
-      virtual void setDirection(game::Direction) = 0;
-      virtual void setLive(bool) = 0;
-      virtual int getX() const = 0;
-      virtual int getY() const = 0;
-      virtual game::State getState() const = 0;
-      virtual size_t getSpeed() const = 0;
-      virtual game::Direction getDirection() const = 0;
-      virtual int getType() const = 0;
-      virtual bool isAlive() const = 0;
-      virtual void Dump(void) const = 0;
-
-      virtual int getScore() const = 0;
-      virtual void setScore(int) = 0;
-
       virtual ~IGame(void) { };
-    };
+
+      virtual void startCore(Arcade::DLLoader<Graph::IGraph> &) = 0;
+
+      virtual void		movePlayer(std::map<int, std::map<int, int>>) = 0;
+      virtual void		setX(int) = 0;
+      virtual void		setY(int) = 0;
+      virtual void		setState(Game::State) = 0;
+      virtual void		setSpeed(size_t) = 0;
+      virtual void		setDirection(Game::Direction) = 0;
+      virtual void		setLive(bool) = 0;
+      virtual int		getX(void) const = 0;
+      virtual int		getY(void) const = 0;
+      virtual Game::State	getState(void) const = 0;
+      virtual size_t		getSpeed(void) const = 0;
+      virtual Game::Direction	getDirection(void) const = 0;
+      virtual int		getType(void) const = 0;
+      virtual bool		isAlive(void) const = 0;
+      virtual void		Dump(void) const = 0;
+      virtual int		getScore(void) const = 0;
+      virtual void		setScore(int) = 0;
+  };
 }
 
-#endif // __IGAME_HPP__
+#endif		/* __IGAME_HPP__ */

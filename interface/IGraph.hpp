@@ -11,12 +11,17 @@
 #ifndef __IGRAPH_HPP__
 # define __IGRAPH_HPP__
 
-#include <iostream>
-#include <map>
+# include <iostream>
+# include <map>
 # include <vector>
 # include <ncurses.h>
 # include <utility>
-#include "IGame.hpp"
+# include "DLLoader.hpp"
+
+namespace Game
+{
+  class IGame;
+}
 
 namespace Graph
 {
@@ -25,8 +30,8 @@ namespace Graph
     public:
       virtual void createMap() = 0;
       virtual void Game() = 0;
-      virtual void SetSprite(int x, int y, game::IGame *entity) = 0;
-      virtual void UnsetSprite(int x, int y, game::IGame *entity) = 0;
+      virtual void SetSprite(int x, int y, Game::IGame *entity) = 0;
+      virtual void UnsetSprite(int x, int y, Game::IGame *entity) = 0;
       virtual void Animation() = 0;
       virtual std::pair<std::string, std::string>	startMenu(const std::vector<std::string> &, const std::vector<std::string> &) = 0;
       virtual void displayMap(int **) = 0;

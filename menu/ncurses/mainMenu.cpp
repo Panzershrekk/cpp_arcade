@@ -106,14 +106,14 @@ void		menu::Game()
   endwin();
 }
 
-void menu::SetSprite(int x, int y, game::IGame *entity)
+void menu::SetSprite(int x, int y, Game::IGame *entity)
 {
   (void)x;
   (void)y;
   (void)entity;
 }
 
-void menu::UnsetSprite(int x, int y, game::IGame *entity)
+void menu::UnsetSprite(int x, int y, Game::IGame *entity)
 {
   (void)x;
   (void)y;

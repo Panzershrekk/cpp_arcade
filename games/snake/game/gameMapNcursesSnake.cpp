@@ -131,13 +131,13 @@ void gameMapNcursesSnake::Game()
     mvprintw(_height + 1, 0, std::to_string(snake->getScore()).c_str());
     ch = getch();
     if (ch == KEY_UP)
-      snake->setDirection(game::Direction::UP);
+      snake->setDirection(Game::Direction::UP);
     if (ch == KEY_DOWN)
-      snake->setDirection(game::Direction::DOWN);
+      snake->setDirection(Game::Direction::DOWN);
     if (ch == KEY_LEFT)
-      snake->setDirection(game::Direction::LEFT);
+      snake->setDirection(Game::Direction::LEFT);
     if (ch == KEY_RIGHT)
-      snake->setDirection(game::Direction::RIGHT);
+      snake->setDirection(Game::Direction::RIGHT);
     prevX = snake->getX();
     prevY = snake->getY();
     snake->movePlayer(_gamemap);
@@ -206,14 +206,14 @@ void gameMapNcursesSnake::genApple()
   i++;
 }
 
-void gameMapNcursesSnake::SetSprite(int x, int y, game::IGame *entity)
+void gameMapNcursesSnake::SetSprite(int x, int y, Game::IGame *entity)
 {
   x++;
   y++;
   (void) entity;
 }
 
-void gameMapNcursesSnake::UnsetSprite(int x, int y, game::IGame *entity)
+void gameMapNcursesSnake::UnsetSprite(int x, int y, Game::IGame *entity)
 {
   x++;
   y++;

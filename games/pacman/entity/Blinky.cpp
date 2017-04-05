@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:45:07 2017 Thomas Fossaert
+** Last update Wed Apr 05 18:09:26 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -15,10 +15,10 @@ Blinky::Blinky()
 {
   _posX = 13;
   _posY = 13;
-  _state = game::INVUNERABLE;
+  _state = Game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
-  _direction = game::Direction::UP;
+  _direction = Game::Direction::UP;
   _type = 1;
   _score = 0;
   _inCase = true;
@@ -28,10 +28,10 @@ Blinky::Blinky(int x, int y)
 {
   _posX = x;
   _posY = y;
-  _state = game::INVUNERABLE;
+  _state = Game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
-  _direction = game::Direction::UP;
+  _direction = Game::Direction::UP;
   _type = 1;
   _score = 0;
   _inCase = true;
@@ -60,6 +60,11 @@ Blinky& Blinky::operator=(Blinky const & other)
   return *this;
 }
 
+void Blinky::startCore(Arcade::DLLoader<Graph::IGraph> & core)
+{
+  (void) core;
+}
+
 void Blinky::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
   int nb = -1;
@@ -67,42 +72,42 @@ void Blinky::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 
   if (_inCase == true)
   {
-    if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
-      setDirection(game::Direction::RIGHT);
-    if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
-      setDirection(game::Direction::DOWN);
-    if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
-      setDirection(game::Direction::LEFT);
-    if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
-      setDirection(game::Direction::UP);
+    if (_direction == Game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
+      setDirection(Game::Direction::RIGHT);
+    if (_direction == Game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
+      setDirection(Game::Direction::DOWN);
+    if (_direction == Game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
+      setDirection(Game::Direction::LEFT);
+    if (_direction == Game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
+      setDirection(Game::Direction::UP);
 
     if (_gamemap[_posY - 1][_posX] == 3)
-      setDirection(game::Direction::UP);
+      setDirection(Game::Direction::UP);
 
-    if (_direction == game::Direction::UP)
+    if (_direction == Game::Direction::UP)
       setY(getY() - 1);
-    if (_direction == game::Direction::RIGHT)
+    if (_direction == Game::Direction::RIGHT)
       setX(getX() + 1);
-    if (_direction == game::Direction::DOWN)
+    if (_direction == Game::Direction::DOWN)
       setY(getY() + 1);
-    if (_direction == game::Direction::LEFT)
+    if (_direction == Game::Direction::LEFT)
       setX(getX() - 1);
     }
   else
     {
-      if (_direction == game::Direction::UP && (_gamemap[_posY - 1][_posX] == 2
+      if (_direction == Game::Direction::UP && (_gamemap[_posY - 1][_posX] == 2
       || _gamemap[_posY][_posX + 1] != 2
       || _gamemap[_posY][_posX - 1] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] == 2
+      else if (_direction == Game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] == 2
         || _gamemap[_posY + 1][_posX] != 2
         || _gamemap[_posY - 1][_posX] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::DOWN && (_gamemap[_posY + 1][_posX] == 2
+      else if (_direction == Game::Direction::DOWN && (_gamemap[_posY + 1][_posX] == 2
         || _gamemap[_posY][_posX + 1] != 2
         || _gamemap[_posY][_posX - 1] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::LEFT && (_gamemap[_posY][_posX - 1] == 2
+      else if (_direction == Game::Direction::LEFT && (_gamemap[_posY][_posX - 1] == 2
         || _gamemap[_posY + 1][_posX] != 2
         || _gamemap[_posY - 1][_posX] != 2))
         nb = rand() % 4 + 1;
@@ -113,35 +118,35 @@ void Blinky::movePlayer(std::map<int, std::map<int, int>>_gamemap)
           {
             if (nb == 1 && (_gamemap[_posY - 1][_posX] != 2 && _gamemap[_posY - 1][_posX] != 3))
               {
-                setDirection(game::Direction::UP);
+                setDirection(Game::Direction::UP);
                 randcond = 1;
               }
               else if (nb == 2 && (_gamemap[_posY][_posX + 1] != 2 && _gamemap[_posY][_posX + 1] != 3))
               {
-                setDirection(game::Direction::RIGHT);
+                setDirection(Game::Direction::RIGHT);
                 randcond = 1;
               }
               else if (nb == 3 && (_gamemap[_posY + 1][_posX] != 2 && _gamemap[_posY + 1][_posX] != 3))
               {
-                setDirection(game::Direction::DOWN);
+                setDirection(Game::Direction::DOWN);
                 randcond = 1;
               }
               else if (nb == 4 && (_gamemap[_posY][_posX -1] != 2 && _gamemap[_posY][_posX - 1] != 3))
               {
-                setDirection(game::Direction::LEFT);
+                setDirection(Game::Direction::LEFT);
                 randcond = 1;
               }
               else
               nb = rand() % 4 + 1;
             }
         }
-      if (_direction == game::Direction::UP)
+      if (_direction == Game::Direction::UP)
         setY(getY() - 1);
-      if (_direction == game::Direction::RIGHT)
+      if (_direction == Game::Direction::RIGHT)
         setX(getX() + 1);
-      if (_direction == game::Direction::DOWN)
+      if (_direction == Game::Direction::DOWN)
         setY(getY() + 1);
-      if (_direction == game::Direction::LEFT)
+      if (_direction == Game::Direction::LEFT)
         setX(getX() - 1);
 
     }
@@ -159,7 +164,7 @@ void Blinky::setY(int pos)
   _posY = pos;
 }
 
-void Blinky::setState(game::State pos)
+void Blinky::setState(Game::State pos)
 {
   _state = pos;
 }
@@ -169,7 +174,7 @@ void Blinky::setSpeed(size_t pos)
   _speed = pos;
 }
 
-void Blinky::setDirection(game::Direction direction)
+void Blinky::setDirection(Game::Direction direction)
 {
   _direction = direction;
 }
@@ -189,7 +194,7 @@ int Blinky::getY() const
   return (_posY);
 }
 
-game::State Blinky::getState() const
+Game::State Blinky::getState() const
 {
   return (_state);
 }
@@ -204,7 +209,7 @@ bool  Blinky::isAlive() const
   return (_isAlive);
 }
 
-game::Direction Blinky::getDirection() const
+Game::Direction Blinky::getDirection() const
 {
   return (_direction);
 }

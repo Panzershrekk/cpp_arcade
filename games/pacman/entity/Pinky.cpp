@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:45:26 2017 Thomas Fossaert
+** Last update Wed Apr 05 18:09:16 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -15,10 +15,10 @@ Pinky::Pinky()
 {
   _posX = 13;
   _posY = 14;
-  _state = game::INVUNERABLE;
+  _state = Game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
-  _direction = game::Direction::UP;
+  _direction = Game::Direction::UP;
   _type = 2;
   _score = 0;
   _inCase = true;
@@ -28,10 +28,10 @@ Pinky::Pinky(int x, int y)
 {
   _posX = x;
   _posY = y;
-  _state = game::INVUNERABLE;
+  _state = Game::INVUNERABLE;
   _speed = 10;
   _isAlive = true;
-  _direction = game::Direction::UP;
+  _direction = Game::Direction::UP;
   _type = 2;
   _score = 0;
   _inCase = true;
@@ -60,6 +60,11 @@ Pinky& Pinky::operator=(Pinky const & other)
   return *this;
 }
 
+void Pinky::startCore(Arcade::DLLoader<Graph::IGraph> & core)
+{
+  (void) core;
+}
+
 void Pinky::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
   int nb = -1;
@@ -67,42 +72,42 @@ void Pinky::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 
   if (_inCase == true)
   {
-    if (_direction == game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
-      setDirection(game::Direction::RIGHT);
-    if (_direction == game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
-      setDirection(game::Direction::DOWN);
-    if (_direction == game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
-      setDirection(game::Direction::LEFT);
-    if (_direction == game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
-      setDirection(game::Direction::UP);
+    if (_direction == Game::Direction::UP && _gamemap[_posY - 1][_posX] == 2)
+      setDirection(Game::Direction::RIGHT);
+    if (_direction == Game::Direction::RIGHT && _gamemap[_posY][_posX + 1] == 2)
+      setDirection(Game::Direction::DOWN);
+    if (_direction == Game::Direction::DOWN && _gamemap[_posY + 1][_posX] == 2)
+      setDirection(Game::Direction::LEFT);
+    if (_direction == Game::Direction::LEFT && _gamemap[_posY][_posX - 1] == 2)
+      setDirection(Game::Direction::UP);
 
     if (_gamemap[_posY - 1][_posX] == 3)
-      setDirection(game::Direction::UP);
+      setDirection(Game::Direction::UP);
 
-    if (_direction == game::Direction::UP)
+    if (_direction == Game::Direction::UP)
       setY(getY() - 1);
-    if (_direction == game::Direction::RIGHT)
+    if (_direction == Game::Direction::RIGHT)
       setX(getX() + 1);
-    if (_direction == game::Direction::DOWN)
+    if (_direction == Game::Direction::DOWN)
       setY(getY() + 1);
-    if (_direction == game::Direction::LEFT)
+    if (_direction == Game::Direction::LEFT)
       setX(getX() - 1);
     }
   else
     {
-      if (_direction == game::Direction::UP && (_gamemap[_posY - 1][_posX] == 2
+      if (_direction == Game::Direction::UP && (_gamemap[_posY - 1][_posX] == 2
       || _gamemap[_posY][_posX + 1] != 2
       || _gamemap[_posY][_posX - 1] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] == 2
+      else if (_direction == Game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] == 2
         || _gamemap[_posY + 1][_posX] != 2
         || _gamemap[_posY - 1][_posX] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::DOWN && (_gamemap[_posY + 1][_posX] == 2
+      else if (_direction == Game::Direction::DOWN && (_gamemap[_posY + 1][_posX] == 2
         || _gamemap[_posY][_posX + 1] != 2
         || _gamemap[_posY][_posX - 1] != 2))
         nb = rand() % 4 + 1;
-      else if (_direction == game::Direction::LEFT && (_gamemap[_posY][_posX - 1] == 2
+      else if (_direction == Game::Direction::LEFT && (_gamemap[_posY][_posX - 1] == 2
         || _gamemap[_posY + 1][_posX] != 2
         || _gamemap[_posY - 1][_posX] != 2))
         nb = rand() % 4 + 1;
@@ -113,35 +118,35 @@ void Pinky::movePlayer(std::map<int, std::map<int, int>>_gamemap)
           {
             if (nb == 1 && (_gamemap[_posY - 1][_posX] != 2 && _gamemap[_posY - 1][_posX] != 3))
               {
-                setDirection(game::Direction::UP);
+                setDirection(Game::Direction::UP);
                 randcond = 1;
               }
               else if (nb == 2 && (_gamemap[_posY][_posX + 1] != 2 && _gamemap[_posY][_posX + 1] != 3))
               {
-                setDirection(game::Direction::RIGHT);
+                setDirection(Game::Direction::RIGHT);
                 randcond = 1;
               }
               else if (nb == 3 && (_gamemap[_posY + 1][_posX] != 2 && _gamemap[_posY + 1][_posX] != 3))
               {
-                setDirection(game::Direction::DOWN);
+                setDirection(Game::Direction::DOWN);
                 randcond = 1;
               }
               else if (nb == 4 && (_gamemap[_posY][_posX -1] != 2 && _gamemap[_posY][_posX - 1] != 3))
               {
-                setDirection(game::Direction::LEFT);
+                setDirection(Game::Direction::LEFT);
                 randcond = 1;
               }
               else
               nb = rand() % 4 + 1;
             }
         }
-      if (_direction == game::Direction::UP)
+      if (_direction == Game::Direction::UP)
         setY(getY() - 1);
-      if (_direction == game::Direction::RIGHT)
+      if (_direction == Game::Direction::RIGHT)
         setX(getX() + 1);
-      if (_direction == game::Direction::DOWN)
+      if (_direction == Game::Direction::DOWN)
         setY(getY() + 1);
-      if (_direction == game::Direction::LEFT)
+      if (_direction == Game::Direction::LEFT)
         setX(getX() - 1);
 
     }
@@ -159,7 +164,7 @@ void Pinky::setY(int pos)
   _posY = pos;
 }
 
-void Pinky::setState(game::State pos)
+void Pinky::setState(Game::State pos)
 {
   _state = pos;
 }
@@ -169,7 +174,7 @@ void Pinky::setSpeed(size_t pos)
   _speed = pos;
 }
 
-void Pinky::setDirection(game::Direction direction)
+void Pinky::setDirection(Game::Direction direction)
 {
   _direction = direction;
 }
@@ -189,7 +194,7 @@ int Pinky::getY() const
   return (_posY);
 }
 
-game::State Pinky::getState() const
+Game::State Pinky::getState() const
 {
   return (_state);
 }
@@ -204,7 +209,7 @@ bool  Pinky::isAlive() const
   return (false);
 }
 
-game::Direction Pinky::getDirection() const
+Game::Direction Pinky::getDirection() const
 {
   return (_direction);
 }

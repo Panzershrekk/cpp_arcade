@@ -25,11 +25,11 @@ enum TabType
 class gameMapSfml : public Graph::IGraph
 {
   private:
-    game::IGame *_pacman;
-    game::IGame *_blinky;
-    game::IGame *_pinky;
-    game::IGame *_inky;
-    game::IGame *_clyde;
+    Game::IGame *_pacman;
+    Game::IGame *_blinky;
+    Game::IGame *_pinky;
+    Game::IGame *_inky;
+    Game::IGame *_clyde;
 
     int _height;
     int _witdh;
@@ -56,8 +56,8 @@ class gameMapSfml : public Graph::IGraph
 
     void createMap();
     void Game();
-    void SetSprite(int x, int y, game::IGame *entity);
-    void UnsetSprite(int x, int y, game::IGame *entity);
+    void SetSprite(int x, int y, Game::IGame *entity);
+    void UnsetSprite(int x, int y, Game::IGame *entity);
     std::pair<std::string, std::string>	startMenu(const std::vector<std::string> &, const std::vector<std::string> &);
     void displayMap(int **);
     void Animation();

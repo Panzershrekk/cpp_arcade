@@ -28,7 +28,7 @@ Snake::Snake()
   _posY = 5;
   _score = 0;
   _isAlive = true;
-  _direction = game::Direction::DOWN;
+  _direction = Game::Direction::DOWN;
 }
 
 Snake::~Snake()
@@ -54,6 +54,11 @@ Snake& Snake::operator=(Snake const & other)
   _speed = other._speed;
   _isAlive = other._isAlive;
   return *this;
+}
+
+void Snake::startCore(Arcade::DLLoader<Graph::IGraph> & core)
+{
+  (void) core;
 }
 
 void Snake::setLive(bool s)
@@ -83,13 +88,13 @@ void	Snake::setPosSnake(std::vector<Position> posSnake)
 
 void Snake::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
-  if (_direction == game::Direction::UP)
+  if (_direction == Game::Direction::UP)
     setY(getY() - 1);
-  if (_direction == game::Direction::RIGHT)
+  if (_direction == Game::Direction::RIGHT)
     setX(getX() + 1);
-  if (_direction == game::Direction::DOWN)
+  if (_direction == Game::Direction::DOWN)
     setY(getY() + 1);
-  if (_direction == game::Direction::LEFT)
+  if (_direction == Game::Direction::LEFT)
     setX(getX() - 1);
   if (_gamemap[_posY][_posX] == 2)
     {
@@ -122,7 +127,7 @@ void Snake::setY(int pos)
   _posY = pos;
 }
 
-void Snake::setDirection(game::Direction direction)
+void Snake::setDirection(Game::Direction direction)
 {
   _direction = direction;
 }
@@ -142,7 +147,7 @@ bool  Snake::isAlive() const
   return (false);
 }
 
-game::Direction Snake::getDirection() const
+Game::Direction Snake::getDirection() const
 {
   return (_direction);
 }
@@ -155,7 +160,7 @@ void Snake::Dump(void) const
   std::cout << "ALive: " << _isAlive << '\n';
 }
 
-void	Snake::setState(game::State state)
+void	Snake::setState(Game::State state)
 {
   (void) state;
 }
@@ -167,7 +172,7 @@ void	Snake::setSpeed(size_t speed)
 }
 
 
-game::State	Snake::getState() const
+Game::State	Snake::getState() const
 {
   return(_state);
 }

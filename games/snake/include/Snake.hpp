@@ -20,13 +20,13 @@ public:
   int y;
 };
 
-class Snake : public game::IGame
+class Snake : public Game::IGame
 {
   private:
     int         _posX;
     int         _posY;
-    game::State _state;
-    game::Direction _direction;
+    Game::State _state;
+    Game::Direction _direction;
     size_t      _speed;
     bool        _isAlive;
     int		      _score;
@@ -40,18 +40,19 @@ public:
     Snake(Snake const & other);
     Snake& operator=(Snake const & other);
 
+    void startCore(Arcade::DLLoader<Graph::IGraph> & core);
     void movePlayer(std::map<int, std::map<int, int>> _gamemap);
     void setX(int pos);
     void setY(int pos);
-    void setDirection(game::Direction);
+    void setDirection(Game::Direction);
     int getX() const;
     int getY() const;
     bool isAlive() const;
-    game::Direction getDirection() const;
+    Game::Direction getDirection() const;
     void Dump(void) const;
-  void setState(game::State);
+  void setState(Game::State);
   void setSpeed(size_t);
-  game::State getState() const;
+  Game::State getState() const;
   size_t getSpeed() const;
   int getType() const;
   int getScore() const;

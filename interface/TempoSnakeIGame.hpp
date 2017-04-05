@@ -35,8 +35,8 @@ namespace game
     protected:
       int         _posX;
       int         _posY;
-      game::State _state;
-      game::Direction _direction;
+      Game::State _state;
+      Game::Direction _direction;
       size_t      _speed;
       bool        _isAlive;
     int		_score;
@@ -44,15 +44,15 @@ namespace game
       virtual void move(std::map<int, std::map<int, int>>) = 0;
       virtual void setX(int pos) = 0;
       virtual void setY(int pos) = 0;
-      virtual void setState(game::State state) = 0;
+      virtual void setState(Game::State state) = 0;
       virtual void setSpeed(size_t speed) = 0;
-      virtual void setDirection(game::Direction) = 0; //Seteur de Direction
+      virtual void setDirection(Game::Direction) = 0; //Seteur de Direction
       //virtual void setPoint(size_t point) = 0;
       virtual int getX() const = 0;
       virtual int getY() const = 0;
-      virtual game::State getState() const = 0;
+      virtual Game::State getState() const = 0;
       virtual size_t getSpeed() const = 0;
-      virtual game::Direction getDirection() const = 0; //Getteu direcion
+      virtual Game::Direction getDirection() const = 0; //Getteu direcion
       virtual int getType() const = 0;
       //virtual size_t getPoint() const = 0;
       virtual bool isAlive() const = 0;

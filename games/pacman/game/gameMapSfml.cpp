@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 16:49:35 2017 Thomas Fossaert
+** Last update Wed Apr 05 18:06:28 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -127,11 +127,11 @@ void gameMapSfml::createMap()
 
 void gameMapSfml::Game()
 {
-  game::IGame *pacman = new Pacman();
-  /*game::IGame *blinky = new Blinky();
-  game::IGame *pinky = new Pinky();
-  game::IGame *inky = new Inky();
-  game::IGame *clyde = new Clyde();*/
+  Game::IGame *pacman = new Pacman();
+  /*Game::IGame *blinky = new Blinky();
+  Game::IGame *pinky = new Pinky();
+  Game::IGame *inky = new Inky();
+  Game::IGame *clyde = new Clyde();*/
 
   sf::RenderWindow _window(sf::VideoMode(1080, 720), "Pacman");
   sf::CircleShape shape(50);
@@ -163,22 +163,22 @@ void gameMapSfml::Game()
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
      {
-       pacman->setDirection(game::Direction::UP);
+       pacman->setDirection(Game::Direction::UP);
        logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(96, 0, 32, 32));
       }
      else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
         {
-          pacman->setDirection(game::Direction::RIGHT);
+          pacman->setDirection(Game::Direction::RIGHT);
           logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(32, 0, 32, 32));
         }
      else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
         {
-          pacman->setDirection(game::Direction::LEFT);
+          pacman->setDirection(Game::Direction::LEFT);
           logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
         }
      else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
         {
-          pacman->setDirection(game::Direction::DOWN);
+          pacman->setDirection(Game::Direction::DOWN);
           logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(64, 0, 32, 32));
         }
     _pacSprite.setTexture(logo_pacman);
@@ -201,14 +201,14 @@ void gameMapSfml::Game()
  }
 }
 
-void gameMapSfml::SetSprite(int x, int y, game::IGame *entity)
+void gameMapSfml::SetSprite(int x, int y, Game::IGame *entity)
 {
   (void) x;
   (void) y;
   (void) entity;
 }
 
-void gameMapSfml::UnsetSprite(int x, int y, game::IGame *entity)
+void gameMapSfml::UnsetSprite(int x, int y, Game::IGame *entity)
 {
   (void) x;
   (void) y;

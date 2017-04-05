@@ -28,8 +28,8 @@ class gameMapNcursesSnake : public Graph::IGraph
     void createMap();
     void Game();
     void SetSpriteByEnum(int x, int y, int tmp);
-    void SetSprite(int x, int y, game::IGame *entity);
-    void UnsetSprite(int x, int y, game::IGame *entity);
+    void SetSprite(int x, int y, Game::IGame *entity);
+    void UnsetSprite(int x, int y, Game::IGame *entity);
     void Animation();
     void genApple();
     void DumpMap();

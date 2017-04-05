@@ -5,18 +5,18 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:45:43 2017 Thomas Fossaert
+** Last update Wed Apr 05 18:08:32 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
 
-class Blinky : public game::IGame
+class Blinky : public Game::IGame
 {
   private:
     int         _posX;
     int         _posY;
-    game::State _state;
-    game::Direction _direction;
+    Game::State _state;
+    Game::Direction _direction;
     size_t      _speed;
     bool        _isAlive;
     int		      _score;
@@ -30,20 +30,21 @@ class Blinky : public game::IGame
     Blinky(Blinky const & other);
     Blinky& operator=(Blinky const & other);
 
+    void startCore(Arcade::DLLoader<Graph::IGraph> &);
     void movePlayer(std::map<int, std::map<int, int>> _gamemap);
     void setX(int pos);
     void setY(int pos);
-    void setState(game::State pos);
+    void setState(Game::State pos);
     void setSpeed(size_t pos);
-    void setDirection(game::Direction);
+    void setDirection(Game::Direction);
     void setLive(bool);
     int getX() const;
     int getY() const;
-    game::State getState() const;
+    Game::State getState() const;
     size_t getSpeed() const;
     int getType() const;
     bool isAlive() const;
-    game::Direction getDirection() const;
+    Game::Direction getDirection() const;
 
     int getScore() const;
     void setScore(int s);

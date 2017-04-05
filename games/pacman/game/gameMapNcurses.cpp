@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 16:49:29 2017 Thomas Fossaert
+** Last update Wed Apr 05 18:06:19 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -223,13 +223,13 @@ void gameMapNcurses::Game()
 
     ch = getch();
     if (ch == KEY_UP)
-      _pacman->setDirection(game::Direction::UP);
+      _pacman->setDirection(Game::Direction::UP);
     if (ch == KEY_DOWN)
-      _pacman->setDirection(game::Direction::DOWN);
+      _pacman->setDirection(Game::Direction::DOWN);
     if (ch == KEY_LEFT)
-      _pacman->setDirection(game::Direction::LEFT);
+      _pacman->setDirection(Game::Direction::LEFT);
     if (ch == KEY_RIGHT)
-      _pacman->setDirection(game::Direction::RIGHT);
+      _pacman->setDirection(Game::Direction::RIGHT);
 
     _oldSPrite = 1;
     prevX = _pacman->getX();
@@ -280,7 +280,7 @@ void gameMapNcurses::Game()
   endwin();
 }
 
-void gameMapNcurses::SetSprite(int x, int y, game::IGame *entity)
+void gameMapNcurses::SetSprite(int x, int y, Game::IGame *entity)
 {
   if (entity->getType() == 0)
     _gamemap[y][x] = TabType::PACMAN;
@@ -297,7 +297,7 @@ void gameMapNcurses::SetSprite(int x, int y, game::IGame *entity)
   }
 }
 
-void gameMapNcurses::UnsetSprite(int x, int y, game::IGame *entity)
+void gameMapNcurses::UnsetSprite(int x, int y, Game::IGame *entity)
 {
   if (entity->getType() == 0 && (x != entity->getX() || y != entity->getY()))
     _gamemap[y][x] = _oldSPrite;

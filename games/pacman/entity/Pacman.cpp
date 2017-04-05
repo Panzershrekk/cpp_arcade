@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:45:18 2017 Thomas Fossaert
+** Last update Wed Apr 05 18:08:53 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -15,10 +15,10 @@ Pacman::Pacman()
 {
   _posX = 13;
   _posY = 17;
-  _state = game::VULNERABLE;
+  _state = Game::VULNERABLE;
   _speed = 10;
   _isAlive = true;
-  _direction = game::Direction::LEFT;
+  _direction = Game::Direction::LEFT;
   _type = 0;
   _score = 0;
 }
@@ -27,10 +27,10 @@ Pacman::Pacman(int x, int y)
 {
   _posX = x;
   _posY = y;
-  _state = game::VULNERABLE;
+  _state = Game::VULNERABLE;
   _speed = 10;
   _isAlive = true;
-  _direction = game::Direction::LEFT;
+  _direction = Game::Direction::LEFT;
   _type = 0;
   _score = 0;
 }
@@ -58,18 +58,23 @@ Pacman& Pacman::operator=(Pacman const & other)
   return *this;
 }
 
+void Pacman::startCore(Arcade::DLLoader<Graph::IGraph> & core)
+{
+  (void) core;
+}
+
 void Pacman::movePlayer(std::map<int, std::map<int, int>>_gamemap)
 {
-  if (_direction == game::Direction::UP && (_gamemap[_posY - 1][_posX] != 2
+  if (_direction == Game::Direction::UP && (_gamemap[_posY - 1][_posX] != 2
     && _gamemap[_posY - 1][_posX] != 3))
       setY(getY() - 1);
-  if (_direction == game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] != 2
+  if (_direction == Game::Direction::RIGHT && (_gamemap[_posY][_posX + 1] != 2
     && _gamemap[_posY][_posX + 1] != 3))
       setX(getX() + 1);
-  if (_direction == game::Direction::DOWN && (_gamemap[_posY + 1][_posX] != 2
+  if (_direction == Game::Direction::DOWN && (_gamemap[_posY + 1][_posX] != 2
     && _gamemap[_posY + 1][_posX] != 3))
       setY(getY() + 1);
-  if (_direction == game::Direction::LEFT && (_gamemap[_posY][_posX - 1] != 2
+  if (_direction == Game::Direction::LEFT && (_gamemap[_posY][_posX - 1] != 2
     && _gamemap[_posY][_posX - 1] != 3))
       setX(getX() - 1);
 }
@@ -84,7 +89,7 @@ void Pacman::setY(int pos)
   _posY = pos;
 }
 
-void Pacman::setState(game::State pos)
+void Pacman::setState(Game::State pos)
 {
   _state = pos;
 }
@@ -94,7 +99,7 @@ void Pacman::setSpeed(size_t pos)
   _speed = pos;
 }
 
-void Pacman::setDirection(game::Direction direction)
+void Pacman::setDirection(Game::Direction direction)
 {
   _direction = direction;
 }
@@ -114,7 +119,7 @@ int Pacman::getY() const
   return (_posY);
 }
 
-game::State Pacman::getState() const
+Game::State Pacman::getState() const
 {
   return (_state);
 }
@@ -129,7 +134,7 @@ bool  Pacman::isAlive() const
   return (_isAlive);
 }
 
-game::Direction Pacman::getDirection() const
+Game::Direction Pacman::getDirection() const
 {
   return (_direction);
 }
