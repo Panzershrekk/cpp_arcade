@@ -13,7 +13,9 @@
 
 #include <iostream>
 #include <map>
-#include <ncurses.h>
+# include <vector>
+# include <ncurses.h>
+# include <utility>
 #include "IGame.hpp"
 
 namespace Graph
@@ -26,6 +28,8 @@ namespace Graph
       virtual void SetSprite(int x, int y, game::IGame *entity) = 0;
       virtual void UnsetSprite(int x, int y, game::IGame *entity) = 0;
       virtual void Animation() = 0;
+      virtual std::pair<std::string, std::string>	startMenu(const std::vector<std::string> &, const std::vector<std::string> &) = 0;
+      virtual void displayMap(int **) = 0;
       virtual ~IGraph(void) { }
     };
 }

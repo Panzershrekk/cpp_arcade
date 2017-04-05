@@ -242,3 +242,16 @@ void gameMapNcursesSnake::DumpMap()
     i++;
   }
 }
+
+std::pair<std::string, std::string>	gameMapNcursesSnake::startMenu(const std::vector<std::string> & x, const std::vector<std::string> & y)
+{
+  (void) x;
+  (void) y;
+  std::pair<std::string, std::string> menu;
+  return menu;
+}
+
+void gameMapNcursesSnake::displayMap(int ** l)
+{
+  (void) l;
+}

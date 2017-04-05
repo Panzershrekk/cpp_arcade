@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:49:30 2017 Thomas Fossaert
+** Last update Wed Apr 05 16:49:35 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -236,4 +236,17 @@ void gameMapSfml::DumpMap()
     j = 0;
     i++;
   }
+}
+
+std::pair<std::string, std::string>	gameMapSfml::startMenu(const std::vector<std::string> & x, const std::vector<std::string> & y)
+{
+  (void) x;
+  (void) y;
+  std::pair<std::string, std::string> menu;
+  return menu;
+}
+
+void gameMapSfml::displayMap(int ** l)
+{
+  (void) l;
 }

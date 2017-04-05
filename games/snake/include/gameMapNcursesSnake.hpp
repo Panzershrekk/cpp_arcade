@@ -28,9 +28,11 @@ class gameMapNcursesSnake : public Graph::IGraph
     void createMap();
     void Game();
     void SetSpriteByEnum(int x, int y, int tmp);
-  void SetSprite(int x, int y, game::IGame *entity);
+    void SetSprite(int x, int y, game::IGame *entity);
     void UnsetSprite(int x, int y, game::IGame *entity);
     void Animation();
-  void genApple();
+    void genApple();
     void DumpMap();
+    std::pair<std::string, std::string>	startMenu(const std::vector<std::string> &, const std::vector<std::string> &);
+    void displayMap(int **);
 };

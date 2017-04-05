@@ -50,6 +50,8 @@ class gameMapNcurses : public Graph::IGraph
     void Game();
     void SetSprite(int x, int y, game::IGame *entity);
     void UnsetSprite(int x, int y, game::IGame *entity);
+    std::pair<std::string, std::string>	startMenu(const std::vector<std::string> &, const std::vector<std::string> &);
+    void displayMap(int **);
     void Animation();
 
     void DumpMap();

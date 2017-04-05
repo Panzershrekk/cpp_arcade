@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 15:45:33 2017 Thomas Fossaert
+** Last update Wed Apr 05 16:49:29 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -332,4 +332,17 @@ void gameMapNcurses::DumpMap()
     j = 0;
     i++;
   }
+}
+
+std::pair<std::string, std::string>	gameMapNcurses::startMenu(const std::vector<std::string> & x, const std::vector<std::string> & y)
+{
+  (void) x;
+  (void) y;
+  std::pair<std::string, std::string> menu;
+  return menu;
+}
+
+void gameMapNcurses::displayMap(int ** l)
+{
+  (void) l;
 }

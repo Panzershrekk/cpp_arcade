@@ -253,6 +253,18 @@ void menu::createMap()
   attroff(COLOR_PAIR(2));
 }
 
+std::pair<std::string, std::string>	menu::startMenu(const std::vector<std::string> & x, const std::vector<std::string> & y)
+{
+  (void) x;
+  (void) y;
+  std::pair<std::string, std::string> menu;
+  return menu;
+}
+void menu::displayMap(int ** l)
+{
+  (void) l;
+}
+
 extern "C" void		do_menu()
 {
   menu	test;
