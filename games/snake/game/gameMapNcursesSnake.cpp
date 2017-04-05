@@ -5,7 +5,7 @@
 // Login   <antoine@epitech.net>
 //
 // Started on  Mon Apr  3 11:33:02 2017 antoine
-// Last update Wed Apr  5 20:32:30 2017 antoine
+// Last update Wed Apr  5 22:06:17 2017 antoine
 //
 
 #include <fstream>
@@ -85,7 +85,9 @@ void gameMapNcursesSnake::createMap()
 {
   int i = 0;
   int j = 0;
-  start_color();
+  int col, row;
+  getmaxyx(stdscr, row, col);
+  row++;
   while (i != _height)
   {
     while (j != _witdh)
@@ -94,35 +96,51 @@ void gameMapNcursesSnake::createMap()
 	  {
 	    init_pair(1, COLOR_RED, COLOR_WHITE);
  	    attron(COLOR_PAIR(1));
-	    mvprintw(i, j, " ");
+	    mvprintw(i + 5, (col / 2) - (_witdh / 2) + j, " ");
 	    attroff(COLOR_PAIR(1));
 	  }
         else if (_gamemap[i][j] == TabTypeSnake::CANWALK)
 	  {
-
-	    mvprintw(i, j, " ");
+	    mvprintw(i + 5, (col / 2) - (_witdh / 2) + j, " ");
 	  }
         else if (_gamemap[i][j] == TabTypeSnake::APPLE)
 	  {
 	    init_pair(3, COLOR_RED, COLOR_RED);
 	     attron(COLOR_PAIR(3));
-	    mvprintw(i, j, " ");
+	    mvprintw(i + 5, (col / 2) - (_witdh / 2) + j, " ");
 	    attroff(COLOR_PAIR(3));
 	  }
 	else if (_gamemap[i][j] == TabTypeSnake::SNAK)
 	  {
 	    init_pair(2, COLOR_RED, COLOR_YELLOW);
 	     attron(COLOR_PAIR(2));
-	    mvprintw(i, j, " ");
+	    mvprintw(i + 5, (col / 2) - (_witdh / 2) + j, " ");
 	    attroff(COLOR_PAIR(2));
 	  }
         else
-          mvprintw(i, j, " ");
+	  mvprintw(i + 5, (col / 2) - (_witdh / 2) + j, " ");
         j++;
       }
     j = 0;
     i++;
   }
+}
+
+void gameMapNcursesSnake::affUI()
+{
+  int col, row;
+
+  getmaxyx(stdscr, row, col);
+  row++;
+  mvprintw(0, (col / 2) - (_witdh / 2), "|----------------|\n");
+  mvprintw(1, (col / 2) - (_witdh / 2), "| SCORE :        |\n");
+  mvprintw(2, (col / 2) - (_witdh / 2), "|----------------|\n");
+
+  mvprintw(_height + 5, (col / 2) - (_witdh / 2), "  #### #   # #### #  # ####\n");
+  mvprintw(_height + 6, (col / 2) - (_witdh / 2), "  #    ##  # #  # # #  #\n");
+  mvprintw(_height + 7, (col / 2) - (_witdh / 2), "  #### # # # #### ##   ###\n");
+  mvprintw(_height + 8, (col / 2) - (_witdh / 2), "     # #  ## #  # # #  #\n");
+  mvprintw(_height + 9, (col / 2) - (_witdh / 2), "  #### #   # #  # #  # ####\n");
 }
 
 void gameMapNcursesSnake::Game()
@@ -141,15 +159,15 @@ void gameMapNcursesSnake::Game()
   keypad(stdscr, TRUE);
   noecho();
   curs_set(0);
+  start_color();
   timeout(500);
   createMap();
   while (ch != 'q' && ch != 'Q')
   {
     noecho();
     getmaxyx(stdscr,row,col);
-
     createMap();
-    mvprintw(_height + 1, 0, std::to_string(snake->getScore()).c_str());
+    mvprintw(1, (col / 2) - (_witdh / 2) + 10, std::to_string(snake->getScore()).c_str());
     ch = getch();
     if (ch == KEY_UP && snake->getDirection() != Game::Direction::DOWN)
       snake->setDirection(Game::Direction::UP);
@@ -165,11 +183,13 @@ void gameMapNcursesSnake::Game()
     if (snake->isAlive() == false)
       {
 	resetMap();
+	mvprintw(2, (col / 2) - (_witdh / 2), "# SCORE :        #\n");
 	snake->setLive(true);
       }
     // _gamemap[prevY][prevX] = 0;
     snake->setPosSnake(movePosSnake(prevX, prevY, snake->getPosSnake(), snake));
     genApple();
+    affUI();
     t++;
   }
   delete snake;

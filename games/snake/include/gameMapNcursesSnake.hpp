@@ -36,4 +36,5 @@ class gameMapNcursesSnake : public Graph::IGraph
     std::pair<std::string, std::string>	startMenu(const std::vector<std::string> &, const std::vector<std::string> &);
     void displayMap(int **);
   void resetMap();
+  void affUI();
 };
