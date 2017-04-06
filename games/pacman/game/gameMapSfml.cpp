@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Apr 06 16:13:39 2017 Thomas Fossaert
+** Last update Thu Apr 06 16:31:47 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -160,14 +160,14 @@ void gameMapSfml::InitSprite()
           {
             sf::Sprite _pacSprite;
             _pacSprite.setTexture(*_textureMap[0]);
-            _pacSprite.setPosition(i * 32, j * 32);
+            _pacSprite.setPosition(j * 32, i * 32);
             _spriteMap[i][j] = _pacSprite;
           }
         else if (_gamemap[i][j] == TabType::GATE)
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[1]);
-          _pacSprite.setPosition(i * 32, j * 32);
+          _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
 
         }
@@ -175,56 +175,56 @@ void gameMapSfml::InitSprite()
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[2]);
-          _pacSprite.setPosition(i * 32, j * 32);
+          _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::SPACGUM)
           {
             sf::Sprite _pacSprite;
             _pacSprite.setTexture(*_textureMap[3]);
-            _pacSprite.setPosition(i * 32, j * 32);
+            _pacSprite.setPosition(j * 32, i * 32);
             _spriteMap[i][j] = _pacSprite;
           }
         else if (_gamemap[i][j] == TabType::BLINKY)
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[4]);
-          _pacSprite.setPosition(i * 32, j * 32);
+          _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::PACMAN)
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[5]);
-          _pacSprite.setPosition(i * 32, j * 32);
+          _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::PINKY)
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[4]);
-          _pacSprite.setPosition(i * 32, j * 32);
+          _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::INKY)
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[4]);
-          _pacSprite.setPosition(i * 32, j * 32);
+          _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::CLYDE)
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[4]);
-          _pacSprite.setPosition(i * 32, j * 32);
+          _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else
           {
             sf::Sprite _pacSprite;
             _pacSprite.setTexture(*_textureMap[6]);
-            _pacSprite.setPosition(i * 32, j * 32);
+            _pacSprite.setPosition(j * 32, i * 32);
             _spriteMap[i][j] = _pacSprite;
           }
         j++;
