@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 18:06:19 2017 Thomas Fossaert
+** Last update Thu Apr 06 09:17:34 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -21,6 +21,7 @@ gameMapNcurses::gameMapNcurses()
   std::ifstream fin("./games/pacman/sprite/NcurseMap.txt");
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
+    exit(EXIT_FAILURE);
   }
   while (fin.get(c))
   {
@@ -189,7 +190,8 @@ void gameMapNcurses::Game()
   init_pair(4, COLOR_MAGENTA, COLOR_BLACK);
   init_pair(5, COLOR_CYAN, COLOR_BLACK);
   init_pair(6, COLOR_GREEN, COLOR_BLACK);
-
+  _score = _pacman->getScore();
+  Animation();
   while ((ch != 'q' && ch != 'Q') && (_pacman->isAlive() == true && win != 0))
   {
     noecho();
@@ -235,6 +237,12 @@ void gameMapNcurses::Game()
     prevX = _pacman->getX();
     prevY = _pacman->getY();
     _pacman->movePlayer(_gamemap);
+
+    if (_gamemap[_pacman->getY()][_pacman->getX()] == 4)
+      _pacman->setScore(10);
+    _score = _pacman->getScore();
+    Animation();
+
     SetSprite(_pacman->getX(), _pacman->getY(), _pacman);
     UnsetSprite(prevX, prevY, _pacman);
 
@@ -313,7 +321,16 @@ void gameMapNcurses::UnsetSprite(int x, int y, Game::IGame *entity)
 
 void gameMapNcurses::Animation()
 {
-
+  attron(COLOR_PAIR(2));
+  mvprintw(44,5, " _______  _______  _______  __   __  _______  __    _ ");
+  mvprintw(45,5, "|       ||   _   ||      _||  |_|  ||   _   ||  |  | |");
+  mvprintw(46,5, "|    _  ||  |_|  ||     |  |       ||  |_|  ||   |_| |");
+  mvprintw(47,5, "|   |_| ||       ||     |  |       ||       ||       |");
+  mvprintw(48,5, "|    ___||       ||     |  |       ||       ||  _    |");
+  mvprintw(49,5, "|   |    |   _   ||     |_ | ||_|| ||   _   || | |   |");
+  mvprintw(50,5, "|___|    |__| |__||_______||_|   |_||__| |__||_|  |__|");
+  attroff(COLOR_PAIR(2));
+  mvprintw(40, 8, "Score: %d", _score);
 }
 
 void gameMapNcurses::DumpMap()

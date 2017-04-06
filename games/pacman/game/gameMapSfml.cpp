@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 18:06:28 2017 Thomas Fossaert
+** Last update Thu Apr 06 09:37:04 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -128,10 +128,6 @@ void gameMapSfml::createMap()
 void gameMapSfml::Game()
 {
   Game::IGame *pacman = new Pacman();
-  /*Game::IGame *blinky = new Blinky();
-  Game::IGame *pinky = new Pinky();
-  Game::IGame *inky = new Inky();
-  Game::IGame *clyde = new Clyde();*/
 
   sf::RenderWindow _window(sf::VideoMode(1080, 720), "Pacman");
   sf::CircleShape shape(50);
@@ -144,8 +140,8 @@ void gameMapSfml::Game()
 
   sf::Sprite _pacSprite;
   _pacSprite.setTexture(logo_pacman);
-  _pacSprite.setPosition(15, 270);
-  _spriteMap[0][0] = _pacSprite;
+  _pacSprite.setPosition(605, 270);
+  //_spriteMap[0][0] = _pacSprite;
 
   logo_snake.loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(0, 0, 32, 32));
 
@@ -181,19 +177,18 @@ void gameMapSfml::Game()
           pacman->setDirection(Game::Direction::DOWN);
           logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(64, 0, 32, 32));
         }
-    _pacSprite.setTexture(logo_pacman);
      pacman->movePlayer(_gamemap);
-     /*if (pacman->getDirection() == 0)
-      _pacSprite.movePlayer(0, -1);
+     if (pacman->getDirection() == 0)
+      _pacSprite.move(0, -1);
      if (pacman->getDirection() == 1)
-      _pacSprite.movePlayer(1, 0);
+      _pacSprite.move(1, 0);
      if (pacman->getDirection() == 2)
-       _pacSprite.movePlayer(0, 1);
+       _pacSprite.move(0, 1);
      if (pacman->getDirection() == 3)
-       _pacSprite.movePlayer(-1, 0);*/
+       _pacSprite.move(-1, 0);
     _window.clear();
     //createMap();
-    //_window.draw(_pacSprite);
+    _window.draw(_pacSprite);
     _window.draw(_snakeSprite);
     //_window.draw(_textureMap[0][0]);
     _window.display();

@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Wed Apr 05 18:08:53 2017 Thomas Fossaert
+** Last update Thu Apr 06 08:53:07 2017 Thomas Fossaert
 */
 
 #include "IGame.hpp"
@@ -165,5 +165,5 @@ int Pacman::getScore() const
 
 void Pacman::setScore(int s)
 {
-  _score = s;
+  _score += s;
 }
