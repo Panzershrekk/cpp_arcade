@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Apr 06 09:37:04 2017 Thomas Fossaert
+** Last update Thu Apr 06 16:13:39 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -22,6 +22,7 @@ gameMapSfml::gameMapSfml()
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
   }
+  _window = new sf::RenderWindow(sf::VideoMode(1080, 1080), "Pacman");
   while (fin.get(c))
   {
     if (c != '\n')  {
@@ -75,6 +76,24 @@ gameMapSfml::gameMapSfml()
   _pinkyCurr = 1;
   _inkyCurr = 1;
   _clydeCurr = 1;
+  _score = 0;
+
+  _textureMap[0] = new sf::Texture;
+  _textureMap[0]->loadFromFile("./games/pacman/sprite/mur_marine.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[1] = new sf::Texture;
+  _textureMap[1]->loadFromFile("./games/pacman/sprite/gate.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[2] = new sf::Texture;
+  _textureMap[2]->loadFromFile("./games/pacman/sprite/pacgum.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[3] = new sf::Texture;
+  _textureMap[3]->loadFromFile("./games/pacman/sprite/Spacgum.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[4] = new sf::Texture;
+  _textureMap[4]->loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[5] = new sf::Texture;
+  _textureMap[5]->loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[6] = new sf::Texture;
+  _textureMap[6]->loadFromFile("./games/pacman/sprite/black_square.png", sf::IntRect(0, 0, 32, 32));
+
+
 }
 
 gameMapSfml::~gameMapSfml()
@@ -94,125 +113,286 @@ gameMapSfml& gameMapSfml::operator=(gameMapSfml const & other)
 
 void gameMapSfml::createMap()
 {
-  /*int i = 0;
+  int i = 0;
   int j = 0;
   while (i != _height)
   {
     while (j != _witdh)
       {
         if (_gamemap[i][j] == TabType::WALL)
-          mvprintw(i, j, "|");
-          //_window.draw(_spriteMap[0][0]);
+          _window->draw(_spriteMap[i][j]);
         else if (_gamemap[i][j] == TabType::WALKABLE)
-          mvprintw(i, j, " ");
+          _window->draw(_spriteMap[i][j]);
         else if (_gamemap[i][j] == TabType::GATE)
-          mvprintw(i, j, "_");
+          _window->draw(_spriteMap[i][j]);
         else if (_gamemap[i][j] == TabType::PACGUM)
-          mvprintw(i, j, ".");
+          _window->draw(_spriteMap[i][j]);
         else if (_gamemap[i][j] == TabType::SPACGUM)
-          mvprintw(i, j, "*");
+          _window->draw(_spriteMap[i][j]);
         else if (_gamemap[i][j] == TabType::BLINKY)
-          mvprintw(i, j, "M");
+          _window->draw(_spriteMap[i][j]);
         else if (_gamemap[i][j] == TabType::PACMAN)
-          mvprintw(i, j, "C");
+          _window->draw(_spriteMap[i][j]);
+        else if (_gamemap[i][j] == TabType::PINKY)
+          _window->draw(_spriteMap[i][j]);
+        else if (_gamemap[i][j] == TabType::INKY)
+          _window->draw(_spriteMap[i][j]);
+        else if (_gamemap[i][j] == TabType::CLYDE)
+          _window->draw(_spriteMap[i][j]);
         else
-          mvprintw(i, j, " ");
+        _window->draw(_spriteMap[i][j]);
         j++;
       }
     j = 0;
     i++;
-  }*/
-  _window.draw(_pacSprite);
+  }
+}
+
+void gameMapSfml::InitSprite()
+{
+  int i = 0;
+  int j = 0;
+  while (i != _height)
+  {
+    while (j != _witdh)
+      {
+        if (_gamemap[i][j] == TabType::WALL)
+          {
+            sf::Sprite _pacSprite;
+            _pacSprite.setTexture(*_textureMap[0]);
+            _pacSprite.setPosition(i * 32, j * 32);
+            _spriteMap[i][j] = _pacSprite;
+          }
+        else if (_gamemap[i][j] == TabType::GATE)
+        {
+          sf::Sprite _pacSprite;
+          _pacSprite.setTexture(*_textureMap[1]);
+          _pacSprite.setPosition(i * 32, j * 32);
+          _spriteMap[i][j] = _pacSprite;
+
+        }
+        else if (_gamemap[i][j] == TabType::PACGUM)
+        {
+          sf::Sprite _pacSprite;
+          _pacSprite.setTexture(*_textureMap[2]);
+          _pacSprite.setPosition(i * 32, j * 32);
+          _spriteMap[i][j] = _pacSprite;
+        }
+        else if (_gamemap[i][j] == TabType::SPACGUM)
+          {
+            sf::Sprite _pacSprite;
+            _pacSprite.setTexture(*_textureMap[3]);
+            _pacSprite.setPosition(i * 32, j * 32);
+            _spriteMap[i][j] = _pacSprite;
+          }
+        else if (_gamemap[i][j] == TabType::BLINKY)
+        {
+          sf::Sprite _pacSprite;
+          _pacSprite.setTexture(*_textureMap[4]);
+          _pacSprite.setPosition(i * 32, j * 32);
+          _spriteMap[i][j] = _pacSprite;
+        }
+        else if (_gamemap[i][j] == TabType::PACMAN)
+        {
+          sf::Sprite _pacSprite;
+          _pacSprite.setTexture(*_textureMap[5]);
+          _pacSprite.setPosition(i * 32, j * 32);
+          _spriteMap[i][j] = _pacSprite;
+        }
+        else if (_gamemap[i][j] == TabType::PINKY)
+        {
+          sf::Sprite _pacSprite;
+          _pacSprite.setTexture(*_textureMap[4]);
+          _pacSprite.setPosition(i * 32, j * 32);
+          _spriteMap[i][j] = _pacSprite;
+        }
+        else if (_gamemap[i][j] == TabType::INKY)
+        {
+          sf::Sprite _pacSprite;
+          _pacSprite.setTexture(*_textureMap[4]);
+          _pacSprite.setPosition(i * 32, j * 32);
+          _spriteMap[i][j] = _pacSprite;
+        }
+        else if (_gamemap[i][j] == TabType::CLYDE)
+        {
+          sf::Sprite _pacSprite;
+          _pacSprite.setTexture(*_textureMap[4]);
+          _pacSprite.setPosition(i * 32, j * 32);
+          _spriteMap[i][j] = _pacSprite;
+        }
+        else
+          {
+            sf::Sprite _pacSprite;
+            _pacSprite.setTexture(*_textureMap[6]);
+            _pacSprite.setPosition(i * 32, j * 32);
+            _spriteMap[i][j] = _pacSprite;
+          }
+        j++;
+      }
+    j = 0;
+    i++;
+  }
 }
 
 void gameMapSfml::Game()
 {
-  Game::IGame *pacman = new Pacman();
+  int   t = 0;
+  int   prevX = 0;
+  int   prevY = 0;
+  int   win = 1;
 
-  sf::RenderWindow _window(sf::VideoMode(1080, 720), "Pacman");
+  //createMap();
+
   sf::CircleShape shape(50);
+  InitSprite();
 
-  sf::Texture logo_pacman;
-  sf::Texture logo_snake;
-  sf::Vector2<int> pos;
-
-  logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
-
-  sf::Sprite _pacSprite;
-  _pacSprite.setTexture(logo_pacman);
-  _pacSprite.setPosition(605, 270);
-  //_spriteMap[0][0] = _pacSprite;
-
-  logo_snake.loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(0, 0, 32, 32));
-
-  sf::Sprite _snakeSprite;
-  _snakeSprite.setTexture(logo_snake);
-  _snakeSprite.setPosition(540, 160);
-
-  while (_window.isOpen())
+  while (_window->isOpen() && (_pacman->isAlive() == true && win != 0))
   {
     sf::Event event;
-    while (_window.pollEvent(event))
+    while (_window->pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
-  _window.close();
+      _window->close();
+
     }
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-     {
-       pacman->setDirection(Game::Direction::UP);
-       logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(96, 0, 32, 32));
+    int i = 0;
+    int j = 0;
+    while (i != _height)
+    {
+      while (j != _witdh)
+      {
+        if (_gamemap[i][j] == 4)
+          win++;
+        j++;
       }
-     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-        {
-          pacman->setDirection(Game::Direction::RIGHT);
-          logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(32, 0, 32, 32));
-        }
-     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-        {
-          pacman->setDirection(Game::Direction::LEFT);
-          logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
-        }
-     else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-        {
-          pacman->setDirection(Game::Direction::DOWN);
-          logo_pacman.loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(64, 0, 32, 32));
-        }
-     pacman->movePlayer(_gamemap);
-     if (pacman->getDirection() == 0)
-      _pacSprite.move(0, -1);
-     if (pacman->getDirection() == 1)
-      _pacSprite.move(1, 0);
-     if (pacman->getDirection() == 2)
-       _pacSprite.move(0, 1);
-     if (pacman->getDirection() == 3)
-       _pacSprite.move(-1, 0);
-    _window.clear();
-    //createMap();
-    _window.draw(_pacSprite);
-    _window.draw(_snakeSprite);
-    //_window.draw(_textureMap[0][0]);
-    _window.display();
-    usleep(3000);
+      j = 0;
+      i++;
+    }
+    if (win > 1)
+      win = 1;
+    else
+      win = 0;
+
+    _window->clear();
+    InitSprite();
+    createMap();
+    _window->display();
+
+    if (_gamemap[_pacman->getY()][_pacman->getX()] == TabType::BLINKY
+        || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::PINKY
+        || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::INKY
+        || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::CLYDE)
+      _pacman->setLive(false);
+
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+      _pacman->setDirection(Game::Direction::UP);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+      _pacman->setDirection(Game::Direction::DOWN);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+      _pacman->setDirection(Game::Direction::LEFT);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+      _pacman->setDirection(Game::Direction::RIGHT);
+
+    _oldSPrite = 1;
+    prevX = _pacman->getX();
+    prevY = _pacman->getY();
+    _pacman->movePlayer(_gamemap);
+
+    if (_gamemap[_pacman->getY()][_pacman->getX()] == 4)
+      _pacman->setScore(10);
+    _score = _pacman->getScore();
+
+    SetSprite(_pacman->getX(), _pacman->getY(), _pacman);
+    UnsetSprite(prevX, prevY, _pacman);
+
+    prevX = _blinky->getX();
+    prevY = _blinky->getY();
+    UnsetSprite(prevX, prevY, _blinky);
+    _blinky->movePlayer(_gamemap);
+    _blinkyCurr = _gamemap[_blinky->getY()][_blinky->getX()];
+    SetSprite(_blinky->getX(), _blinky->getY(), _blinky);
+
+    if (t > 10)
+    {
+      prevX = _pinky->getX();
+      prevY = _pinky->getY();
+      UnsetSprite(prevX, prevY, _pinky);
+      _pinky->movePlayer(_gamemap);
+      _pinkyCurr = _gamemap[_pinky->getY()][_pinky->getX()];
+      SetSprite(_pinky->getX(), _pinky->getY(), _pinky);
+    }
+
+    if (t > 20)
+    {
+      prevX = _inky->getX();
+      prevY = _inky->getY();
+      UnsetSprite(prevX, prevY, _inky);
+      _inky->movePlayer(_gamemap);
+      _inkyCurr = _gamemap[_inky->getY()][_inky->getX()];
+      SetSprite(_inky->getX(), _inky->getY(), _inky);
+    }
+
+    if (t > 30)
+    {
+      prevX = _clyde->getX();
+      prevY = _clyde->getY();
+      UnsetSprite(prevX, prevY, _clyde);
+      _clyde->movePlayer(_gamemap);
+      _clydeCurr = _gamemap[_clyde->getY()][_clyde->getX()];
+      SetSprite(_clyde->getX(), _clyde->getY(), _clyde);
+    }
+    t++;
+    Animation();
+    usleep(100000);
  }
 }
 
 void gameMapSfml::SetSprite(int x, int y, Game::IGame *entity)
 {
-  (void) x;
-  (void) y;
-  (void) entity;
+  if (entity->getType() == 0)
+    _gamemap[y][x] = TabType::PACMAN;
+  else
+  {
+    if (entity->getType() == 1)
+      _gamemap[y][x] = TabType::BLINKY;
+    if (entity->getType() == 2)
+      _gamemap[y][x] = TabType::PINKY;
+    if (entity->getType() == 3)
+      _gamemap[y][x] = TabType::INKY;
+    if (entity->getType() == 4)
+      _gamemap[y][x] = TabType::CLYDE;
+  }
 }
 
 void gameMapSfml::UnsetSprite(int x, int y, Game::IGame *entity)
 {
-  (void) x;
-  (void) y;
-  (void) entity;
+  if (entity->getType() == 0 && (x != entity->getX() || y != entity->getY()))
+    _gamemap[y][x] = _oldSPrite;
+  else if (entity->getType() == 1 && (_blinkyCurr != 8 && _blinkyCurr != 9 && _blinkyCurr != 10))
+    _gamemap[y][x] = _blinkyCurr;
+  else if (entity->getType() == 2 && (_pinkyCurr != 6 && _pinkyCurr != 9 && _pinkyCurr != 10))
+    _gamemap[y][x] = _pinkyCurr;
+  else if (entity->getType() == 3 && (_inkyCurr != 6 && _inkyCurr != 8 && _inkyCurr != 10))
+    _gamemap[y][x] = _inkyCurr;
+  else if (entity->getType() == 4 && (_clydeCurr != 6 && _clydeCurr != 8 && _clydeCurr != 9))
+    _gamemap[y][x] = _clydeCurr;
 }
 
 void gameMapSfml::Animation()
 {
-
+/*  int i = 0;
+  int j = 0;
+  while (i != _height)
+  {
+    while (j != _witdh)
+      {
+        delete &_spriteMap[i][j];
+        j++;
+      }
+    j = 0;
+    i++;
+  }*/
+  //delete &_spriteMap[1][1];
 }
 
 void gameMapSfml::DumpMap()

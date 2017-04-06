@@ -39,15 +39,12 @@ class gameMapSfml : public Graph::IGraph
     int _inkyCurr;
     int _clydeCurr;
 
-    sf::Sprite _pacSprite;
-    sf::RenderWindow _window;
-    /*int _blinkyCurr;
-    int _pinkyCurr;
-    int _inkyCurr;
-    int _clydeCurr;*/
+    sf::Sprite *_pacSprite;
+    sf::RenderWindow *_window;
+    int _score;
     std::map<int, std::map<int, int>> _gamemap;
     std::map<int, std::map<int, sf::Sprite>> _spriteMap;
-    std::map<int, std::map<int, sf::Texture>> _textureMap;
+    std::map<int, sf::Texture *> _textureMap;
   public:
     gameMapSfml();
     ~gameMapSfml();
@@ -61,6 +58,8 @@ class gameMapSfml : public Graph::IGraph
     std::pair<std::string, std::string>	startMenu(const std::vector<std::string> &, const std::vector<std::string> &);
     void displayMap(int **);
     void Animation();
+
+    void InitSprite();
 
     void DumpMap();
 };
