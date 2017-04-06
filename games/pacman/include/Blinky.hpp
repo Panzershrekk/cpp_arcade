@@ -5,8 +5,11 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Wed Apr 05 18:08:32 2017 Thomas Fossaert
+** Last update Thu Apr 06 16:24:24 2017 Thomas Fossaert
 */
+
+#ifndef _BLINKY_HPP_
+# define _BLINKY_HPP_
 
 #include "IGame.hpp"
 
@@ -51,3 +54,5 @@ class Blinky : public Game::IGame
 
     void Dump(void) const;
 };
+
+#endif

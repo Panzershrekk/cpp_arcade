@@ -5,6 +5,9 @@
 #include "Snake.hpp"
 // #include "gameMapNcursesSnake.hpp"
 
+#ifndef _GAMEMAPNCURSESSNAKE_HPP_
+# define _GAMEMAPNCURSESSNAKE_HPP_
+
 enum TabTypeSnake
 {
   CANWALK = 0,
@@ -38,3 +41,5 @@ class gameMapNcursesSnake : public Graph::IGraph
   void resetMap();
   void affUI();
 };
+
+#endif

@@ -5,8 +5,11 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Wed Apr 05 18:06:11 2017 Thomas Fossaert
+** Last update Thu Apr 06 16:25:24 2017 Thomas Fossaert
 */
+
+#ifndef _PINKY_HPP_
+# define _PINKY_HPP_
 
 #include "IGame.hpp"
 
@@ -50,3 +53,5 @@ class Pinky : public Game::IGame
     int getScore() const;
     void setScore(int s);
 };
+
+#endif

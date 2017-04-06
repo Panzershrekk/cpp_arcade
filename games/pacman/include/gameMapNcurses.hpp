@@ -1,3 +1,6 @@
+#ifndef _GAMEMAPNCURSES_HPP_
+# define _GAMEMAPNCURSES_HPP_
+
 #include  <ncurses.h>
 #include  "Pacman.hpp"
 #include  "IGame.hpp"
@@ -57,3 +60,5 @@ class gameMapNcurses : public Graph::IGraph
 
     void DumpMap();
 };
+
+#endif

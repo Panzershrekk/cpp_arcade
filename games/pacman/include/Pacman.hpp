@@ -5,8 +5,11 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:01:30 2017 Thomas Fossaert
-** Last update Wed Apr 05 18:05:53 2017 Thomas Fossaert
+** Last update Thu Apr 06 16:25:17 2017 Thomas Fossaert
 */
+
+#ifndef _PACMAN_HPP_
+# define _PACMAN_HPP_
 
 #include "IGame.hpp"
 
@@ -50,3 +53,5 @@ class Pacman : public Game::IGame
     int getScore() const;
     void setScore(int s);
 };
+
+#endif

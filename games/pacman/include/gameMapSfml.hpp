@@ -1,3 +1,6 @@
+#ifndef _GAMEMAPSFML_HPP_
+# define _GAMEMAPSFML_HPP_
+
 #include  <SFML/Graphics.hpp>
 #include  "Pacman.hpp"
 #include  "IGame.hpp"
@@ -63,3 +66,5 @@ class gameMapSfml : public Graph::IGraph
 
     void DumpMap();
 };
+
+#endif
