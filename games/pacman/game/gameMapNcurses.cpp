@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Apr 06 09:17:34 2017 Thomas Fossaert
+** Last update Fri Apr 07 09:59:34 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -81,6 +81,10 @@ gameMapNcurses::gameMapNcurses()
 
 gameMapNcurses::~gameMapNcurses()
 {
+  delete _blinky;
+  delete _pinky;
+  delete _inky;
+  delete _clyde;
 }
 
 gameMapNcurses::gameMapNcurses(gameMapNcurses const & other)

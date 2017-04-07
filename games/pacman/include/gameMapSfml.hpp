@@ -41,10 +41,11 @@ class gameMapSfml : public Graph::IGraph
     int _pinkyCurr;
     int _inkyCurr;
     int _clydeCurr;
+    int _score;
+    int _tempoSprite;
 
     sf::Sprite *_pacSprite;
     sf::RenderWindow *_window;
-    int _score;
     std::map<int, std::map<int, int>> _gamemap;
     std::map<int, std::map<int, sf::Sprite>> _spriteMap;
     std::map<int, sf::Texture *> _textureMap;

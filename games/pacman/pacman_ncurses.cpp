@@ -18,6 +18,6 @@ extern "C" void   pacman_ncurses()
 {
   gameMapNcurses *map = new gameMapNcurses();
 
-  map->DumpMap();
   map->Game();
+  delete map;
 }

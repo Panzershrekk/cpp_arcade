@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Thu Apr 06 16:31:47 2017 Thomas Fossaert
+** Last update Fri Apr 07 09:57:12 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -77,6 +77,7 @@ gameMapSfml::gameMapSfml()
   _inkyCurr = 1;
   _clydeCurr = 1;
   _score = 0;
+  _tempoSprite = 0;
 
   _textureMap[0] = new sf::Texture;
   _textureMap[0]->loadFromFile("./games/pacman/sprite/mur_marine.png", sf::IntRect(0, 0, 32, 32));
@@ -92,12 +93,34 @@ gameMapSfml::gameMapSfml()
   _textureMap[5]->loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
   _textureMap[6] = new sf::Texture;
   _textureMap[6]->loadFromFile("./games/pacman/sprite/black_square.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[7] = new sf::Texture;
+  _textureMap[7]->loadFromFile("./games/pacman/sprite/sp_pinky.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[8] = new sf::Texture;
+  _textureMap[8]->loadFromFile("./games/pacman/sprite/sp_inky.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[9] = new sf::Texture;
+  _textureMap[9]->loadFromFile("./games/pacman/sprite/sp_clyde.png", sf::IntRect(0, 0, 32, 32));
 
 
 }
 
 gameMapSfml::~gameMapSfml()
 {
+  delete _blinky;
+  delete _pinky;
+  delete _inky;
+  delete _clyde;
+  delete _window;
+  delete _textureMap[9];
+  delete _textureMap[8];
+  delete _textureMap[7];
+  delete _textureMap[6];
+  delete _textureMap[5];
+  delete _textureMap[4];
+  delete _textureMap[3];
+  delete _textureMap[2];
+  delete _textureMap[1];
+  delete _textureMap[0];
+  delete _pacSprite;
 }
 
 gameMapSfml::gameMapSfml(gameMapSfml const & other)
@@ -202,21 +225,21 @@ void gameMapSfml::InitSprite()
         else if (_gamemap[i][j] == TabType::PINKY)
         {
           sf::Sprite _pacSprite;
-          _pacSprite.setTexture(*_textureMap[4]);
+          _pacSprite.setTexture(*_textureMap[7]);
           _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::INKY)
         {
           sf::Sprite _pacSprite;
-          _pacSprite.setTexture(*_textureMap[4]);
+          _pacSprite.setTexture(*_textureMap[8]);
           _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::CLYDE)
         {
           sf::Sprite _pacSprite;
-          _pacSprite.setTexture(*_textureMap[4]);
+          _pacSprite.setTexture(*_textureMap[9]);
           _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
@@ -240,8 +263,6 @@ void gameMapSfml::Game()
   int   prevX = 0;
   int   prevY = 0;
   int   win = 1;
-
-  //createMap();
 
   sf::CircleShape shape(50);
   InitSprite();
@@ -343,6 +364,7 @@ void gameMapSfml::Game()
     }
     t++;
     Animation();
+    _tempoSprite == 1 ? _tempoSprite = 0 : _tempoSprite = 1;
     usleep(100000);
  }
 }
@@ -380,19 +402,50 @@ void gameMapSfml::UnsetSprite(int x, int y, Game::IGame *entity)
 
 void gameMapSfml::Animation()
 {
-/*  int i = 0;
-  int j = 0;
-  while (i != _height)
-  {
-    while (j != _witdh)
-      {
-        delete &_spriteMap[i][j];
-        j++;
-      }
-    j = 0;
-    i++;
-  }*/
-  //delete &_spriteMap[1][1];
+  if (_pacman->getDirection() == Game::Direction::UP)
+    _textureMap[5]->loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(96, 0, 32, 32));
+  else if (_pacman->getDirection() == Game::Direction::DOWN)
+    _textureMap[5]->loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(64, 0, 32, 32));
+  else if (_pacman->getDirection() == Game::Direction::RIGHT)
+    _textureMap[5]->loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(32, 0, 32, 32));
+  else if (_pacman->getDirection() == Game::Direction::LEFT)
+    _textureMap[5]->loadFromFile("./games/pacman/sprite/sp_pacman.png", sf::IntRect(0, 0, 32, 32));
+
+  if (_blinky->getDirection() == Game::Direction::UP)
+    _textureMap[4]->loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(0 + _tempoSprite * 32, 0, 32, 32));
+  else if (_blinky->getDirection() == Game::Direction::DOWN)
+    _textureMap[4]->loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(64 + _tempoSprite * 32, 0, 32, 32));
+  else if (_blinky->getDirection() == Game::Direction::RIGHT)
+    _textureMap[4]->loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(192 + _tempoSprite * 32, 0, 32, 32));
+  else if (_blinky->getDirection() == Game::Direction::LEFT)
+    _textureMap[4]->loadFromFile("./games/pacman/sprite/sp_blinky.png", sf::IntRect(128 + _tempoSprite * 32, 0, 32, 32));
+
+  if (_pinky->getDirection() == Game::Direction::UP)
+    _textureMap[7]->loadFromFile("./games/pacman/sprite/sp_pinky.png", sf::IntRect(0 + _tempoSprite * 32, 0, 32, 32));
+  else if (_pinky->getDirection() == Game::Direction::DOWN)
+    _textureMap[7]->loadFromFile("./games/pacman/sprite/sp_pinky.png", sf::IntRect(64 + _tempoSprite * 32, 0, 32, 32));
+  else if (_pinky->getDirection() == Game::Direction::RIGHT)
+    _textureMap[7]->loadFromFile("./games/pacman/sprite/sp_pinky.png", sf::IntRect(192 + _tempoSprite * 32, 0, 32, 32));
+  else if (_pinky->getDirection() == Game::Direction::LEFT)
+    _textureMap[7]->loadFromFile("./games/pacman/sprite/sp_pinky.png", sf::IntRect(128 + _tempoSprite * 32, 0, 32, 32));
+
+  if (_inky->getDirection() == Game::Direction::UP)
+    _textureMap[8]->loadFromFile("./games/pacman/sprite/sp_inky.png", sf::IntRect(0 + _tempoSprite * 32, 0, 32, 32));
+  else if (_inky->getDirection() == Game::Direction::DOWN)
+    _textureMap[8]->loadFromFile("./games/pacman/sprite/sp_inky.png", sf::IntRect(64 + _tempoSprite * 32, 0, 32, 32));
+  else if (_inky->getDirection() == Game::Direction::RIGHT)
+    _textureMap[8]->loadFromFile("./games/pacman/sprite/sp_inky.png", sf::IntRect(192 + _tempoSprite * 32, 0, 32, 32));
+  else if (_inky->getDirection() == Game::Direction::LEFT)
+    _textureMap[8]->loadFromFile("./games/pacman/sprite/sp_inky.png", sf::IntRect(128 + _tempoSprite * 32, 0, 32, 32));
+
+  if (_clyde->getDirection() == Game::Direction::UP)
+    _textureMap[9]->loadFromFile("./games/pacman/sprite/sp_clyde.png", sf::IntRect(0 + _tempoSprite * 32, 0, 32, 32));
+  else if (_clyde->getDirection() == Game::Direction::DOWN)
+    _textureMap[9]->loadFromFile("./games/pacman/sprite/sp_clyde.png", sf::IntRect(64 + _tempoSprite * 32, 0, 32, 32));
+  else if (_clyde->getDirection() == Game::Direction::RIGHT)
+    _textureMap[9]->loadFromFile("./games/pacman/sprite/sp_clyde.png", sf::IntRect(192 + _tempoSprite * 32, 0, 32, 32));
+  else if (_clyde->getDirection() == Game::Direction::LEFT)
+    _textureMap[9]->loadFromFile("./games/pacman/sprite/sp_clyde.png", sf::IntRect(128 + _tempoSprite * 32, 0, 32, 32));
 }
 
 void gameMapSfml::DumpMap()
