@@ -43,28 +43,28 @@ void		menu::Game()
   games = "";
   libs = "ncurses";
 
-  background.loadFromFile("/home/huguet_t/Documents/Rendu/Tek2/CPP/cpp_arcade/menu/sfml/sprites/Background_general.png", sf::IntRect(0, 0, 1920, 1080));
+  background.loadFromFile("./menu/sfml/sprites/Background_general.png", sf::IntRect(0, 0, 1920, 1080));
   _background_sprite.setTexture(background);
   _background_sprite.setPosition(0, 0);
   _background_sprite.setScale(0.56, 0.66);
 
-  logo_choice.loadFromFile("/home/huguet_t/Documents/Rendu/Tek2/CPP/cpp_arcade/menu/sfml/sprites/Rectangle_de_selection.png", sf::IntRect(0, 0, 1920, 1080));
+  logo_choice.loadFromFile("./menu/sfml/sprites/Rectangle_de_selection.png", sf::IntRect(0, 0, 1920, 1080));
   _logo_choice.setTexture(logo_choice);
   _logo_choice.setPosition(0, 0);
   _logo_choice.setScale(0.56, 0.66);
 
-  logo_pacman.loadFromFile("/home/huguet_t/Documents/Rendu/Tek2/CPP/cpp_arcade/menu/sfml/sprites/Pacman+Fantome.png", sf::IntRect(0, 0, 1920, 1080));
+  logo_pacman.loadFromFile("./menu/sfml/sprites/Pacman+Fantome.png", sf::IntRect(0, 0, 1920, 1080));
   _pacSprite.setTexture(logo_pacman);
   _pacSprite.setPosition(0, 0);
   _pacSprite.setScale(0.56, 0.66);
 
-  logo_snake.loadFromFile("/home/huguet_t/Documents/Rendu/Tek2/CPP/cpp_arcade/menu/sfml/sprites/Snake.png", sf::IntRect(0, 0, 1920, 1080));
+  logo_snake.loadFromFile("./menu/sfml/sprites/Snake.png", sf::IntRect(0, 0, 1920, 1080));
   _snakeSprite.setTexture(logo_snake);
   _snakeSprite.setPosition(0, 0);
   _snakeSprite.setScale(0.56, 0.66);
 
 
-  logo_buttons.loadFromFile("/home/huguet_t/Documents/Rendu/Tek2/CPP/cpp_arcade/menu/sfml/sprites/Boutons_Menu.png", sf::IntRect(0, 0, 1920, 1080));
+  logo_buttons.loadFromFile("./menu/sfml/sprites/Boutons_Menu.png", sf::IntRect(0, 0, 1920, 1080));
   _logo_buttons.setTexture(logo_buttons);
   _logo_buttons.setPosition(0, 0);
   _logo_buttons.setScale(0.56, 0.66);
