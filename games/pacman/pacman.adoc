@@ -1,0 +1,58 @@
+= PACMAN
+
+== Introduction
+
+Ce document présente le jeu Pacman dans sa généralité, et dans ses différentes librairies.
+
+=== Généralité
+
+Le jeu pacman se présente de la manière suivante: +
+
+* La map PacMap.txt est disponible dans le dossier "sprite" et définit le contenu
+de la map de jeu.
+* Pacman se trouve en dessous de l'enclos des Fantômes.
+* 4 Fantômes sont placés dans un enclos et vont tenter d'attrapper pacman.
+* Les "Pacgums" (points) doivent être ramassés.
+* La partie se termine quand tous les Pacgums ont été mangé ou quand Pacman se fait attrapper par les
+Fantômes.
+
+NOTE: La map disponible est modifiable, pour créer ses propres Map.
+
+=== Ncurse
+
+La Ncurse permet de lancer pacman sur un terminal. +
+
+Les règles énoncées dans la section "Généralité" ne changent pas.
+
+Les Fantômes sont réprésentés de la manière suivante: +
+
+* Blinky, le fantôme rouge, est représenté par un 'B'
+* Pinky, le fantôme rose, est représenté par un 'P'
+* Inky, le fantôme bleue, est représenté par un 'I'
+* Clyde, le fantôme orange, est représenté par un 'Y'
+
+Les autres entités sont réprésentés de la manière suivante: +
+
+* Pacman par un 'C'
+* Les Pacgums par un '.'
+* Les Super Pacgums par un '*'
+* Les murs par "|"
+* La porte de l'enclos par "_"
+
+Les touches directionnelles permettents à Pacman de se déplacer, et Pacman avancera tout
+seul, si cela est possible.
+
+=== SFML
+
+La SFML ouvrira une nouvelle fenêtre et permettra de jouer à Pacman. +
+
+Les règles énoncées dans la section "Généralité" ne changent pas.
+
+Toutes les entités sont réprésentés par des sprites chargés via les outils mis à disposition de la sfml
+ces sprites peuvent être modifiés si ces derniers respectent les régles suivantes: +
+
+  * La hauteur d'un sprite doit être de 32 pixels
+  * La largeur d'un sprite doit être de 32 pixels
+  * Le format de l'image doit être un "png"
+
+TIP: Plusieurs sprites peuvent être implémentés sur une même image à condition d'être séparés de 32 pixels

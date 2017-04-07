@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Apr 07 09:59:34 2017 Thomas Fossaert
+** Last update Fri Apr 07 10:44:11 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -288,7 +288,9 @@ void gameMapNcurses::Game()
     }
     t++;
   }
-  getch();
+  mvprintw(_height / 2, _witdh / 2 - 4, "Game over");
+  refresh();
+  sleep(3);
   endwin();
 }
 
