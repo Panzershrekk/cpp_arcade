@@ -19,7 +19,9 @@ SRC	=	./pacman/entity/Blinky.cpp		\
 
 SRC4	=	./snake/game/Snake.cpp			\
 		./snake/game/gameMapNcursesSnake.cpp	\
-		./snake/snake_ncurses.cpp
+		./snake/snake_ncurses.cpp		\
+		./snake/game/gameMapSfmlSnake.cpp	\
+		./snake/snake_sfml.cpp
 
 CFLAGS	=	-fPIC			\
 		-shared			\
@@ -40,7 +42,8 @@ CFLAGS4	=	-fPIC			\
 		-std=c++11		\
 		-I./snake/include	\
 		-I../interface		\
-		-lncurses
+		-lncurses		\
+		-lsfml-graphics -lsfml-window -lsfml-system
 
 all:		$(NAME) $(NAME2) $(NAME4)
 
