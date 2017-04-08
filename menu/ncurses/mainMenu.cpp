@@ -14,13 +14,10 @@ menu::menu()
   _games[1] = "snake";
   _libs[0] = "ncurses";
   _libs[1] = "SFML";
-  _libs[2] = "Open Gl";
-  std::cout << "menu created" << std::endl;
 }
 
 menu::~menu()
 {
-  std::cout << "menu delete" << std::endl;
 }
 
 int	mov_pos(int max, int pos, int ch)
@@ -75,22 +72,16 @@ void		menu::Game()
 	clear();
 	endwin();
 
-	char cwd[1024];
-	if (getcwd(cwd, sizeof(cwd)) != NULL)
-	  fprintf(stdout, "Current working dir: %s\n", cwd);
-
-
-	std::string test = ("./lib/lib_" + _games[posGame] + ".so");
-	std::cout << test << std::endl;
-	if ((lib = dlopen(test.c_str(), RTLD_LAZY)) == NULL)
+	std::string load_lib = ("./lib/lib_arcade_" + _games[posGame] + ".so");
+	if ((lib = dlopen(load_lib.c_str(), RTLD_LAZY)) == NULL)
 	  {
 	    std::cout << "The error is    " << dlerror() << std::endl;
 	    exit(EXIT_FAILURE);
 	  }
 
 	typedef void	(*func_ptr)();
-	test = _games[posGame] + "_" + _libs[posLibs];
-	func_ptr func = (func_ptr)dlsym(lib,test.c_str());
+	load_lib = _games[posGame] + "_" + _libs[posLibs];
+	func_ptr func = (func_ptr)dlsym(lib,load_lib.c_str());
 
 	if (!func)
 	{
@@ -267,7 +258,7 @@ void menu::displayMap(int ** l)
 
 extern "C" void		do_menu()
 {
-  menu	test;
+  menu	my_menu;
 
-  test.Game();
+  my_menu.Game();
 }
