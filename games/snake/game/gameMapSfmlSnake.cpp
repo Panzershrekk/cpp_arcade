@@ -5,7 +5,7 @@
 // Login   <antoine@epitech.net>
 // 
 // Started on  Thu Apr  6 22:43:08 2017 antoine
-// Last update Thu Apr  6 23:05:05 2017 antoine
+// Last update Sat Apr  8 11:36:56 2017 antoine
 //
 
 #include <fstream>
@@ -23,7 +23,6 @@ gameMapSfmlSnake::gameMapSfmlSnake()
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
   }
-  _window = new sf::RenderWindow(sf::VideoMode(1080, 1080), "Snake");
   while (fin.get(c))
   {
     if (c != '\n')  {
@@ -33,7 +32,7 @@ gameMapSfmlSnake::gameMapSfmlSnake()
         _gamemap[i][j] = TabTypeSnake::CANWALK;
     }
     j++;
-    _witdh = j;
+    _witdh = j - 1;
     if (c == '\n')  {
       _height++;
       i++;
@@ -42,6 +41,7 @@ gameMapSfmlSnake::gameMapSfmlSnake()
   }
   fin.close();
   _oldSPrite = 1;
+  _window = new sf::RenderWindow(sf::VideoMode(_witdh* 32, i * 32), "Snake");
 
   _textureMap[0] = new sf::Texture;
   _textureMap[0]->loadFromFile("./games/snake/sprite/block.png", sf::IntRect(0, 0, 32, 32));
@@ -49,6 +49,10 @@ gameMapSfmlSnake::gameMapSfmlSnake()
   _textureMap[1]->loadFromFile("./games/snake/sprite/head.png", sf::IntRect(0, 0, 32, 32));
   _textureMap[2] = new sf::Texture;
   _textureMap[2]->loadFromFile("./games/snake/sprite/body.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[3] = new sf::Texture;
+  _textureMap[3]->loadFromFile("./games/snake/sprite/apple.png", sf::IntRect(0, 0, 32, 32));
+  _textureMap[4] = new sf::Texture;
+  _textureMap[4]->loadFromFile("./games/snake/sprite/ground.png", sf::IntRect(0, 0, 32, 32));
 }
 
 gameMapSfmlSnake::~gameMapSfmlSnake()
@@ -64,6 +68,25 @@ gameMapSfmlSnake& gameMapSfmlSnake::operator=(gameMapSfmlSnake const & other)
 {
   (void) other;
   return *this;
+}
+
+void gameMapSfmlSnake::resetMap()
+{
+  int i = 0;
+  int j = 0;
+  while (i != _height)
+  {
+    while (j != _witdh)
+      {
+        if (_gamemap[i][j] == 3)
+          _gamemap[i][j] = 0;
+        if (_gamemap[i][j] == 2)
+	  _gamemap[i][j] = 0;
+        j++;
+      }
+    j = 0;
+    i++;
+  }
 }
 
 void gameMapSfmlSnake::createMap()
@@ -111,10 +134,17 @@ void gameMapSfmlSnake::InitSprite()
           _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
 	}
+        else if (_gamemap[i][j] == TabTypeSnake::APPLE)
+        {
+          sf::Sprite _pacSprite;
+          _pacSprite.setTexture(*_textureMap[3]);
+          _pacSprite.setPosition(j * 32, i * 32);
+          _spriteMap[i][j] = _pacSprite;
+	}
         else
           {
             sf::Sprite _pacSprite;
-            _pacSprite.setTexture(*_textureMap[2]);
+            _pacSprite.setTexture(*_textureMap[4]);
             _pacSprite.setPosition(j * 32, i * 32);
             _spriteMap[i][j] = _pacSprite;
           }
@@ -131,9 +161,10 @@ void gameMapSfmlSnake::InitSprite()
   // int   prevX = 0;
   // int   prevY = 0;
   int   win = 1;
-
+  Snake *snake = new Snake();
   //createMap();
-
+  int prevX;
+  int prevY;
   InitSprite();
 
   while (_window->isOpen() && win != 0)
@@ -145,97 +176,53 @@ void gameMapSfmlSnake::InitSprite()
       _window->close();
 
     }
-    int i = 0;
-    int j = 0;
-    while (i != _height)
-    {
-      while (j != _witdh)
-      {
-        if (_gamemap[i][j] == 4)
-          win++;
-        j++;
-      }
-      j = 0;
-      i++;
-    }
-    if (win > 1)
-      win = 1;
-    else
-      win = 0;
-
     _window->clear();
+    prevX = snake->getX();
+    prevY = snake->getY();
+    // resetMap();
+    snake->movePlayer(_gamemap);
+    snake->setPosSnake(movePosSnake(prevX, prevY, snake->getPosSnake(), snake));
+    if (snake->isAlive() == false)
+      {
+	resetMap();
+	snake->setLive(true);
+      }
     InitSprite();
     createMap();
     _window->display();
-
-    // if (_gamemap[_pacman->getY()][_pacman->getX()] == TabType::BLINKY
-    //     || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::PINKY
-    //     || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::INKY
-    //     || _gamemap[_pacman->getY()][_pacman->getX()] == TabType::CLYDE)
-    //   _pacman->setLive(false);
-
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
-    //   _pacman->setDirection(Game::Direction::UP);
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
-    //   _pacman->setDirection(Game::Direction::DOWN);
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
-    //   _pacman->setDirection(Game::Direction::LEFT);
-    // if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
-    //   _pacman->setDirection(Game::Direction::RIGHT);
-
-    // _oldSPrite = 1;
-    // prevX = _pacman->getX();
-    // prevY = _pacman->getY();
-    // _pacman->movePlayer(_gamemap);
-
-    // if (_gamemap[_pacman->getY()][_pacman->getX()] == 4)
-    //   _pacman->setScore(10);
-    // _score = _pacman->getScore();
-
-    // SetSprite(_pacman->getX(), _pacman->getY(), _pacman);
-    // UnsetSprite(prevX, prevY, _pacman);
-
-    // prevX = _blinky->getX();
-    // prevY = _blinky->getY();
-    // UnsetSprite(prevX, prevY, _blinky);
-    // _blinky->movePlayer(_gamemap);
-    // _blinkyCurr = _gamemap[_blinky->getY()][_blinky->getX()];
-    // SetSprite(_blinky->getX(), _blinky->getY(), _blinky);
-
-    // if (t > 10)
-    // {
-    //   prevX = _pinky->getX();
-    //   prevY = _pinky->getY();
-    //   UnsetSprite(prevX, prevY, _pinky);
-    //   _pinky->movePlayer(_gamemap);
-    //   _pinkyCurr = _gamemap[_pinky->getY()][_pinky->getX()];
-    //   SetSprite(_pinky->getX(), _pinky->getY(), _pinky);
-    // }
-
-    // if (t > 20)
-    // {
-    //   prevX = _inky->getX();
-    //   prevY = _inky->getY();
-    //   UnsetSprite(prevX, prevY, _inky);
-    //   _inky->movePlayer(_gamemap);
-    //   _inkyCurr = _gamemap[_inky->getY()][_inky->getX()];
-    //   SetSprite(_inky->getX(), _inky->getY(), _inky);
-    // }
-
-    // if (t > 30)
-    // {
-    //   prevX = _clyde->getX();
-    //   prevY = _clyde->getY();
-    //   UnsetSprite(prevX, prevY, _clyde);
-    //   _clyde->movePlayer(_gamemap);
-    //   _clydeCurr = _gamemap[_clyde->getY()][_clyde->getX()];
-    //   SetSprite(_clyde->getX(), _clyde->getY(), _clyde);
-    // }
-    // t++;
-    // Animation();
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+      snake->setDirection(Game::Direction::DOWN);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
+      snake->setDirection(Game::Direction::UP);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
+      snake->setDirection(Game::Direction::RIGHT);
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+      snake->setDirection(Game::Direction::LEFT);
+    genApple();
     usleep(100000);
  }
+  delete snake;
 }
+
+void gameMapSfmlSnake::genApple()
+{
+  static int i = 0;
+  int   tmpy, tmpx;
+
+  if ((i % 20) == 0)
+    {
+      tmpy = rand() % _height;
+      tmpx = rand() % _witdh;
+      while ((_gamemap[tmpy][tmpx] == TabTypeSnake::WALLE) || (_gamemap[tmpy][tmpx] == 3))
+        {
+          tmpy = rand() % _height;
+          tmpx = rand() % _witdh;
+        }
+      _gamemap[tmpy][tmpx] = 2;
+    }
+  i++;
+}
+
 
 void gameMapSfmlSnake::SetSprite(int x, int y, Game::IGame *entity)
 {
@@ -256,6 +243,44 @@ void gameMapSfmlSnake::SetSprite(int x, int y, Game::IGame *entity)
   y++;
   (void) entity;
 }
+
+std::vector<Position> gameMapSfmlSnake::movePosSnake(int x, int y, std::vector<Position> tmp, Snake *snake)
+{
+  Position pos;
+  Position first;
+  unsigned int  i = tmp.size() - 1;
+  int j = tmp.size() - 1;
+
+  first.x = x;
+  first.y = y;
+  _gamemap[snake->getY()][snake->getX()] = 3;
+   _gamemap[tmp[tmp.size() - 1].y][tmp[tmp.size() - 1].x] = 0;
+  while (j >= 0)
+    {
+      if (i == 0)
+        {
+          tmp[0] = first;
+          // if (snake->getNeedGrowth() != 1)                                    
+            _gamemap[tmp[0].y][tmp[0].x] = 3;
+        }
+      else
+        {
+          pos = tmp[i - 1];
+          tmp[i] = pos;
+          _gamemap[tmp[i].y][tmp[i].x] = 3;
+        }
+      i--;
+      j--;
+    }
+ if (snake->getNeedGrowth() == 1)
+    {
+      tmp.push_back(tmp[tmp.size() - 1]);
+      _gamemap[tmp[tmp.size() - 1].y][tmp[tmp.size() - 1].x] = 3;
+      snake->setNeedGrowth(0);
+    }
+  return (tmp);
+}
+
 
 void gameMapSfmlSnake::UnsetSprite(int x, int y, Game::IGame *entity)
 {

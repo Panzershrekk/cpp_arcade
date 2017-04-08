@@ -34,14 +34,15 @@ class gameMapSfmlSnake : public Graph::IGraph
     gameMapSfmlSnake& operator=(gameMapSfmlSnake const & other);
   std::pair<std::string, std::string> startMenu(const std::vector<std::string> &, const std::vector<std::string> &);
   void Animation();
-    void createMap();
+  std::vector<Position> movePosSnake(int, int, std::vector<Position>, Snake *);
+  void createMap();
     void Game();
     void SetSprite(int x, int y, Game::IGame *entity);
     void UnsetSprite(int x, int y, Game::IGame *entity);
     void displayMap(int **);
-
-    void InitSprite();
-
+  void resetMap();
+  void InitSprite();
+  void genApple();
     void DumpMap();
 };
 
