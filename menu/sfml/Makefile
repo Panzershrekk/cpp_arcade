@@ -2,7 +2,7 @@ CXX	=	g++
 
 RM	=	rm -f
 
-NAME	=	../../lib/lib_menu_SFML.so
+NAME	=	../../lib/lib_arcade_SFML.so
 
 OBJ	=	$(SRC:.cpp=.o)
 
