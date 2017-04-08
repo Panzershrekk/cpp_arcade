@@ -64,7 +64,7 @@ void		menu::Game()
   sf::Vector2u		window_size;
   int			test = 0;
   int			next = 0;
-  int			affichage;
+  int			affichage = 0;
 
   games = "";
   libs = "";
@@ -160,8 +160,9 @@ void		menu::Game()
 	      std::string lib_func = ("./lib/lib_arcade_" + games + ".so");
 	      if ((lib = dlopen(lib_func.c_str(), RTLD_LAZY)) == NULL)
 	      {
-		std::cout << "The error is    " << dlerror() << std::endl;
-		exit(EXIT_FAILURE);
+		std::cout << "error: failed to load the lib" << lib_func << std::endl;
+		_window.close();
+		return;
 	      }
 
 	      typedef void	(*func_ptr)();
@@ -170,7 +171,8 @@ void		menu::Game()
 
 	      if (!func)
 	      {
-		std::cout << "The error is    " << dlerror() << std::endl;
+		std::cout << "error: failed to load the function" << lib_func << std::endl;
+		_window.close();
 		exit(EXIT_FAILURE);
 	      }
 	      _window.close();

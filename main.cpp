@@ -10,33 +10,31 @@
 
 int		main(int ac, char **av)
 {
-  void		*lib;
+  void *lib;
 
-  if (ac > 2)
-    exit(EXIT_FAILURE);
-  /*
-  else if (ac == 1)
-  {
-    menu test;
-
-    test.Game();
-  }
-  else
-  */
+  if (ac == 2)
   {
     if ((lib = dlopen(av[1], RTLD_LAZY)) == NULL)
+    {
+      std::cout << "error: failed to load the lib" << av[1] << std::endl;
       exit(EXIT_FAILURE);
+    }
 
-    typedef void	(*func_ptr)();
-    func_ptr func = (func_ptr)dlsym(lib,"do_menu");
+    typedef void        (*func_ptr)();
+    func_ptr func = (func_ptr) dlsym(lib, "do_menu");
 
     if (!func)
     {
-      std::cout << "The error is    " << dlerror() << std::endl;
+      std::cout << "error: failed to load the function" << func << std::endl;
       exit(EXIT_FAILURE);
     }
     func();
     dlclose(lib);
+    exit(EXIT_SUCCESS);
   }
-  exit(EXIT_SUCCESS);
+  else
+  {
+    std::cout << "./arcade lib" << std::endl;
+    exit(EXIT_FAILURE);
+  }
 }

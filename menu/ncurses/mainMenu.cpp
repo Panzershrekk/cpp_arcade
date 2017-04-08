@@ -75,7 +75,7 @@ void		menu::Game()
 	std::string load_lib = ("./lib/lib_arcade_" + _games[posGame] + ".so");
 	if ((lib = dlopen(load_lib.c_str(), RTLD_LAZY)) == NULL)
 	  {
-	    std::cout << "The error is    " << dlerror() << std::endl;
+	    std::cout << "error: failed to load the lib" << load_lib << std::endl;
 	    exit(EXIT_FAILURE);
 	  }
 
@@ -85,7 +85,7 @@ void		menu::Game()
 
 	if (!func)
 	{
-	  std::cout << "The error is    " << dlerror() << std::endl;
+	  std::cout << "error: failed to load the function" << load_lib << std::endl;
 	  exit(EXIT_FAILURE);
 	}
 	func();
