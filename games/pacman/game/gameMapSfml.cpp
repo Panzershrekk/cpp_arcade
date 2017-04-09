@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Sun Apr 09 12:51:18 2017 Thomas Fossaert
+** Last update Sun Apr 09 15:56:11 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -22,7 +22,7 @@ gameMapSfml::gameMapSfml()
   if(!fin) {
     std::cout << "Cannot open file for input.\n";
   }
-  _window = new sf::RenderWindow(sf::VideoMode(1080, 1080), "Pacman");
+  _window = new sf::RenderWindow(sf::VideoMode(1080, 1080), "Arcade");
   while (fin.get(c))
   {
     if (c != '\n')  {
@@ -219,8 +219,7 @@ void gameMapSfml::InitSprite()
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[5]);
-          //_pacSprite.setPosition(j * 32, i * 32);
-          _pacSprite.move(j * 32, i * 32);
+          _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::PINKY)

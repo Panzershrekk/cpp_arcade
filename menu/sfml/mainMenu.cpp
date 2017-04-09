@@ -9,44 +9,52 @@ menu::menu()
 {
   boolean = 0;
   pos = 0;
+  _window = new sf::RenderWindow(sf::VideoMode(1080, 720), "Pacman");
   _games[0] = "Pacman";
   _games[1] = "Snake";
   _libs[0] = "ncurses";
   _libs[1] = "SFML";
   _libs[2] = "Open Gl";
-  background.loadFromFile("./menu/sfml/sprites/Background_general.png", sf::IntRect(0, 0, 1920, 1080));
-  _background_sprite.setTexture(background);
+
+  background = new sf::Texture;
+  background->loadFromFile("./menu/sfml/sprites/Background_general.png", sf::IntRect(0, 0, 1920, 1080));
+  _background_sprite.setTexture(*background);
   _background_sprite.setPosition(0, 0);
   _background_sprite.setScale(0.56, 0.66);
 
-  logo_choice.loadFromFile("./menu/sfml/sprites/Rectangle_de_selection.png", sf::IntRect(0, 0, 1920, 1080));
-  _logo_choice.setTexture(logo_choice);
+  logo_choice = new sf::Texture;
+  logo_choice->loadFromFile("./menu/sfml/sprites/Rectangle_de_selection.png", sf::IntRect(0, 0, 1920, 1080));
+  _logo_choice.setTexture(*logo_choice);
   _logo_choice.setPosition(0, 0);
   _logo_choice.setScale(0.56, 0.66);
 
-  sfml.loadFromFile("./menu/sfml/sprites/Boutons_SFML.png", sf::IntRect(0, 0, 1920, 1080));
-  _sfml_sprite.setTexture(sfml);
+  sfml = new sf::Texture;
+  sfml->loadFromFile("./menu/sfml/sprites/Boutons_SFML.png", sf::IntRect(0, 0, 1920, 1080));
+  _sfml_sprite.setTexture(*sfml);
   _sfml_sprite.setPosition(0, 0);
   _sfml_sprite.setScale(0.56, 0.66);
 
-  ncurses.loadFromFile("./menu/sfml/sprites/Boutons_NCURSES.png", sf::IntRect(0, 0, 1920, 1080));
-  _ncurses_sprite.setTexture(ncurses);
+  ncurses = new sf::Texture;
+  ncurses->loadFromFile("./menu/sfml/sprites/Boutons_NCURSES.png", sf::IntRect(0, 0, 1920, 1080));
+  _ncurses_sprite.setTexture(*ncurses);
   _ncurses_sprite.setPosition(0, 0);
   _ncurses_sprite.setScale(0.56, 0.66);
 
-  logo_pacman.loadFromFile("./menu/sfml/sprites/Pacman+Fantome.png", sf::IntRect(0, 0, 1920, 1080));
-  _pacSprite.setTexture(logo_pacman);
+  logo_pacman = new sf::Texture;
+  logo_pacman->loadFromFile("./menu/sfml/sprites/Pacman+Fantome.png", sf::IntRect(0, 0, 1920, 1080));
+  _pacSprite.setTexture(*logo_pacman);
   _pacSprite.setPosition(0, 0);
   _pacSprite.setScale(0.56, 0.66);
 
-  logo_snake.loadFromFile("./menu/sfml/sprites/Snake.png", sf::IntRect(0, 0, 1920, 1080));
-  _snakeSprite.setTexture(logo_snake);
+  logo_snake = new sf::Texture;
+  logo_snake->loadFromFile("./menu/sfml/sprites/Snake.png", sf::IntRect(0, 0, 1920, 1080));
+  _snakeSprite.setTexture(*logo_snake);
   _snakeSprite.setPosition(0, 0);
   _snakeSprite.setScale(0.56, 0.66);
 
-
-  logo_buttons.loadFromFile("./menu/sfml/sprites/Boutons_Menu.png", sf::IntRect(0, 0, 1920, 1080));
-  _logo_buttons.setTexture(logo_buttons);
+  logo_buttons = new sf::Texture;
+  logo_buttons->loadFromFile("./menu/sfml/sprites/Boutons_Menu.png", sf::IntRect(0, 0, 1920, 1080));
+  _logo_buttons.setTexture(*logo_buttons);
   _logo_buttons.setPosition(0, 0);
   _logo_buttons.setScale(0.56, 0.66);
 }
@@ -57,7 +65,7 @@ menu::~menu()
 
 void		menu::Game()
 {
-  sf::RenderWindow	_window(sf::VideoMode(1080, 720), "Arcade Menu");
+  //sf::RenderWindow	_window(sf::VideoMode(1080, 720), "Arcade Menu");
   sf::Vector2<int>	pos;
   std::string		games;
   std::string		libs;
@@ -66,23 +74,24 @@ void		menu::Game()
   int			next = 0;
   int			affichage = 0;
 
+  sf::CircleShape shape(50);
   games = "";
   libs = "";
 
-  while (_window.isOpen())
+  while (_window->isOpen())
   {
     sf::Event event;
-    while (_window.pollEvent(event))
+    while (_window->pollEvent(event))
     {
       if (event.type == sf::Event::Closed)
-	_window.close();
+	_window->close();
       if (event.type == sf::Event::MouseButtonPressed)
       {
 	if (event.mouseButton.button == sf::Mouse::Left)
 	{
-	  pos = sf::Mouse::getPosition(_window);
+	  pos = sf::Mouse::getPosition(*_window);
 
-	  window_size = _window.getSize();
+	  window_size = _window->getSize();
 	  if (next == 0)
 	  {
 	    if (
@@ -161,7 +170,7 @@ void		menu::Game()
 	      if ((lib = dlopen(lib_func.c_str(), RTLD_LAZY)) == NULL)
 	      {
 		std::cout << "error: failed to load the lib" << lib_func << std::endl;
-		_window.close();
+		_window->close();
 		return;
 	      }
 
@@ -172,10 +181,10 @@ void		menu::Game()
 	      if (!func)
 	      {
 		std::cout << "error: failed to load the function" << lib_func << std::endl;
-		_window.close();
+		_window->close();
 		exit(EXIT_FAILURE);
 	      }
-	      _window.close();
+	      _window->close();
 
 	      func();
 
@@ -187,12 +196,12 @@ void		menu::Game()
 	}
       }
     }
-    _window.clear();
-    _window.draw(_background_sprite);
+    _window->clear();
+    _window->draw(_background_sprite);
     if (next == 0)
     {
-      _window.draw(_pacSprite);
-      _window.draw(_snakeSprite);
+      _window->draw(_pacSprite);
+      _window->draw(_snakeSprite);
       if (test % 40 == 0)
       {
 	if (affichage == 0)
@@ -203,37 +212,45 @@ void		menu::Game()
       if (games == "pacman" && affichage == 0)
       {
 	_logo_choice.setPosition(0, 0);
-	_window.draw(_logo_choice);
+	_window->draw(_logo_choice);
       }
       if (games == "snake" && affichage == 0)
       {
 	_logo_choice.setPosition(640, 0);
-	_window.draw(_logo_choice);
+	_window->draw(_logo_choice);
       }
     }
     else
     {
       if (libs == "SFML")
       {
-	sfml.loadFromFile("./menu/sfml/sprites/Boutons_SFML_Cliked.png", sf::IntRect(0, 0, 1920, 1080));
-	ncurses.loadFromFile("./menu/sfml/sprites/Boutons_NCURSES.png", sf::IntRect(0, 0, 1920, 1080));
-	_sfml_sprite.setTexture(sfml);
-	_ncurses_sprite.setTexture(ncurses);
+	sfml->loadFromFile("./menu/sfml/sprites/Boutons_SFML_Cliked.png", sf::IntRect(0, 0, 1920, 1080));
+	ncurses->loadFromFile("./menu/sfml/sprites/Boutons_NCURSES.png", sf::IntRect(0, 0, 1920, 1080));
+	_sfml_sprite.setTexture(*sfml);
+	_ncurses_sprite.setTexture(*ncurses);
       }
       else if (libs == "ncurses")
       {
-	sfml.loadFromFile("./menu/sfml/sprites/Boutons_SFML.png", sf::IntRect(0, 0, 1920, 1080));
-	ncurses.loadFromFile("./menu/sfml/sprites/Boutons_NCURSES_Cliked.png", sf::IntRect(0, 0, 1920, 1080));
-	_sfml_sprite.setTexture(sfml);
-	_ncurses_sprite.setTexture(ncurses);
+	sfml->loadFromFile("./menu/sfml/sprites/Boutons_SFML.png", sf::IntRect(0, 0, 1920, 1080));
+	ncurses->loadFromFile("./menu/sfml/sprites/Boutons_NCURSES_Cliked.png", sf::IntRect(0, 0, 1920, 1080));
+	_sfml_sprite.setTexture(*sfml);
+	_ncurses_sprite.setTexture(*ncurses);
       }
-      _window.draw(_sfml_sprite);
-      _window.draw(_ncurses_sprite);
+      _window->draw(_sfml_sprite);
+      _window->draw(_ncurses_sprite);
     }
     test++;
-    _window.draw(_logo_buttons);
-    _window.display();
+    _window->draw(_logo_buttons);
+    _window->display();
   }
+  delete _window;
+  delete background;
+  delete sfml;
+  delete ncurses;
+  delete logo_pacman;
+  delete logo_snake;
+  delete logo_choice;
+  delete logo_buttons;
 }
 
 void menu::SetSprite(int x, int y, Game::IGame *entity)

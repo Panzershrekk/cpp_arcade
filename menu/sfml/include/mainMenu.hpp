@@ -15,19 +15,20 @@ class menu : public Graph::IGraph
     int				ch;
     int				pos;
     int				boolean;
+    sf::RenderWindow *_window;
     sf::Sprite			_pacSprite;
     sf::Sprite			_snakeSprite;
-    sf::Texture		background;
-    sf::Texture		sfml;
-    sf::Texture		ncurses;
-    sf::Texture		logo_pacman;
-    sf::Texture		logo_snake;
-    sf::Texture		logo_choice;
-    sf::Texture		logo_buttons;
+    sf::Texture		*background;
+    sf::Texture		*sfml;
+    sf::Texture		*ncurses;
+    sf::Texture		*logo_pacman;
+    sf::Texture		*logo_snake;
+    sf::Texture		*logo_choice;
+    sf::Texture		*logo_buttons;
     sf::Sprite		_background_sprite;
     sf::Sprite		_sfml_sprite;
     sf::Sprite		_ncurses_sprite;
-    sf::Sprite		_logo_choice;
+    sf::Sprite	  _logo_choice;
     sf::Sprite		_logo_buttons;
 
   public:
