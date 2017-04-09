@@ -19,5 +19,5 @@ extern "C" void   pacman_SFML()
   gameMapSfml *map = new gameMapSfml();
 
   map->Game();
-  delete map;
+  //delete map;
 }

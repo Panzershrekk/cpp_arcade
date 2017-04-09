@@ -53,12 +53,16 @@ gameMapNcursesSnake::~gameMapNcursesSnake()
 
 gameMapNcursesSnake::gameMapNcursesSnake(gameMapNcursesSnake const & other)
 {
-  (void) other;
+  _height = other._height;
+  _witdh = other._witdh;
+  _gamemap = other._gamemap;
 }
 
 gameMapNcursesSnake& gameMapNcursesSnake::operator=(gameMapNcursesSnake const & other)
 {
-  (void) other;
+  _height = other._height;
+  _witdh = other._witdh;
+  _gamemap = other._gamemap;
   return *this;
 }
 

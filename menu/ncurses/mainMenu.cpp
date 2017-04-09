@@ -20,6 +20,25 @@ menu::~menu()
 {
 }
 
+menu::menu(menu const & other)
+{
+  _games = other._games;
+  _libs = other._libs;
+  ch = other.ch;
+  pos = other.pos;
+  boolean = other.boolean;
+}
+
+menu& menu::operator=(menu const & other)
+{
+  _games = other._games;
+  _libs = other._libs;
+  ch = other.ch;
+  pos = other.pos;
+  boolean = other.boolean;
+  return *this;
+}
+
 int	mov_pos(int max, int pos, int ch)
 {
   if (ch == KEY_DOWN)
@@ -89,6 +108,7 @@ void		menu::Game()
 	  exit(EXIT_FAILURE);
 	}
 	func();
+  exit(0);
 	dlclose(lib);
 	return;
       }
