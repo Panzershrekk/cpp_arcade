@@ -57,16 +57,31 @@ gameMapSfmlSnake::gameMapSfmlSnake()
 
 gameMapSfmlSnake::~gameMapSfmlSnake()
 {
+
 }
 
 gameMapSfmlSnake::gameMapSfmlSnake(gameMapSfmlSnake const & other)
 {
-  (void) other;
+  _height = other._height;
+  _witdh = other._witdh;
+  _oldSPrite = other._oldSPrite;
+  _snakSprite = other._snakSprite;
+  _window = other._window;
+  _spriteMap = other._spriteMap;
+  _textureMap = other._textureMap;
+  _gamemap = other._gamemap;
 }
 
 gameMapSfmlSnake& gameMapSfmlSnake::operator=(gameMapSfmlSnake const & other)
 {
-  (void) other;
+  _height = other._height;
+  _witdh = other._witdh;
+  _oldSPrite = other._oldSPrite;
+  _snakSprite = other._snakSprite;
+  _window = other._window;
+  _spriteMap = other._spriteMap;
+  _textureMap = other._textureMap;
+  _gamemap = other._gamemap;
   return *this;
 }
 

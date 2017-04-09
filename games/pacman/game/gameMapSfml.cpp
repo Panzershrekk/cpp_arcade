@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Sun Apr 09 15:56:11 2017 Thomas Fossaert
+** Last update Sun Apr 09 18:34:19 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -125,12 +125,42 @@ gameMapSfml::~gameMapSfml()
 
 gameMapSfml::gameMapSfml(gameMapSfml const & other)
 {
-  (void) other;
+  _pacman = other._pacman;
+  _blinky = other._blinky;
+  _pinky = other._pinky;
+  _inky = other._inky;
+  _oldSPrite = other._oldSPrite;
+  _blinkyCurr = other._blinkyCurr;
+  _pinkyCurr = other._pinkyCurr;
+  _inkyCurr = other._inkyCurr;
+  _clydeCurr = other._clydeCurr;
+  _score = other._score;
+  _gamemap = other._gamemap;
+  _pacSprite = other._pacSprite;
+  _tempoSprite = other._tempoSprite;
+  _window = other._window;
+  _spriteMap = other._spriteMap;
+  _textureMap = other._textureMap;
 }
 
 gameMapSfml& gameMapSfml::operator=(gameMapSfml const & other)
 {
-  (void) other;
+  _pacman = other._pacman;
+  _blinky = other._blinky;
+  _pinky = other._pinky;
+  _inky = other._inky;
+  _oldSPrite = other._oldSPrite;
+  _blinkyCurr = other._blinkyCurr;
+  _pinkyCurr = other._pinkyCurr;
+  _inkyCurr = other._inkyCurr;
+  _clydeCurr = other._clydeCurr;
+  _score = other._score;
+  _gamemap = other._gamemap;
+  _pacSprite = other._pacSprite;
+  _tempoSprite = other._tempoSprite;
+  _window = other._window;
+  _spriteMap = other._spriteMap;
+  _textureMap = other._textureMap;
   return *this;
 }
 

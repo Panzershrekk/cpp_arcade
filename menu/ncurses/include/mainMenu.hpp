@@ -19,6 +19,8 @@ class menu : public Graph::IGraph
   public:
     menu();
     ~menu();
+    menu(menu const & other);
+    menu& operator=(menu const & other);
     void createMap();
     void Game();
     void SetSprite(int x, int y, Game::IGame *entity);

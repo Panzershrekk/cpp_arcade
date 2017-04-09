@@ -3,13 +3,14 @@
 //
 
 #include  <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "include/mainMenu.hpp"
 
 menu::menu()
 {
   boolean = 0;
   pos = 0;
-  _window = new sf::RenderWindow(sf::VideoMode(1080, 720), "Pacman");
+  _window = new sf::RenderWindow(sf::VideoMode(1080, 720), "ARCADE");
   _games[0] = "Pacman";
   _games[1] = "Snake";
   _libs[0] = "ncurses";
@@ -63,9 +64,55 @@ menu::~menu()
 {
 }
 
+menu::menu(menu const & other)
+{
+  _games = other._games;
+  _libs = other._libs;
+  ch = other.ch;
+  pos = other.pos;
+  boolean = other.boolean;
+  _window = other._window;
+  _pacSprite = other._pacSprite;
+  _snakeSprite = other._snakeSprite;
+  background = other.background;
+  sfml = other.sfml;
+  ncurses = other.ncurses;
+  logo_pacman = other.logo_pacman;
+  logo_snake = other.logo_snake;
+  logo_buttons = other.logo_buttons;
+  _background_sprite = other._background_sprite;
+  _sfml_sprite = other._sfml_sprite;
+  _ncurses_sprite = other._ncurses_sprite;
+  _logo_choice = other._logo_choice;
+  _logo_buttons = other._logo_buttons;
+}
+
+menu& menu::operator=(menu const & other)
+{
+  _games = other._games;
+  _libs = other._libs;
+  ch = other.ch;
+  pos = other.pos;
+  boolean = other.boolean;
+  _window = other._window;
+  _pacSprite = other._pacSprite;
+  _snakeSprite = other._snakeSprite;
+  background = other.background;
+  sfml = other.sfml;
+  ncurses = other.ncurses;
+  logo_pacman = other.logo_pacman;
+  logo_snake = other.logo_snake;
+  logo_buttons = other.logo_buttons;
+  _background_sprite = other._background_sprite;
+  _sfml_sprite = other._sfml_sprite;
+  _ncurses_sprite = other._ncurses_sprite;
+  _logo_choice = other._logo_choice;
+  _logo_buttons = other._logo_buttons;
+  return *this;
+}
+
 void		menu::Game()
 {
-  //sf::RenderWindow	_window(sf::VideoMode(1080, 720), "Arcade Menu");
   sf::Vector2<int>	pos;
   std::string		games;
   std::string		libs;
@@ -78,6 +125,10 @@ void		menu::Game()
   games = "";
   libs = "";
 
+  sf::Music *music = new sf::Music;
+  if (!music->openFromFile("./menu/sfml/music/skyrim.ogg"))
+    return ;
+  music->play();
   while (_window->isOpen())
   {
     sf::Event event;
@@ -186,8 +237,9 @@ void		menu::Game()
 	      }
 	      _window->close();
 
+        delete music;
 	      func();
-
+        exit(0);
 	      dlclose(lib);
 
 	      return;

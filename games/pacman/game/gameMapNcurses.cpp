@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Sun Apr 09 16:00:33 2017 Thomas Fossaert
+** Last update Sun Apr 09 18:31:08 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -89,12 +89,32 @@ gameMapNcurses::~gameMapNcurses()
 
 gameMapNcurses::gameMapNcurses(gameMapNcurses const & other)
 {
-  (void) other;
+  _pacman = other._pacman;
+  _blinky = other._blinky;
+  _pinky = other._pinky;
+  _inky = other._inky;
+  _oldSPrite = other._oldSPrite;
+  _blinkyCurr = other._blinkyCurr;
+  _pinkyCurr = other._pinkyCurr;
+  _inkyCurr = other._inkyCurr;
+  _clydeCurr = other._clydeCurr;
+  _score = other._score;
+  _gamemap = other._gamemap;
 }
 
 gameMapNcurses& gameMapNcurses::operator=(gameMapNcurses const & other)
 {
-  (void) other;
+  _pacman = other._pacman;
+  _blinky = other._blinky;
+  _pinky = other._pinky;
+  _inky = other._inky;
+  _oldSPrite = other._oldSPrite;
+  _blinkyCurr = other._blinkyCurr;
+  _pinkyCurr = other._pinkyCurr;
+  _inkyCurr = other._inkyCurr;
+  _clydeCurr = other._clydeCurr;
+  _score = other._score;
+  _gamemap = other._gamemap;
   return *this;
 }
 
@@ -292,7 +312,6 @@ void gameMapNcurses::Game()
   refresh();
   sleep(3);
   endwin();
-  exit(0);
 }
 
 void gameMapNcurses::SetSprite(int x, int y, Game::IGame *entity)

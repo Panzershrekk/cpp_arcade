@@ -16,7 +16,7 @@ CXXFLAGS	=	-fPIC			\
 		-std=c++11		\
 		-I ./include		\
 		-I ../../interface	\
-		-lsfml-graphics -lsfml-window -lsfml-system
+		-lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
 
 
 all:		$(NAME)
