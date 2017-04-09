@@ -40,6 +40,14 @@ class gameMapSfmlSnake : public Graph::IGraph
     void SetSprite(int x, int y, Game::IGame *entity);
     void UnsetSprite(int x, int y, Game::IGame *entity);
     void displayMap(int **);
+    void displayMap(int **, int, int, int);
+    void drawMap(int, int, char);
+    void drawPlayer(std::vector<Game::IGame*>, char);
+    void drawScore(int, int);
+    void drawFood(int, int, char);
+    void drawLoose(void);
+    int  recoverKey(void);
+    bool checkSizeWindow(int x, int y);
   void resetMap();
   void InitSprite();
   void genApple();

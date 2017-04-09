@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Apr 07 11:01:04 2017 Thomas Fossaert
+** Last update Sun Apr 09 12:51:18 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -219,7 +219,8 @@ void gameMapSfml::InitSprite()
         {
           sf::Sprite _pacSprite;
           _pacSprite.setTexture(*_textureMap[5]);
-          _pacSprite.setPosition(j * 32, i * 32);
+          //_pacSprite.setPosition(j * 32, i * 32);
+          _pacSprite.move(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
         }
         else if (_gamemap[i][j] == TabType::PINKY)
@@ -477,4 +478,55 @@ std::pair<std::string, std::string>	gameMapSfml::startMenu(const std::vector<std
 void gameMapSfml::displayMap(int ** l)
 {
   (void) l;
+}
+
+void gameMapSfml::displayMap(int **i, int j, int k, int l)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+  (void)l;
+}
+
+void gameMapSfml::drawMap(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void gameMapSfml::drawPlayer(std::vector<Game::IGame*> i, char j)
+{
+  (void)i;
+  (void)j;
+}
+
+void gameMapSfml::drawScore(int i, int j)
+{
+  (void)i;
+  (void)j;
+}
+
+void gameMapSfml::drawFood(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void gameMapSfml::drawLoose(void)
+{
+
+}
+
+int  gameMapSfml::recoverKey(void)
+{
+  return (0);
+}
+
+bool gameMapSfml::checkSizeWindow(int x, int y)
+{
+  (void)x;
+  (void)y;
+  return (true);
 }

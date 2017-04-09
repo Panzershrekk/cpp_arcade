@@ -262,3 +262,54 @@ extern "C" void		do_menu()
 
   my_menu.Game();
 }
+
+void menu::displayMap(int **i, int j, int k, int l)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+  (void)l;
+}
+
+void menu::drawMap(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void menu::drawPlayer(std::vector<Game::IGame*> i, char j)
+{
+  (void)i;
+  (void)j;
+}
+
+void menu::drawScore(int i, int j)
+{
+  (void)i;
+  (void)j;
+}
+
+void menu::drawFood(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void menu::drawLoose(void)
+{
+
+}
+
+int  menu::recoverKey(void)
+{
+  return (0);
+}
+
+bool menu::checkSizeWindow(int x, int y)
+{
+  (void)x;
+  (void)y;
+  return (true);
+}

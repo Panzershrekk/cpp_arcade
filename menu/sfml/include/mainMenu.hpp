@@ -40,6 +40,14 @@ class menu : public Graph::IGraph
     void Animation();
     std::pair<std::string, std::string>	startMenu(const std::vector<std::string> &, const std::vector<std::string> &);
     void displayMap(int **);
+    void displayMap(int **, int, int, int);
+    void drawMap(int, int, char);
+    void drawPlayer(std::vector<Game::IGame*>, char);
+    void drawScore(int, int);
+    void drawFood(int, int, char);
+    void drawLoose(void);
+    int  recoverKey(void);
+    bool checkSizeWindow(int x, int y);
 };
 
 

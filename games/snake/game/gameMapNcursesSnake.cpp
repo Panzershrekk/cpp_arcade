@@ -302,3 +302,54 @@ void gameMapNcursesSnake::displayMap(int ** l)
 {
   (void) l;
 }
+
+void gameMapNcursesSnake::displayMap(int **i, int j, int k, int l)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+  (void)l;
+}
+
+void gameMapNcursesSnake::drawMap(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void gameMapNcursesSnake::drawPlayer(std::vector<Game::IGame*> i, char j)
+{
+  (void)i;
+  (void)j;
+}
+
+void gameMapNcursesSnake::drawScore(int i, int j)
+{
+  (void)i;
+  (void)j;
+}
+
+void gameMapNcursesSnake::drawFood(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void gameMapNcursesSnake::drawLoose(void)
+{
+
+}
+
+int  gameMapNcursesSnake::recoverKey(void)
+{
+  return (0);
+}
+
+bool gameMapNcursesSnake::checkSizeWindow(int x, int y)
+{
+  (void)x;
+  (void)y;
+  return (true);
+}

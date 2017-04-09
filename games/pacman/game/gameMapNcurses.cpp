@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Fri Apr 07 10:44:11 2017 Thomas Fossaert
+** Last update Sun Apr 09 12:51:54 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -368,4 +368,55 @@ std::pair<std::string, std::string>	gameMapNcurses::startMenu(const std::vector<
 void gameMapNcurses::displayMap(int ** l)
 {
   (void) l;
+}
+
+void gameMapNcurses::displayMap(int **i, int j, int k, int l)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+  (void)l;
+}
+
+void gameMapNcurses::drawMap(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void gameMapNcurses::drawPlayer(std::vector<Game::IGame*> i, char j)
+{
+  (void)i;
+  (void)j;
+}
+
+void gameMapNcurses::drawScore(int i, int j)
+{
+  (void)i;
+  (void)j;
+}
+
+void gameMapNcurses::drawFood(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void gameMapNcurses::drawLoose(void)
+{
+
+}
+
+int  gameMapNcurses::recoverKey(void)
+{
+  return (0);
+}
+
+bool gameMapNcurses::checkSizeWindow(int x, int y)
+{
+  (void)x;
+  (void)y;
+  return (true);
 }

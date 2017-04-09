@@ -58,6 +58,15 @@ class gameMapNcurses : public Graph::IGraph
     void displayMap(int **);
     void Animation();
 
+    void displayMap(int **, int, int, int);
+    void drawMap(int, int, char);
+    void drawPlayer(std::vector<Game::IGame*>, char);
+    void drawScore(int, int);
+    void drawFood(int, int, char);
+    void drawLoose(void);
+    int  recoverKey(void);
+    bool checkSizeWindow(int x, int y);
+
     void DumpMap();
 };
 

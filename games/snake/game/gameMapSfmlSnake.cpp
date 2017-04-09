@@ -1,9 +1,9 @@
 //
 // gameMapSfmlSnake.cpp for snake in /home/antoine/Bureau/Epi/Arcade/cpp_arcade/games/snake/game
-// 
+//
 // Made by antoine
 // Login   <antoine@epitech.net>
-// 
+//
 // Started on  Thu Apr  6 22:43:08 2017 antoine
 // Last update Sat Apr  8 11:36:56 2017 antoine
 //
@@ -260,7 +260,7 @@ std::vector<Position> gameMapSfmlSnake::movePosSnake(int x, int y, std::vector<P
       if (i == 0)
         {
           tmp[0] = first;
-          // if (snake->getNeedGrowth() != 1)                                    
+          // if (snake->getNeedGrowth() != 1)
             _gamemap[tmp[0].y][tmp[0].x] = 3;
         }
       else
@@ -347,4 +347,55 @@ void gameMapSfmlSnake::DumpMap()
 void gameMapSfmlSnake::displayMap(int ** l)
 {
   (void) l;
+}
+
+void gameMapSfmlSnake::displayMap(int **i, int j, int k, int l)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+  (void)l;
+}
+
+void gameMapSfmlSnake::drawMap(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void gameMapSfmlSnake::drawPlayer(std::vector<Game::IGame*> i, char j)
+{
+  (void)i;
+  (void)j;
+}
+
+void gameMapSfmlSnake::drawScore(int i, int j)
+{
+  (void)i;
+  (void)j;
+}
+
+void gameMapSfmlSnake::drawFood(int i, int j, char k)
+{
+  (void)i;
+  (void)k;
+  (void)j;
+}
+
+void gameMapSfmlSnake::drawLoose(void)
+{
+
+}
+
+int  gameMapSfmlSnake::recoverKey(void)
+{
+  return (0);
+}
+
+bool gameMapSfmlSnake::checkSizeWindow(int x, int y)
+{
+  (void)x;
+  (void)y;
+  return (true);
 }
