@@ -5,7 +5,7 @@
 // Login   <antoine@epitech.net>
 //
 // Started on  Thu Apr  6 22:43:08 2017 antoine
-// Last update Sat Apr  8 11:36:56 2017 antoine
+// Last update Sun Apr  9 17:33:28 2017 antoine
 //
 
 #include <fstream>
@@ -130,7 +130,7 @@ void gameMapSfmlSnake::InitSprite()
         else if (_gamemap[i][j] == TabTypeSnake::SNAK)
         {
           sf::Sprite _pacSprite;
-          _pacSprite.setTexture(*_textureMap[1]);
+          _pacSprite.setTexture(*_textureMap[2]);
           _pacSprite.setPosition(j * 32, i * 32);
           _spriteMap[i][j] = _pacSprite;
 	}
