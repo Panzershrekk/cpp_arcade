@@ -1,0 +1,65 @@
+= Documentation Arcade
+
+WARNING: Cette documentation ainsi que l'interface et suscptible de changer
+
+== Introduction
+
+=== Projet Arcade
+
+Le projet Arcade est un projet C++ visant à créer un plateforme dee jeux grâce
+à diffrentes lib graphiques.
+
+== Généralité
+
+=== Jeux
+
+Deux jeux sont disponibles :
+
+* Pacman
+* Snake
+
+TIP: Pour plus d'information, consulter la documentation relative aux jeux.
+
+=== Lib Graphiques
+
+Les libs graphiques utilisées sont :
+
+* Ncurses 6.0
+* SFML 2.4
+* OpenGL 4.5
+
+== Utilisation
+
+* Dans la racine du dépôt, taper -> "Make re" +
+* Taper ./arcade lib/lib_arcade_XXX.so (où le "XXX" représente le nom de la lib souhaitée)
+
+Un menu se lance ensuite
+
+=== Menu Ncurse
+
+* Selectioner le jeux avec les flèches directionnelles puis valider avec "Enter"
+* Une deuxième list s'affiche, faire la même manipulation que précedemment mais avec la lib graphique souhaitée
+* Le jeux se lance
+
+=== Menu SFML
+
+Un écran s'affiche.
+
+3 boutons de couleurs s'affiche:
+
+* Vert -> Validation
+* Orange -> retour en arrière
+* Rouge -> quitte le programme;
+
+D'autre image sont présentes
+
+* Cliquer sur l'image du jeu souhaité
+* Valider le choix
+* Faire la même chose pour la lib graphique
+* Le jeux se lance
+
+=== Menu OpenGL
+
+TODO
+
+NOTE: Projet réalisé par Thomas FOSSAERT, Thomas HUGUET et Antoine SOFFRAY.

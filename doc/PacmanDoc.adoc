@@ -1,0 +1,35 @@
+= Documentation Pacman
+
+WARNING: Cette documentation ainsi que l'interface et suscptible de changer
+
+== Introduction
+
+Ce document établit les informations concernant le jeux Pacman réalisé.
+
+== Le jeux
+
+=== Ennemis
+
+4 ennemis existent:
+
+* Blinky le fantôme rouge
+* Pinky le fantôme rose
+* Inky le fantôme bleue
+* Clyde le fanômte orange
+
+Chaque fantôme se déplacent dans un labyrinthe pour attrapper Pacman
+
+==== Mode de déplacement
+
+Les fantômes se déplacent de manière aléatoire
+
+=== Pacman
+
+Pacman se déplace grâce aux touches directionnelles +
+Si pacman mange tout les "Pacgums", la partie se termine.
+
+== Fonctionnalités non-implémentées
+
+* Intelligence unique à chaque fantôme.
+* Possibilité de manger les fantômes
+* Téléportation lors d'un passage dans un couloir

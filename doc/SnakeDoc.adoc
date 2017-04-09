@@ -1,0 +1,18 @@
+= Documentation Snake
+
+WARNING: Cette documentation ainsi que l'interface et suscptible de changer
+
+== Introduction
+
+Ce document établit les informations concernant le jeux Snake réalisé.
+
+== Le jeux
+
+Le snake se déplace grâce aux touches directionnelles. +
+Si le Snake rentre dans un mur ou passe sur son propre corps, la partie est perdu. +
+Plus le Snake mange de point, plus sa taille augmente. +
+Le but est de faire un maximum de point.
+
+== Fonctionnalités non-implémentées
+
+TODO
