@@ -19,6 +19,5 @@ extern "C" void   snake_SFML()
 {
   gameMapSfmlSnake *map = new gameMapSfmlSnake();
 
-  map->DumpMap();
   map->Game();
 }

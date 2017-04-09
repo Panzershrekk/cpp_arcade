@@ -13,7 +13,6 @@
 #include "IGame.hpp"
 #include "IGraph.hpp"
 #include "gameMapSfml.hpp"
-// #include "ArcadeException.hpp"
 
 extern "C" void   pacman_SFML()
 {

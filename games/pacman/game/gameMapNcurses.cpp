@@ -5,7 +5,7 @@
 ** Login   <fossae_t@epitech.net>
 **
 ** Started on  Thu Mar 09 17:02:17 2017 Thomas Fossaert
-** Last update Sun Apr 09 12:51:54 2017 Thomas Fossaert
+** Last update Sun Apr 09 14:40:25 2017 Thomas Fossaert
 */
 
 #include <fstream>
@@ -292,6 +292,7 @@ void gameMapNcurses::Game()
   refresh();
   sleep(3);
   endwin();
+  exit(0);
 }
 
 void gameMapNcurses::SetSprite(int x, int y, Game::IGame *entity)

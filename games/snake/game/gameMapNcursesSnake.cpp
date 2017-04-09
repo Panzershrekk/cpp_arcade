@@ -195,6 +195,7 @@ void gameMapNcursesSnake::Game()
   delete snake;
   getch();
   endwin();
+  exit(0);
 }
 
 std::vector<Position> gameMapNcursesSnake::movePosSnake(int x, int y, std::vector<Position> tmp, Snake *snake)
